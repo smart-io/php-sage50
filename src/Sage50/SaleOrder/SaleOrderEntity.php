@@ -5,7 +5,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sinergi\Sage50\SaleOrder\SaleOrderRepository")
  * @ORM\Table(name="tsalordr", indexes={
  *   @ORM\Index(name="KEY_1", columns={"lCusId"}),
  *   @ORM\Index(name="KEY_2", columns={"sSONum"})
@@ -37,25 +37,25 @@ class SaleOrderEntity
      * @ORM\Column(name="dtASDate", type="datetime", nullable=true)
      * @var DateTime
      */
-    private $modicationDate;
+    private $modificationDate;
 
     /**
      * @ORM\Column(name="tmASTime", type="datetime", nullable=true)
      * @var DateTime
      */
-    private $modicationTime;
+    private $modificationTime;
 
     /**
      * @ORM\Column(name="sASUserId", type="string", length=14, nullable=true)
      * @var string
      */
-    private $createdByUsername;
+    private $createdByUsername = 'sysadmin';
 
     /**
      * @ORM\Column(name="sASOrgId", type="string", length=6, nullable=true)
      * @var string
      */
-    private $createdByOrg;
+    private $createdByOrg = 'winsim';
 
     /**
      * @ORM\Column(name="sName", type="string", length=52, nullable=true)
@@ -145,217 +145,224 @@ class SaleOrderEntity
      * @ORM\Column(name="bPrinted", type="boolean", nullable=true)
      * @var bool
      */
-    private $isPrinted;
+    private $isPrinted = false;
 
     /**
      * @ORM\Column(name="bEmailed", type="boolean", nullable=true)
      * @var bool
      */
-    private $isEmailed;
+    private $isEmailed = false;
 
     /**
      * @ORM\Column(name="sUser", type="string", length=20, nullable=true)
      * @var string
      */
-    private $enteredByUsername;
+    private $enteredByUsername = 'sysadmin';
 
     /**
      * @ORM\Column(name="fDiscPer", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $discountPercentage;
+    private $discountPercentage = 0.00;
 
     /**
      * @ORM\Column(name="nDiscDay", type="smallint", nullable=true)
      * @var int
      */
-    private $discountDay;
+    private $discountDay = 0;
 
     /**
      * @ORM\Column(name="nNetDay", type="smallint", nullable=true)
      * @var int
      */
-    private $discountNetDay;
+    private $discountNetDay = 0;
 
     /**
      * @ORM\Column(name="dTotal", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $total;
+    private $total = 0.00;
 
     /**
      * @ORM\Column(name="lJourId", type="integer", nullable=true)
      * @var int
      */
-    private $nextId;
+    private $nextId = 0;
 
     /**
      * @ORM\Column(name="sComment", type="string", length=100, nullable=true)
      * @var string
      */
-    private $comment;
+    private $comment = '';
 
     /**
      * @ORM\Column(name="sShipper", type="string", length=20, nullable=true)
      * @var string
      */
-    private $shipperName;
+    private $shipperName = '';
 
     /**
      * @ORM\Column(name="bQuote", type="boolean", nullable=true)
      * @var bool
      */
-    private $isQuote;
+    private $isQuote = false;
 
     /**
      * @ORM\Column(name="bImport", type="boolean", nullable=true)
      * @var bool
      */
-    private $isImported;
+    private $isImported = false;
 
     /**
      * @ORM\Column(name="lCurrncyId", type="integer", nullable=true)
      * @var int
      */
-    private $currencyId;
+    private $currencyId = 0;
 
     /**
      * @ORM\Column(name="dExchRate", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $exchangeRate;
+    private $exchangeRate = false;
 
     /**
      * @ORM\Column(name="bEtran", type="boolean", nullable=true)
      * @var bool
      */
-    private $isWebstoreOrder;
+    private $isWebstoreOrder = false;
 
     /**
      * @ORM\Column(name="bPrePaid", type="boolean", nullable=true)
      * @var bool
      */
-    private $isPrePaid;
+    private $isPrePaid = false;
 
     /**
      * @ORM\Column(name="lPaidJor", type="integer", nullable=true)
      * @var int
      */
-    private $prepaidId;
+    private $prepaidId = 0;
 
     /**
      * @ORM\Column(name="nPdType", type="smallint", nullable=true)
      * @var int
      */
-    private $prepaymentType;
+    private $prepaymentType = false;
 
     /**
      * @ORM\Column(name="sCrdName", type="string", length=13, nullable=true)
      * @var string
      */
-    private $creditCardName;
+    private $creditCardName = '';
 
     /**
      * @ORM\Column(name="lAcctNum", type="integer", nullable=true)
      * @var int
      */
-    private $accountNumber;
+    private $accountNumber = 0;
 
     /**
      * @ORM\Column(name="lDepId", type="integer", nullable=true)
      * @var int
      */
-    private $departmentId;
+    private $departmentId = 0;
 
     /**
      * @ORM\Column(name="lSoldBy", type="integer", nullable=true)
      * @var int
      */
-    private $soldById;
+    private $soldById = 0;
 
     /**
      * @ORM\Column(name="szSoldBy", type="string", length=52, nullable=true)
      * @var string
      */
-    private $soldByName;
+    private $soldByName = '';
 
     /**
      * @ORM\Column(name="sChqNum", type="string", length=20, nullable=true)
      * @var string
      */
-    private $chequeNumber;
+    private $chequeNumber = '';
 
     /**
      * @ORM\Column(name="bDSProc", type="boolean", nullable=true)
      * @var bool
      */
-    private $isDepositSlipCleared;
+    private $isDepositSlipCleared = 0;
 
     /**
      * @ORM\Column(name="bCleared", type="boolean", nullable=true)
      * @var bool
      */
-    private $isCleared;
+    private $isCleared = false;
 
     /**
      * @ORM\Column(name="lChqId", type="integer", nullable=true)
      * @var int
      */
-    private $chequeId;
+    private $chequeId = 0;
 
     /**
      * @ORM\Column(name="lInvLocId", type="integer", nullable=true)
      * @var int
      */
-    private $inventoryLocationId;
+    private $inventoryLocationId = 1;
 
     /**
      * @ORM\Column(name="bRmBPLst", type="boolean", nullable=true)
      * @var bool
      */
-    private $isRemovedFromBatchList;
+    private $isRemovedFromBatchList = false;
 
     /**
      * @ORM\Column(name="lAddrId", type="integer", nullable=true)
      * @var int
      */
-    private $shippingAddressId;
+    private $shippingAddressId = 0;
 
     /**
      * @ORM\Column(name="nLangPref", type="smallint", nullable=true)
      * @var int
      */
-    private $preferredLanguage;
+    private $preferredLanguage = 0;
 
     /**
      * @ORM\Column(name="nFilled", type="smallint", nullable=true)
-     * @var int
+     * @var boolean
      */
-    private $isFilled;
+    private $isFilled = false;
 
     /**
      * @ORM\Column(name="bReversed", type="boolean", nullable=true)
      * @var bool
      */
-    private $isReversed;
+    private $isReversed = false;
 
     /**
      * @ORM\Column(name="bReversal", type="boolean", nullable=true)
      * @var bool
      */
-    private $isReversal;
+    private $isReversal = false;
 
     /**
      * @ORM\Column(name="lCCTransId", type="integer", nullable=true)
      * @var int
      */
-    private $creditCardTransactionId;
+    private $creditCardTransactionId = 0;
 
     /**
      * @ORM\Column(name="lRevCCTrId", type="integer", nullable=true)
      * @var int
      */
-    private $removedCreditCardTransactionId;
+    private $removedCreditCardTransactionId = 0;
+
+    public function __construct()
+    {
+        $this->setRequestedShippingDate(new DateTime('0001-01-01 00:00:00'));
+        $this->setModificationDate(new DateTime(date('Y-m-d 00:00:00')));
+        $this->setModificationTime(new DateTime(date('1899-12-30 H:i:s')));
+    }
 
     /**
      * @return int
@@ -414,39 +421,47 @@ class SaleOrderEntity
     /**
      * @return DateTime
      */
-    public function getModicationDate()
+    public function getModificationDate()
     {
-        return $this->modicationDate;
+        return $this->modificationDate;
     }
 
     /**
-     * @param DateTime $modicationDate
+     * @param DateTime $modificationDate
      * @return $this
      */
-    public function setModicationDate(DateTime $modicationDate)
+    public function setModificationDate(DateTime $modificationDate)
     {
-        $this->modicationDate = $modicationDate;
+        $this->modificationDate = $modificationDate;
         return $this;
     }
 
     /**
      * @return DateTime
      */
-    public function getModicationTime()
+    public function getModificationTime()
     {
-        return $this->modicationTime;
+        return $this->modificationTime;
     }
 
     /**
-     * @param DateTime $modicationTime
+     * @param DateTime $modificationTime
      * @return $this
      */
-    public function setModicationTime(DateTime $modicationTime)
+    public function setModificationTime(DateTime $modificationTime)
     {
-        $this->modicationTime = $modicationTime;
+        $this->modificationTime = $modificationTime;
         return $this;
     }
 
+    /**
+     * @return DateTime
+     */
+    public function getModificationDatetime()
+    {
+        return new DateTime($this->modificationDate->format('Y-m-d') . ' ' . $this->modificationTime->format('H:i:s'));
+    }
+    
     /**
      * @return string
      */
@@ -1294,15 +1309,15 @@ class SaleOrderEntity
     }
 
     /**
-     * @return int
+     * @return boolean
      */
-    public function getIsFilled()
+    public function isFilled()
     {
         return $this->isFilled;
     }
 
     /**
-     * @param int $isFilled
+     * @param boolean $isFilled
      * @return $this
      */
     public function setIsFilled($isFilled)

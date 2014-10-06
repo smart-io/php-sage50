@@ -529,6 +529,14 @@ class EmployeeEntity
     }
 
     /**
+     * @return DateTime
+     */
+    public function getModificationDatetime()
+    {
+        return new DateTime($this->modificationDate->format('Y-m-d') . ' ' . $this->modificationTime->format('H:i:s'));
+    }
+
+    /**
      * @return string
      */
     public function getCreatedByUsername()
