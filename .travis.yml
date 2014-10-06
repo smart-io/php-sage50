@@ -13,6 +13,8 @@ before_script:
   ## Composer
   - composer self-update
   - composer install --prefer-source --no-interaction --dev
+  ## Database
+  - mysql -e 'create database my_dbname;'
 
 script:
   - gearmand -d
