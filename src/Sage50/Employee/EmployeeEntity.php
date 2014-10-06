@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="tEmp", uniqueConstraints={@ORM\UniqueConstraint(name="KEY_1", columns={"sName"})})
+ * @ORM\Table(name="temp", uniqueConstraints={@ORM\UniqueConstraint(name="KEY_1", columns={"sName"})})
  */
 class EmployeeEntity
 {
@@ -124,19 +124,19 @@ class EmployeeEntity
      * @ORM\Column(name="dFedBase", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $fedBase;
+    private $federalBaseClaimAmount;
 
     /**
      * @ORM\Column(name="dProvBase", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $provBase;
+    private $provincialBaseClaimAmount;
 
     /**
      * @ORM\Column(name="dExtraTax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $extraTax;
+    private $dditionalTax;
 
     /**
      * @ORM\Column(name="fEIRate", type="float", precision=10, scale=0, nullable=true)
@@ -148,25 +148,25 @@ class EmployeeEntity
      * @ORM\Column(name="bInsure", type="boolean", nullable=true)
      * @var bool
      */
-    private $isInsured;
+    private $isEiUsed;
 
     /**
      * @ORM\Column(name="bRetain", type="boolean", nullable=true)
      * @var bool
      */
-    private $isRetained;
+    private $isHolidayPayRetained;
 
     /**
      * @ORM\Column(name="bMemInTodo", type="boolean", nullable=true)
      * @var bool
      */
-    private $isMemInTodo;
+    private $isMemoInTodo;
 
     /**
      * @ORM\Column(name="nPayPeriod", type="smallint", nullable=true)
      * @var int
      */
-    private $payPeriod;
+    private $payPeriodNumber;
 
     /**
      * @ORM\Column(name="dtLastPaid", type="datetime", nullable=true)
@@ -184,55 +184,55 @@ class EmployeeEntity
      * @ORM\Column(name="dFedIndex", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $fedIndex;
+    private $federalClaimRateIndexing;
 
     /**
      * @ORM\Column(name="dProvIndex", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $provIndex;
+    private $provincialClaimRateIndexing;
 
     /**
      * @ORM\Column(name="bWageExp", type="boolean", nullable=true)
      * @var bool
      */
-    private $isWageExpired;
+    private $isWageExpenseAccount;
 
     /**
      * @ORM\Column(name="lAcWageExp", type="integer", nullable=true)
      * @var int
      */
-    private $isAcWageExpired;
+    private $wageExpenseAccount;
 
     /**
      * @ORM\Column(name="dtTerm", type="datetime", nullable=true)
      * @var DateTime
      */
-    private $termDate;
+    private $terminationDate;
 
     /**
      * @ORM\Column(name="cROECode", type="string", length=1, nullable=true)
      * @var string
      */
-    private $roeCode;
+    private $recordOfEmploymentCode;
 
     /**
      * @ORM\Column(name="lDpWageExp", type="integer", nullable=true)
      * @var int
      */
-    private $dpWageExp;
+    private $wageExpenseAccountDepartmentId;
 
     /**
      * @ORM\Column(name="lDfltDptId", type="integer", nullable=true)
      * @var int
      */
-    private $dfltDptId;
+    private $defaultDepartementId;
 
     /**
      * @ORM\Column(name="lCompId", type="integer", nullable=true)
      * @var int
      */
-    private $compId;
+    private $companyId;
 
     /**
      * @ORM\Column(name="bDirectDep", type="boolean", nullable=true)
@@ -244,199 +244,199 @@ class EmployeeEntity
      * @ORM\Column(name="dEmpEtHrs", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtHrs;
+    private $hoursWorked;
 
     /**
      * @ORM\Column(name="dEmpEtATrk", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtATrk;
+    private $percentageHoursWorkedEntitlementA;
 
     /**
      * @ORM\Column(name="dEmpEtAMax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtAMax;
+    private $maximumDaysEntitlementA;
 
     /**
      * @ORM\Column(name="bEmpEtAClr", type="boolean", nullable=true)
      * @var bool
      */
-    private $empEtAClr;
+    private $isClearDaysEntitlementA;
 
     /**
      * @ORM\Column(name="dEmpEtBTrk", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtBTrk;
+    private $percentageHoursWorkedEntitlementB;
 
     /**
      * @ORM\Column(name="dEmpEtBMax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtBMax;
+    private $maximumDaysEntitlementB;
 
     /**
      * @ORM\Column(name="bEmpEtBClr", type="boolean", nullable=true)
      * @var bool
      */
-    private $empEtBClr;
+    private $isClearDaysEntitlementB;
 
     /**
      * @ORM\Column(name="dEmpEtCTrk", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtCTrk;
+    private $percentageHoursWorkedEntitlementC;
 
     /**
      * @ORM\Column(name="dEmpEtCMax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtCMax;
+    private $maximumDaysEntitlementC;
 
     /**
      * @ORM\Column(name="bEmpEtCClr", type="boolean", nullable=true)
      * @var bool
      */
-    private $empEtCClr;
+    private $isClearDaysEntitlementC;
 
     /**
      * @ORM\Column(name="dEmpEtDTrk", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtDTrk;
+    private $percentageHoursWorkedEntitlementD;
 
     /**
      * @ORM\Column(name="dEmpEtDMax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtDMax;
+    private $maximumDaysEntitlementD;
 
     /**
      * @ORM\Column(name="bEmpEtDClr", type="boolean", nullable=true)
      * @var bool
      */
-    private $empEtDClr;
+    private $isClearDaysEntitlementD;
 
     /**
      * @ORM\Column(name="dEmpEtETrk", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $empEtETrk;
+    private $percentageHoursWorkedEntitlementE;
 
     /**
      * @ORM\Column(name="dEmpEtEMax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $dEmpEtEmax;
+    private $maximumDaysEntitlementE;
 
     /**
      * @ORM\Column(name="bEmpEtEClr", type="boolean", nullable=true)
      * @var bool
      */
-    private $bEmpEtEClr;
+    private $isClearDaysEntitlementE;
 
     /**
      * @ORM\Column(name="dDefUDExpA", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $dDefUDExpA;
+    private $userDefinedExpenseA;
 
     /**
      * @ORM\Column(name="dDefUDExpB", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $dDefUDExpB;
+    private $userDefinedExpenseB;
 
     /**
      * @ORM\Column(name="dDefUDExpC", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $dDefUDExpC;
+    private $userDefinedExpenseC;
 
     /**
      * @ORM\Column(name="dDefUDExpD", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $dDefUDExpD;
+    private $userDefinedExpenseD;
 
     /**
      * @ORM\Column(name="dDefUDExpE", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $dDefUDExpE;
+    private $userDefinedExpenseE;
 
     /**
      * @ORM\Column(name="bCPPExempt", type="boolean", nullable=true)
      * @var bool
      */
-    private $CppExempt;
+    private $isCppQppExcempt;
 
     /**
      * @ORM\Column(name="lJobCatId", type="integer", nullable=true)
      * @var int
      */
-    private $jobCatId;
+    private $jobCategoryId;
 
     /**
      * @ORM\Column(name="nLangPref", type="smallint", nullable=true)
      * @var int
      */
-    private $langPref;
+    private $preferredLanguage;
 
     /**
      * @ORM\Column(name="lModVer", type="integer", nullable=true)
      * @var int
      */
-    private $modVer;
+    private $recordChangeCounter;
 
     /**
      * @ORM\Column(name="sRPPRegNo", type="string", length=7, nullable=true)
      * @var string
      */
-    private $rppRegNo;
+    private $RppOrDspRegistrationNumber;
 
     /**
      * @ORM\Column(name="sEmpCode", type="string", length=2, nullable=true)
      * @var string
      */
-    private $empCode;
+    private $employmentCode;
 
     /**
      * @ORM\Column(name="fPenAdj", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $penAdj;
+    private $pensionAdjustmentAmount;
 
     /**
      * @ORM\Column(name="nAdrProvCD", type="smallint", nullable=true)
      * @var int
      */
-    private $adrProvCd;
+    private $provinceCode;
 
     /**
      * @ORM\Column(name="lExpGrpId", type="integer", nullable=true)
      * @var int
      */
-    private $expGrpId;
+    private $expenseGroupId;
 
     /**
      * @ORM\Column(name="bQpipIns", type="boolean", nullable=true)
      * @var bool
      */
-    private $qQipIns;
+    private $isDeductQpip;
 
     /**
      * @ORM\Column(name="bVacOnVac", type="boolean", nullable=true)
      * @var bool
      */
-    private $vacOnVac;
+    private $isVacationOnVacationPay;
 
     /**
      * @ORM\Column(name="dAddQueTax", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $addQueTax;
+    private $additonalQuebecTax;
 
     /**
      * @ORM\Column(name="sEmail", type="string", length=50, nullable=true)
@@ -448,13 +448,13 @@ class EmployeeEntity
      * @ORM\Column(name="dFedNIndx", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $fedNIndx;
+    private $federalClaimRateNonIndexing;
 
     /**
      * @ORM\Column(name="dProvNIndx", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $provNIndx;
+    private $provincialClaimRateNonIndexing;
 
     /**
      * @return int
@@ -526,14 +526,6 @@ class EmployeeEntity
     {
         $this->modificationTime = $modificationTime;
         return $this;
-    }
-
-    /**
-     * @return DateTime
-     */
-    public function getModificationDatetime()
-    {
-        return new DateTime($this->modificationDate->format('Y-m-d') . ' ' . $this->modificationTime->format('H:i:s'));
     }
 
     /**
@@ -791,54 +783,54 @@ class EmployeeEntity
     /**
      * @return float
      */
-    public function getFedBase()
+    public function getFederalBaseClaimAmount()
     {
-        return $this->fedBase;
+        return $this->federalBaseClaimAmount;
     }
 
     /**
-     * @param float $fedBase
+     * @param float $federalBaseClaimAmount
      * @return $this
      */
-    public function setFedBase($fedBase)
+    public function setFederalBaseClaimAmount($federalBaseClaimAmount)
     {
-        $this->fedBase = $fedBase;
+        $this->federalBaseClaimAmount = $federalBaseClaimAmount;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getProvBase()
+    public function getProvincialBaseClaimAmount()
     {
-        return $this->provBase;
+        return $this->provincialBaseClaimAmount;
     }
 
     /**
-     * @param float $provBase
+     * @param float $provincialBaseClaimAmount
      * @return $this
      */
-    public function setProvBase($provBase)
+    public function setProvincialBaseClaimAmount($provincialBaseClaimAmount)
     {
-        $this->provBase = $provBase;
+        $this->provincialBaseClaimAmount = $provincialBaseClaimAmount;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getExtraTax()
+    public function getDditionalTax()
     {
-        return $this->extraTax;
+        return $this->dditionalTax;
     }
 
     /**
-     * @param float $extraTax
+     * @param float $dditionalTax
      * @return $this
      */
-    public function setExtraTax($extraTax)
+    public function setDditionalTax($dditionalTax)
     {
-        $this->extraTax = $extraTax;
+        $this->dditionalTax = $dditionalTax;
         return $this;
     }
 
@@ -863,72 +855,72 @@ class EmployeeEntity
     /**
      * @return boolean
      */
-    public function isInsured()
+    public function isEiUsed()
     {
-        return $this->isInsured;
+        return $this->isEiUsed;
     }
 
     /**
-     * @param boolean $isInsured
+     * @param boolean $isEiUsed
      * @return $this
      */
-    public function setIsInsured($isInsured)
+    public function setIsEiUsed($isEiUsed)
     {
-        $this->isInsured = $isInsured;
+        $this->isEiUsed = $isEiUsed;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isRetained()
+    public function isHolidayPayRetained()
     {
-        return $this->isRetained;
+        return $this->isHolidayPayRetained;
     }
 
     /**
-     * @param boolean $isRetained
+     * @param boolean $isHolidayPayRetained
      * @return $this
      */
-    public function setIsRetained($isRetained)
+    public function setIsHolidayPayRetained($isHolidayPayRetained)
     {
-        $this->isRetained = $isRetained;
+        $this->isHolidayPayRetained = $isHolidayPayRetained;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isMemInTodo()
+    public function isMemoInTodo()
     {
-        return $this->isMemInTodo;
+        return $this->isMemoInTodo;
     }
 
     /**
-     * @param boolean $isMemInTodo
+     * @param boolean $isMemoInTodo
      * @return $this
      */
-    public function setIsMemInTodo($isMemInTodo)
+    public function setIsMemoInTodo($isMemoInTodo)
     {
-        $this->isMemInTodo = $isMemInTodo;
+        $this->isMemoInTodo = $isMemoInTodo;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getPayPeriod()
+    public function getPayPeriodNumber()
     {
-        return $this->payPeriod;
+        return $this->payPeriodNumber;
     }
 
     /**
-     * @param int $payPeriod
+     * @param int $payPeriodNumber
      * @return $this
      */
-    public function setPayPeriod($payPeriod)
+    public function setPayPeriodNumber($payPeriodNumber)
     {
-        $this->payPeriod = $payPeriod;
+        $this->payPeriodNumber = $payPeriodNumber;
         return $this;
     }
 
@@ -971,162 +963,162 @@ class EmployeeEntity
     /**
      * @return float
      */
-    public function getFedIndex()
+    public function getFederalClaimRateIndexing()
     {
-        return $this->fedIndex;
+        return $this->federalClaimRateIndexing;
     }
 
     /**
-     * @param float $fedIndex
+     * @param float $federalClaimRateIndexing
      * @return $this
      */
-    public function setFedIndex($fedIndex)
+    public function setFederalClaimRateIndexing($federalClaimRateIndexing)
     {
-        $this->fedIndex = $fedIndex;
+        $this->federalClaimRateIndexing = $federalClaimRateIndexing;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getProvIndex()
+    public function getProvincialClaimRateIndexing()
     {
-        return $this->provIndex;
+        return $this->provincialClaimRateIndexing;
     }
 
     /**
-     * @param float $provIndex
+     * @param float $provincialClaimRateIndexing
      * @return $this
      */
-    public function setProvIndex($provIndex)
+    public function setProvincialClaimRateIndexing($provincialClaimRateIndexing)
     {
-        $this->provIndex = $provIndex;
+        $this->provincialClaimRateIndexing = $provincialClaimRateIndexing;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isWageExpired()
+    public function isWageExpenseAccount()
     {
-        return $this->isWageExpired;
+        return $this->isWageExpenseAccount;
     }
 
     /**
-     * @param boolean $isWageExpired
+     * @param boolean $isWageExpenseAccount
      * @return $this
      */
-    public function setIsWageExpired($isWageExpired)
+    public function setIsWageExpenseAccount($isWageExpenseAccount)
     {
-        $this->isWageExpired = $isWageExpired;
+        $this->isWageExpenseAccount = $isWageExpenseAccount;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getIsAcWageExpired()
+    public function getWageExpenseAccount()
     {
-        return $this->isAcWageExpired;
+        return $this->wageExpenseAccount;
     }
 
     /**
-     * @param int $isAcWageExpired
+     * @param int $wageExpenseAccount
      * @return $this
      */
-    public function setIsAcWageExpired($isAcWageExpired)
+    public function setWageExpenseAccount($wageExpenseAccount)
     {
-        $this->isAcWageExpired = $isAcWageExpired;
+        $this->wageExpenseAccount = $wageExpenseAccount;
         return $this;
     }
 
     /**
      * @return DateTime
      */
-    public function getTermDate()
+    public function getTerminationDate()
     {
-        return $this->termDate;
+        return $this->terminationDate;
     }
 
     /**
-     * @param DateTime $termDate
+     * @param DateTime $terminationDate
      * @return $this
      */
-    public function setTermDate(DateTime $termDate)
+    public function setTerminationDate(DateTime $terminationDate)
     {
-        $this->termDate = $termDate;
+        $this->terminationDate = $terminationDate;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getRoeCode()
+    public function getRecordOfEmploymentCode()
     {
-        return $this->roeCode;
+        return $this->recordOfEmploymentCode;
     }
 
     /**
-     * @param string $roeCode
+     * @param string $recordOfEmploymentCode
      * @return $this
      */
-    public function setRoeCode($roeCode)
+    public function setRecordOfEmploymentCode($recordOfEmploymentCode)
     {
-        $this->roeCode = $roeCode;
+        $this->recordOfEmploymentCode = $recordOfEmploymentCode;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getDpWageExp()
+    public function getWageExpenseAccountDepartmentId()
     {
-        return $this->dpWageExp;
+        return $this->wageExpenseAccountDepartmentId;
     }
 
     /**
-     * @param int $dpWageExp
+     * @param int $wageExpenseAccountDepartmentId
      * @return $this
      */
-    public function setDpWageExp($dpWageExp)
+    public function setWageExpenseAccountDepartmentId($wageExpenseAccountDepartmentId)
     {
-        $this->dpWageExp = $dpWageExp;
+        $this->wageExpenseAccountDepartmentId = $wageExpenseAccountDepartmentId;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getDfltDptId()
+    public function getDefaultDepartementId()
     {
-        return $this->dfltDptId;
+        return $this->defaultDepartementId;
     }
 
     /**
-     * @param int $dfltDptId
+     * @param int $defaultDepartementId
      * @return $this
      */
-    public function setDfltDptId($dfltDptId)
+    public function setDefaultDepartementId($defaultDepartementId)
     {
-        $this->dfltDptId = $dfltDptId;
+        $this->defaultDepartementId = $defaultDepartementId;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getCompId()
+    public function getCompanyId()
     {
-        return $this->compId;
+        return $this->companyId;
     }
 
     /**
-     * @param int $compId
+     * @param int $companyId
      * @return $this
      */
-    public function setCompId($compId)
+    public function setCompanyId($companyId)
     {
-        $this->compId = $compId;
+        $this->companyId = $companyId;
         return $this;
     }
 
@@ -1151,594 +1143,594 @@ class EmployeeEntity
     /**
      * @return float
      */
-    public function getEmpEtHrs()
+    public function getHoursWorked()
     {
-        return $this->empEtHrs;
+        return $this->hoursWorked;
     }
 
     /**
-     * @param float $empEtHrs
+     * @param float $hoursWorked
      * @return $this
      */
-    public function setEmpEtHrs($empEtHrs)
+    public function setHoursWorked($hoursWorked)
     {
-        $this->empEtHrs = $empEtHrs;
+        $this->hoursWorked = $hoursWorked;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtATrk()
+    public function getPercentageHoursWorkedEntitlementA()
     {
-        return $this->empEtATrk;
+        return $this->percentageHoursWorkedEntitlementA;
     }
 
     /**
-     * @param float $empEtATrk
+     * @param float $percentageHoursWorkedEntitlementA
      * @return $this
      */
-    public function setEmpEtATrk($empEtATrk)
+    public function setPercentageHoursWorkedEntitlementA($percentageHoursWorkedEntitlementA)
     {
-        $this->empEtATrk = $empEtATrk;
+        $this->percentageHoursWorkedEntitlementA = $percentageHoursWorkedEntitlementA;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtAMax()
+    public function getMaximumDaysEntitlementA()
     {
-        return $this->empEtAMax;
+        return $this->maximumDaysEntitlementA;
     }
 
     /**
-     * @param float $empEtAMax
+     * @param float $maximumDaysEntitlementA
      * @return $this
      */
-    public function setEmpEtAMax($empEtAMax)
+    public function setMaximumDaysEntitlementA($maximumDaysEntitlementA)
     {
-        $this->empEtAMax = $empEtAMax;
+        $this->maximumDaysEntitlementA = $maximumDaysEntitlementA;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isEmpEtAClr()
+    public function isClearDaysEntitlementA()
     {
-        return $this->empEtAClr;
+        return $this->isClearDaysEntitlementA;
     }
 
     /**
-     * @param boolean $empEtAClr
+     * @param boolean $isClearDaysEntitlementA
      * @return $this
      */
-    public function setEmpEtAClr($empEtAClr)
+    public function setIsClearDaysEntitlementA($isClearDaysEntitlementA)
     {
-        $this->empEtAClr = $empEtAClr;
+        $this->isClearDaysEntitlementA = $isClearDaysEntitlementA;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtBTrk()
+    public function getPercentageHoursWorkedEntitlementB()
     {
-        return $this->empEtBTrk;
+        return $this->percentageHoursWorkedEntitlementB;
     }
 
     /**
-     * @param float $empEtBTrk
+     * @param float $percentageHoursWorkedEntitlementB
      * @return $this
      */
-    public function setEmpEtBTrk($empEtBTrk)
+    public function setPercentageHoursWorkedEntitlementB($percentageHoursWorkedEntitlementB)
     {
-        $this->empEtBTrk = $empEtBTrk;
+        $this->percentageHoursWorkedEntitlementB = $percentageHoursWorkedEntitlementB;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtBMax()
+    public function getMaximumDaysEntitlementB()
     {
-        return $this->empEtBMax;
+        return $this->maximumDaysEntitlementB;
     }
 
     /**
-     * @param float $empEtBMax
+     * @param float $maximumDaysEntitlementB
      * @return $this
      */
-    public function setEmpEtBMax($empEtBMax)
+    public function setMaximumDaysEntitlementB($maximumDaysEntitlementB)
     {
-        $this->empEtBMax = $empEtBMax;
+        $this->maximumDaysEntitlementB = $maximumDaysEntitlementB;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isEmpEtBClr()
+    public function isClearDaysEntitlementB()
     {
-        return $this->empEtBClr;
+        return $this->isClearDaysEntitlementB;
     }
 
     /**
-     * @param boolean $empEtBClr
+     * @param boolean $isClearDaysEntitlementB
      * @return $this
      */
-    public function setEmpEtBClr($empEtBClr)
+    public function setIsClearDaysEntitlementB($isClearDaysEntitlementB)
     {
-        $this->empEtBClr = $empEtBClr;
+        $this->isClearDaysEntitlementB = $isClearDaysEntitlementB;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtCTrk()
+    public function getPercentageHoursWorkedEntitlementC()
     {
-        return $this->empEtCTrk;
+        return $this->percentageHoursWorkedEntitlementC;
     }
 
     /**
-     * @param float $empEtCTrk
+     * @param float $percentageHoursWorkedEntitlementC
      * @return $this
      */
-    public function setEmpEtCTrk($empEtCTrk)
+    public function setPercentageHoursWorkedEntitlementC($percentageHoursWorkedEntitlementC)
     {
-        $this->empEtCTrk = $empEtCTrk;
+        $this->percentageHoursWorkedEntitlementC = $percentageHoursWorkedEntitlementC;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtCMax()
+    public function getMaximumDaysEntitlementC()
     {
-        return $this->empEtCMax;
+        return $this->maximumDaysEntitlementC;
     }
 
     /**
-     * @param float $empEtCMax
+     * @param float $maximumDaysEntitlementC
      * @return $this
      */
-    public function setEmpEtCMax($empEtCMax)
+    public function setMaximumDaysEntitlementC($maximumDaysEntitlementC)
     {
-        $this->empEtCMax = $empEtCMax;
+        $this->maximumDaysEntitlementC = $maximumDaysEntitlementC;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isEmpEtCClr()
+    public function isClearDaysEntitlementC()
     {
-        return $this->empEtCClr;
+        return $this->isClearDaysEntitlementC;
     }
 
     /**
-     * @param boolean $empEtCClr
+     * @param boolean $isClearDaysEntitlementC
      * @return $this
      */
-    public function setEmpEtCClr($empEtCClr)
+    public function setIsClearDaysEntitlementC($isClearDaysEntitlementC)
     {
-        $this->empEtCClr = $empEtCClr;
+        $this->isClearDaysEntitlementC = $isClearDaysEntitlementC;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtDTrk()
+    public function getPercentageHoursWorkedEntitlementD()
     {
-        return $this->empEtDTrk;
+        return $this->percentageHoursWorkedEntitlementD;
     }
 
     /**
-     * @param float $empEtDTrk
+     * @param float $percentageHoursWorkedEntitlementD
      * @return $this
      */
-    public function setEmpEtDTrk($empEtDTrk)
+    public function setPercentageHoursWorkedEntitlementD($percentageHoursWorkedEntitlementD)
     {
-        $this->empEtDTrk = $empEtDTrk;
+        $this->percentageHoursWorkedEntitlementD = $percentageHoursWorkedEntitlementD;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtDMax()
+    public function getMaximumDaysEntitlementD()
     {
-        return $this->empEtDMax;
+        return $this->maximumDaysEntitlementD;
     }
 
     /**
-     * @param float $empEtDMax
+     * @param float $maximumDaysEntitlementD
      * @return $this
      */
-    public function setEmpEtDMax($empEtDMax)
+    public function setMaximumDaysEntitlementD($maximumDaysEntitlementD)
     {
-        $this->empEtDMax = $empEtDMax;
+        $this->maximumDaysEntitlementD = $maximumDaysEntitlementD;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isEmpEtDClr()
+    public function isClearDaysEntitlementD()
     {
-        return $this->empEtDClr;
+        return $this->isClearDaysEntitlementD;
     }
 
     /**
-     * @param boolean $empEtDClr
+     * @param boolean $isClearDaysEntitlementD
      * @return $this
      */
-    public function setEmpEtDClr($empEtDClr)
+    public function setIsClearDaysEntitlementD($isClearDaysEntitlementD)
     {
-        $this->empEtDClr = $empEtDClr;
+        $this->isClearDaysEntitlementD = $isClearDaysEntitlementD;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getEmpEtETrk()
+    public function getPercentageHoursWorkedEntitlementE()
     {
-        return $this->empEtETrk;
+        return $this->percentageHoursWorkedEntitlementE;
     }
 
     /**
-     * @param float $empEtETrk
+     * @param float $percentageHoursWorkedEntitlementE
      * @return $this
      */
-    public function setEmpEtETrk($empEtETrk)
+    public function setPercentageHoursWorkedEntitlementE($percentageHoursWorkedEntitlementE)
     {
-        $this->empEtETrk = $empEtETrk;
+        $this->percentageHoursWorkedEntitlementE = $percentageHoursWorkedEntitlementE;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getDEmpEtEmax()
+    public function getMaximumDaysEntitlementE()
     {
-        return $this->dEmpEtEmax;
+        return $this->maximumDaysEntitlementE;
     }
 
     /**
-     * @param float $dEmpEtEmax
+     * @param float $maximumDaysEntitlementE
      * @return $this
      */
-    public function setDEmpEtEmax($dEmpEtEmax)
+    public function setMaximumDaysEntitlementE($maximumDaysEntitlementE)
     {
-        $this->dEmpEtEmax = $dEmpEtEmax;
+        $this->maximumDaysEntitlementE = $maximumDaysEntitlementE;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isBEmpEtEClr()
+    public function isClearDaysEntitlementE()
     {
-        return $this->bEmpEtEClr;
+        return $this->isClearDaysEntitlementE;
     }
 
     /**
-     * @param boolean $bEmpEtEClr
+     * @param boolean $isClearDaysEntitlementE
      * @return $this
      */
-    public function setBEmpEtEClr($bEmpEtEClr)
+    public function setIsClearDaysEntitlementE($isClearDaysEntitlementE)
     {
-        $this->bEmpEtEClr = $bEmpEtEClr;
+        $this->isClearDaysEntitlementE = $isClearDaysEntitlementE;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getDDefUDExpA()
+    public function getUserDefinedExpenseA()
     {
-        return $this->dDefUDExpA;
+        return $this->userDefinedExpenseA;
     }
 
     /**
-     * @param float $dDefUDExpA
+     * @param float $userDefinedExpenseA
      * @return $this
      */
-    public function setDDefUDExpA($dDefUDExpA)
+    public function setUserDefinedExpenseA($userDefinedExpenseA)
     {
-        $this->dDefUDExpA = $dDefUDExpA;
+        $this->userDefinedExpenseA = $userDefinedExpenseA;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getDDefUDExpB()
+    public function getUserDefinedExpenseB()
     {
-        return $this->dDefUDExpB;
+        return $this->userDefinedExpenseB;
     }
 
     /**
-     * @param float $dDefUDExpB
+     * @param float $userDefinedExpenseB
      * @return $this
      */
-    public function setDDefUDExpB($dDefUDExpB)
+    public function setUserDefinedExpenseB($userDefinedExpenseB)
     {
-        $this->dDefUDExpB = $dDefUDExpB;
+        $this->userDefinedExpenseB = $userDefinedExpenseB;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getDDefUDExpC()
+    public function getUserDefinedExpenseC()
     {
-        return $this->dDefUDExpC;
+        return $this->userDefinedExpenseC;
     }
 
     /**
-     * @param float $dDefUDExpC
+     * @param float $userDefinedExpenseC
      * @return $this
      */
-    public function setDDefUDExpC($dDefUDExpC)
+    public function setUserDefinedExpenseC($userDefinedExpenseC)
     {
-        $this->dDefUDExpC = $dDefUDExpC;
+        $this->userDefinedExpenseC = $userDefinedExpenseC;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getDDefUDExpD()
+    public function getUserDefinedExpenseD()
     {
-        return $this->dDefUDExpD;
+        return $this->userDefinedExpenseD;
     }
 
     /**
-     * @param float $dDefUDExpD
+     * @param float $userDefinedExpenseD
      * @return $this
      */
-    public function setDDefUDExpD($dDefUDExpD)
+    public function setUserDefinedExpenseD($userDefinedExpenseD)
     {
-        $this->dDefUDExpD = $dDefUDExpD;
+        $this->userDefinedExpenseD = $userDefinedExpenseD;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getDDefUDExpE()
+    public function getUserDefinedExpenseE()
     {
-        return $this->dDefUDExpE;
+        return $this->userDefinedExpenseE;
     }
 
     /**
-     * @param float $dDefUDExpE
+     * @param float $userDefinedExpenseE
      * @return $this
      */
-    public function setDDefUDExpE($dDefUDExpE)
+    public function setUserDefinedExpenseE($userDefinedExpenseE)
     {
-        $this->dDefUDExpE = $dDefUDExpE;
+        $this->userDefinedExpenseE = $userDefinedExpenseE;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isCppExempt()
+    public function isCppQppExcempt()
     {
-        return $this->CppExempt;
+        return $this->isCppQppExcempt;
     }
 
     /**
-     * @param boolean $CppExempt
+     * @param boolean $isCppQppExcempt
      * @return $this
      */
-    public function setCppExempt($CppExempt)
+    public function setIsCppQppExcempt($isCppQppExcempt)
     {
-        $this->CppExempt = $CppExempt;
+        $this->isCppQppExcempt = $isCppQppExcempt;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getJobCatId()
+    public function getJobCategoryId()
     {
-        return $this->jobCatId;
+        return $this->jobCategoryId;
     }
 
     /**
-     * @param int $jobCatId
+     * @param int $jobCategoryId
      * @return $this
      */
-    public function setJobCatId($jobCatId)
+    public function setJobCategoryId($jobCategoryId)
     {
-        $this->jobCatId = $jobCatId;
+        $this->jobCategoryId = $jobCategoryId;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getLangPref()
+    public function getPreferredLanguage()
     {
-        return $this->langPref;
+        return $this->preferredLanguage;
     }
 
     /**
-     * @param int $langPref
+     * @param int $preferredLanguage
      * @return $this
      */
-    public function setLangPref($langPref)
+    public function setPreferredLanguage($preferredLanguage)
     {
-        $this->langPref = $langPref;
+        $this->preferredLanguage = $preferredLanguage;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getModVer()
+    public function getRecordChangeCounter()
     {
-        return $this->modVer;
+        return $this->recordChangeCounter;
     }
 
     /**
-     * @param int $modVer
+     * @param int $recordChangeCounter
      * @return $this
      */
-    public function setModVer($modVer)
+    public function setRecordChangeCounter($recordChangeCounter)
     {
-        $this->modVer = $modVer;
+        $this->recordChangeCounter = $recordChangeCounter;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getRppRegNo()
+    public function getRppOrDspRegistrationNumber()
     {
-        return $this->rppRegNo;
+        return $this->RppOrDspRegistrationNumber;
     }
 
     /**
-     * @param string $rppRegNo
+     * @param string $RppOrDspRegistrationNumber
      * @return $this
      */
-    public function setRppRegNo($rppRegNo)
+    public function setRppOrDspRegistrationNumber($RppOrDspRegistrationNumber)
     {
-        $this->rppRegNo = $rppRegNo;
+        $this->RppOrDspRegistrationNumber = $RppOrDspRegistrationNumber;
         return $this;
     }
 
     /**
      * @return string
      */
-    public function getEmpCode()
+    public function getEmploymentCode()
     {
-        return $this->empCode;
+        return $this->employmentCode;
     }
 
     /**
-     * @param string $empCode
+     * @param string $employmentCode
      * @return $this
      */
-    public function setEmpCode($empCode)
+    public function setEmploymentCode($employmentCode)
     {
-        $this->empCode = $empCode;
+        $this->employmentCode = $employmentCode;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getPenAdj()
+    public function getPensionAdjustmentAmount()
     {
-        return $this->penAdj;
+        return $this->pensionAdjustmentAmount;
     }
 
     /**
-     * @param float $penAdj
+     * @param float $pensionAdjustmentAmount
      * @return $this
      */
-    public function setPenAdj($penAdj)
+    public function setPensionAdjustmentAmount($pensionAdjustmentAmount)
     {
-        $this->penAdj = $penAdj;
+        $this->pensionAdjustmentAmount = $pensionAdjustmentAmount;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getAdrProvCd()
+    public function getProvinceCode()
     {
-        return $this->adrProvCd;
+        return $this->provinceCode;
     }
 
     /**
-     * @param int $adrProvCd
+     * @param int $provinceCode
      * @return $this
      */
-    public function setAdrProvCd($adrProvCd)
+    public function setProvinceCode($provinceCode)
     {
-        $this->adrProvCd = $adrProvCd;
+        $this->provinceCode = $provinceCode;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getExpGrpId()
+    public function getExpenseGroupId()
     {
-        return $this->expGrpId;
+        return $this->expenseGroupId;
     }
 
     /**
-     * @param int $expGrpId
+     * @param int $expenseGroupId
      * @return $this
      */
-    public function setExpGrpId($expGrpId)
+    public function setExpenseGroupId($expenseGroupId)
     {
-        $this->expGrpId = $expGrpId;
+        $this->expenseGroupId = $expenseGroupId;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isQQipIns()
+    public function isDeductQpip()
     {
-        return $this->qQipIns;
+        return $this->isDeductQpip;
     }
 
     /**
-     * @param boolean $qQipIns
+     * @param boolean $isDeductQpip
      * @return $this
      */
-    public function setQQipIns($qQipIns)
+    public function setIsDeductQpip($isDeductQpip)
     {
-        $this->qQipIns = $qQipIns;
+        $this->isDeductQpip = $isDeductQpip;
         return $this;
     }
 
     /**
      * @return boolean
      */
-    public function isVacOnVac()
+    public function isVacationOnVacationPay()
     {
-        return $this->vacOnVac;
+        return $this->isVacationOnVacationPay;
     }
 
     /**
-     * @param boolean $vacOnVac
+     * @param boolean $isVacationOnVacationPay
      * @return $this
      */
-    public function setVacOnVac($vacOnVac)
+    public function setIsVacationOnVacationPay($isVacationOnVacationPay)
     {
-        $this->vacOnVac = $vacOnVac;
+        $this->isVacationOnVacationPay = $isVacationOnVacationPay;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getAddQueTax()
+    public function getAdditonalQuebecTax()
     {
-        return $this->addQueTax;
+        return $this->additonalQuebecTax;
     }
 
     /**
-     * @param float $addQueTax
+     * @param float $additonalQuebecTax
      * @return $this
      */
-    public function setAddQueTax($addQueTax)
+    public function setAdditonalQuebecTax($additonalQuebecTax)
     {
-        $this->addQueTax = $addQueTax;
+        $this->additonalQuebecTax = $additonalQuebecTax;
         return $this;
     }
 
@@ -1763,36 +1755,36 @@ class EmployeeEntity
     /**
      * @return float
      */
-    public function getFedNIndx()
+    public function getFederalClaimRateNonIndexing()
     {
-        return $this->fedNIndx;
+        return $this->federalClaimRateNonIndexing;
     }
 
     /**
-     * @param float $fedNIndx
+     * @param float $federalClaimRateNonIndexing
      * @return $this
      */
-    public function setFedNIndx($fedNIndx)
+    public function setFederalClaimRateNonIndexing($federalClaimRateNonIndexing)
     {
-        $this->fedNIndx = $fedNIndx;
+        $this->federalClaimRateNonIndexing = $federalClaimRateNonIndexing;
         return $this;
     }
 
     /**
      * @return float
      */
-    public function getProvNIndx()
+    public function getProvincialClaimRateNonIndexing()
     {
-        return $this->provNIndx;
+        return $this->provincialClaimRateNonIndexing;
     }
 
     /**
-     * @param float $provNIndx
+     * @param float $provincialClaimRateNonIndexing
      * @return $this
      */
-    public function setProvNIndx($provNIndx)
+    public function setProvincialClaimRateNonIndexing($provincialClaimRateNonIndexing)
     {
-        $this->provNIndx = $provNIndx;
+        $this->provincialClaimRateNonIndexing = $provincialClaimRateNonIndexing;
         return $this;
     }
 }
