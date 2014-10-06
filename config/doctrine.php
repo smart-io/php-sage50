@@ -7,7 +7,7 @@ return [
         'dbname' => 'my_dbname',
         'user' => 'root',
         'password' => '',
-        'charset' => 'cp1252',
+        'charset' => 'latin1',
         'is_dev_mode' => true,
         'debug' => true,
         'paths' => [

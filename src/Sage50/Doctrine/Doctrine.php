@@ -92,6 +92,8 @@ class Doctrine extends AbstractManagerRegistry
     private function addDefaultCommands()
     {
         $this->commands = [
+            new GenerateEntitiesCommand($this),
+            new GenerateEntityCommand($this),
         ];
     }
 

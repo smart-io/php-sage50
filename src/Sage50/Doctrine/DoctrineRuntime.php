@@ -22,7 +22,7 @@ class DoctrineRuntime
      */
     public function __construct($configDir)
     {
-        $this->config = new Config($configDir);
+        $this->config = new Config($configDir, 'dev');
         $this->doctrine = new Doctrine();
         $this->doctrine->setConfig($this->config);
     }
