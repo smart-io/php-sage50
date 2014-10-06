@@ -1,0 +1,4 @@
+#!/usr/bin/env php
+<?php
+
+require "sage50.php";
