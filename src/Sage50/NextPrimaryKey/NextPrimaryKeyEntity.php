@@ -5,7 +5,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sinergi\Sage50\NextPrimaryKey\NextPrimaryKeyRepository")
  * @ORM\Table(name="tnxtpids")
  */
 class NextPrimaryKeyEntity
