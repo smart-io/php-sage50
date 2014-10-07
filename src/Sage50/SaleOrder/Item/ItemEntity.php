@@ -10,6 +10,10 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class ItemEntity
 {
+    const UNIT_TYPE_STOCKING_UNITS = 1;
+    const UNIT_TYPE_BUYING_UNITS = 1;
+    const UNIT_TYPE_SELLING_UNITS = 1;
+
     /**
      * @ORM\Id
      * @ORM\Column(name="lSOId", type="integer")
@@ -30,133 +34,133 @@ class ItemEntity
      * @ORM\Column(name="lInventId", type="integer", nullable=true)
      * @var int
      */
-    private $inventoryId;
+    private $inventoryId = 0;
 
     /**
      * @ORM\Column(name="sPartCode", type="string", length=52, nullable=true)
      * @var string
      */
-    private $itemNumber;
+    private $itemNumber = '';
 
     /**
      * @ORM\Column(name="dQuantity", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $quantityReceived;
+    private $quantityReceived = 0;
 
     /**
      * @ORM\Column(name="dOrdered", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $quantityOrdered;
+    private $quantityOrdered = 0;
 
     /**
      * @ORM\Column(name="dRemaining", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $quantityBackOrder;
+    private $quantityBackOrder = 0;
 
     /**
      * @ORM\Column(name="sUnits", type="string", length=15, nullable=true)
      * @var string
      */
-    private $unit;
+    private $unit = '';
 
     /**
      * @ORM\Column(name="nUnitType", type="smallint", nullable=true)
      * @var int
      */
-    private $unitType;
+    private $unitType = self::UNIT_TYPE_SELLING_UNITS;
 
     /**
      * @ORM\Column(name="sDesc", type="string", length=255, nullable=true)
      * @var string
      */
-    private $itemDescription;
+    private $itemDescription = '';
 
     /**
      * @ORM\Column(name="dPrice", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $itemPrice;
+    private $itemPrice = 0;
 
     /**
      * @ORM\Column(name="lTaxCode", type="integer", nullable=true)
      * @var int
      */
-    private $taxCodeId;
+    private $taxCodeId = 0;
 
     /**
      * @ORM\Column(name="lTaxRev", type="integer", nullable=true)
      * @var int
      */
-    private $taxRevision;
+    private $taxRevision = 0;
 
     /**
      * @ORM\Column(name="bFreight", type="boolean", nullable=true)
      * @var bool
      */
-    private $freightLine;
+    private $isFreightLine = false;
 
     /**
      * @ORM\Column(name="dAmount", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $amount;
+    private $amount = 0;
 
     /**
      * @ORM\Column(name="lAcctId", type="integer", nullable=true)
      * @var int
      */
-    private $accountId;
+    private $accountId = 0;
 
     /**
      * @ORM\Column(name="bInvItem", type="boolean", nullable=true)
      * @var bool
      */
-    private $isInventoryItem;
+    private $isInventoryItem = true;
 
     /**
      * @ORM\Column(name="lAcctDptId", type="integer", nullable=true)
      * @var int
      */
-    private $accountDepartmentId;
+    private $accountDepartmentId = 0;
 
     /**
      * @ORM\Column(name="lInvLocId", type="integer", nullable=true)
      * @var int
      */
-    private $inventoryLocationId;
+    private $inventoryLocationId = 0;
 
     /**
      * @ORM\Column(name="bDefPrc", type="boolean", nullable=true)
      * @var bool
      */
-    private $isDefaultPrice;
+    private $isDefaultPrice = true;
 
     /**
      * @ORM\Column(name="lPrcListId", type="integer", nullable=true)
      * @var int
      */
-    private $priceListId;
+    private $priceListId = 0;
 
     /**
      * @ORM\Column(name="dBasePrice", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $itemBasePrice;
+    private $itemBasePrice = 0;
 
     /**
      * @ORM\Column(name="dLineDisc", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $lineDiscountPercentage;
+    private $lineDiscountPercentage = 0;
 
     /**
      * @ORM\Column(name="bDefBsPric", type="boolean", nullable=true)
      * @var bool
      */
-    private $isDefaultBasePrice;
+    private $isDefaultBasePrice = true;
 
     /**
      * @return int
@@ -397,16 +401,16 @@ class ItemEntity
      */
     public function isFreightLine()
     {
-        return $this->freightLine;
+        return $this->isFreightLine;
     }
 
     /**
-     * @param boolean $freightLine
+     * @param boolean $isFreightLine
      * @return $this
      */
-    public function setFreightLine($freightLine)
+    public function setFreightLine($isFreightLine)
     {
-        $this->freightLine = $freightLine;
+        $this->isFreightLine = $isFreightLine;
         return $this;
     }
 
