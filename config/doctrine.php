@@ -8,8 +8,8 @@ return [
         'user' => 'root',
         'password' => '',
         'charset' => 'latin1',
-        'is_dev_mode' => true,
-        'debug' => true,
+        'is_dev_mode' => false,
+        'debug' => false,
         'paths' => [
             __DIR__ . '/../src/Sage50'
         ],
