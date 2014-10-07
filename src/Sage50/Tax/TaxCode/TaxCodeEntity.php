@@ -1,5 +1,5 @@
 <?php
-namespace Sinergi\Sage50\Ttaxcode;
+namespace Sinergi\Sage50\Tax\TaxCode;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity
  * @ORM\Table(name="ttaxcode", uniqueConstraints={@ORM\UniqueConstraint(name="KEY_1", columns={"sCode", "lFirstRev"})})
  */
-class TaxEntity
+class TaxCodeEntity
 {
     const USE_FOR_ALL_JOURNAL = 1;
     const USE_FOR_PURCHASE_JOURNAL = 2;
@@ -20,7 +20,7 @@ class TaxEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $id = 0;
+    private $taxId = 0;
 
     /**
      * @ORM\Column(name="dtASDate", type="datetime", nullable=true)
@@ -111,18 +111,18 @@ class TaxEntity
     /**
      * @return int
      */
-    public function getId()
+    public function getTaxId()
     {
-        return $this->id;
+        return $this->taxId;
     }
 
     /**
-     * @param int $id
+     * @param int $taxId
      * @return $this
      */
-    public function setId($id)
+    public function setTaxId($taxId)
     {
-        $this->id = $id;
+        $this->taxId = $taxId;
         return $this;
     }
 
