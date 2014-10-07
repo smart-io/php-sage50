@@ -17,7 +17,6 @@ before_script:
   - mysql -e 'create database my_dbname;'
 
 script:
-  - gearmand -d
   - phpunit
 
 matrix:

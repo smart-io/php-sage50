@@ -20,7 +20,7 @@ class ItemEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $id = 0;
+    private $saleOrderId = 0;
 
     /**
      * @ORM\Id
@@ -28,7 +28,7 @@ class ItemEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $lineNumber = 0;
+    private $saleOrderItemId = 0;
 
     /**
      * @ORM\Column(name="lInventId", type="integer", nullable=true)
@@ -165,36 +165,36 @@ class ItemEntity
     /**
      * @return int
      */
-    public function getId()
+    public function getSaleOrderId()
     {
-        return $this->id;
+        return $this->saleOrderId;
     }
 
     /**
-     * @param int $id
+     * @param int $saleOrderId
      * @return $this
      */
-    public function setId($id)
+    public function setSaleOrderId($saleOrderId)
     {
-        $this->id = $id;
+        $this->saleOrderId = $saleOrderId;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getLineNumber()
+    public function getSaleOrderItemId()
     {
-        return $this->lineNumber;
+        return $this->saleOrderItemId;
     }
 
     /**
-     * @param int $lineNumber
+     * @param int $saleOrderItemId
      * @return $this
      */
-    public function setLineNumber($lineNumber)
+    public function setSaleOrderItemId($saleOrderItemId)
     {
-        $this->lineNumber = $lineNumber;
+        $this->saleOrderItemId = $saleOrderItemId;
         return $this;
     }
 
