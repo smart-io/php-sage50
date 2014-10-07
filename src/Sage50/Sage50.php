@@ -38,7 +38,7 @@ class Sage50 extends Container
     {
         if (null === $this->entityManager) {
             $doctrine = new Doctrine();
-            $config = new SinergiConfig();
+            $config = new SinergiConfig(__DIR__ . '/../../config');
             $config->set('doctrine.connection.host', $this->getConfig()->getHost());
             $config->set('doctrine.connection.dbname', $this->getConfig()->getDbname());
             $config->set('doctrine.connection.user', $this->getConfig()->getUser());
