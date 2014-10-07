@@ -2,6 +2,8 @@
 namespace Sinergi\Sage50;
 
 use Doctrine\ORM\EntityManagerInterface;
+use Sinergi\Sage50\Customer\CustomerRepository;
+use Sinergi\Sage50\Customer\CustomerSyncer;
 use Sinergi\Sage50\SaleOrder\SaleOrderRepository;
 use Sinergi\Sage50\SaleOrder\SaleOrderSyncer;
 use Sinergi\Sage50\SaleOrder\SaleOrderBuilder;
@@ -12,6 +14,16 @@ abstract class Container
      * @return EntityManagerInterface
      */
     abstract function getEntityManager();
+
+    /**
+     * @var CustomerSyncer
+     */
+    private $customerSyncer;
+
+    /**
+     * @var CustomerRepository
+     */
+    private $customerRepository;
 
     /**
      * @var SaleOrderBuilder
@@ -27,6 +39,50 @@ abstract class Container
      * @var SaleOrderRepository
      */
     private $saleOrderRepository;
+
+    /**
+     * @return CustomerSyncer
+     */
+    public function getCustomerSyncer()
+    {
+        if (null === $this->customerSyncer) {
+            $this->customerSyncer = new CustomerSyncer($this->getEntityManager());
+        }
+        return $this->customerSyncer;
+    }
+
+    /**
+     * @param CustomerSyncer $customerSyncer
+     * @return $this
+     */
+    public function setCustomerSyncer(CustomerSyncer $customerSyncer)
+    {
+        $this->customerSyncer = $customerSyncer;
+        return $this;
+    }
+
+    /**
+     * @return CustomerRepository
+     */
+    public function getCustomerRepository()
+    {
+        if (null === $this->customerRepository) {
+            $this->customerRepository = $this->getEntityManager()->getRepository(
+                'Sinergi\\Sage50\\Customer\\CustomerEntity'
+            );
+        }
+        return $this->customerRepository;
+    }
+
+    /**
+     * @param CustomerRepository $customerRepository
+     * @return $this
+     */
+    public function setCustomerRepository(CustomerRepository $customerRepository)
+    {
+        $this->customerRepository = $customerRepository;
+        return $this;
+    }
 
     /**
      * @return SaleOrderBuilder
