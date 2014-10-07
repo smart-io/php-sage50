@@ -1,7 +1,7 @@
 {
     "name": "sinergi/sage50",
     "type": "library",
-    "description": "PHP Wrapper for Sage50 Canadian Edition",
+    "description": "PHP Library to interact with Sage50 Canadian Edition",
     "keywords": ["Sage 50", "Simply Accounting"],
     "homepage": "https://github.com/sinergi/php-sage50",
     "license": "MIT",
