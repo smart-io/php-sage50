@@ -44,6 +44,8 @@ class SaleOrderBuilder
     public function createSaleOrder(SaleOrderEntity $saleOrder)
     {
         $this->addSaleOrder($saleOrder);
+        // after persist
+        $this->nextPrimaryKeyRepository->increaseNextSaleOrderId();
     }
 
     protected function addSaleOrder(SaleOrderEntity $saleOrder)
