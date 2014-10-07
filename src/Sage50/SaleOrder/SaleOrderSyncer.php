@@ -3,6 +3,7 @@ namespace Sinergi\Sage50\SaleOrder;
 
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
+use Sinergi\Sage50\MapperEventsInterface;
 use Sinergi\Sage50\MapperInterface;
 use Sinergi\Sage50\SyncerInterface;
 
@@ -56,6 +57,9 @@ class SaleOrderSyncer implements SyncerInterface
         $items = $repository->findModifiedAfter($dateTime);
         foreach ($items as $item) {
             $this->getMapper()->mapFromSage($item);
+        }
+        if ($this->mapper instanceof MapperEventsInterface) {
+            $this->mapper->onFinish();
         }
     }
 }
