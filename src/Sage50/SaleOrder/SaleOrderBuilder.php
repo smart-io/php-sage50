@@ -8,6 +8,7 @@ use Sinergi\Sage50\SaleOrder\Item\ItemEntity;
 use Sinergi\Sage50\SaleOrder\ItemTax\ItemTaxEntity;
 use Sinergi\Sage50\Tax\TaxEntity;
 use Sinergi\Sage50\Tax\TaxCollection;
+use Sinergi\Sage50\LocationInventory\LocationInventoryRepository;
 
 class SaleOrderBuilder
 {
@@ -42,6 +43,11 @@ class SaleOrderBuilder
     private $journalEntryRepository;
 
     /**
+     * @var LocationInventoryRepository
+     */
+    private $locationInventoryRepository;
+
+    /**
      * @param EntityManagerInterface $entityManager
      */
     public function __construct(EntityManagerInterface $entityManager)
@@ -53,16 +59,19 @@ class SaleOrderBuilder
         $this->journalEntryRepository = $this->entityManager->getRepository(
             'Sinergi\\Sage50\\JournalEntry\\JournalEntryEntity'
         );
+        $this->locationInventoryRepository = $this->entityManager->getRepository(
+            'Sinergi\\Sage50\\LocationInventory\\LocationInventoryEntity'
+        );
     }
 
     /**
      * @param SaleOrderEntity $saleOrder
-     * @param TaxEntity[] $taxes
+     * @param TaxCollection[] $taxCollections
      */
-    public function createSaleOrder(SaleOrderEntity $saleOrder, array $taxes = null)
+    public function createSaleOrder(SaleOrderEntity $saleOrder, array $taxCollections = null)
     {
-        if (null !== $taxes) {
-            $this->taxes = $taxes;
+        if (null !== $taxCollections) {
+            $this->taxCollections = $taxCollections;
         }
         $this->addSaleOrder($saleOrder);
     }
@@ -75,6 +84,42 @@ class SaleOrderBuilder
         $this->saleOrder = $saleOrder;
         $this->saleOrder->setId($this->nextPrimaryKeyRepository->fetchNextSaleOrderId());
         $this->saleOrder->setNextId($this->journalEntryRepository->fetchNextJournalEntryId());
+    }
+
+    protected function persistSaleOrder()
+    {
+        $this->entityManager->persist($this->saleOrder);
+        $this->entityManager->flush($this->saleOrder);
+
+        foreach ($this->items as $itemArray) {
+            /** @var ItemEntity $item */
+            $item = $itemArray['item'];
+            /** @var ItemTaxEntity[] $itemTaxes */
+            $itemTaxes = $itemArray['itemTaxes'];
+
+            $item->setSaleOrderId($this->saleOrder->getId());
+            $this->entityManager->persist($item);
+            foreach ($itemTaxes as $itemTax) {
+                $itemTax->setSaleOrderId($this->saleOrder->getId());
+                $this->entityManager->persist($itemTax);
+            }
+            $this->increaseInventoryOnSaleOrder($item);
+        }
+
+        $this->nextPrimaryKeyRepository->increaseNextSaleOrderId();
+        $this->entityManager->flush();
+    }
+
+    /**
+     * @param ItemEntity $item
+     */
+    protected function increaseInventoryOnSaleOrder(ItemEntity $item)
+    {
+        $this->locationInventoryRepository->increaseInventoryOnSaleOrder(
+            $item->getInventoryId(),
+            $item->getInventoryLocationId(),
+            $item->getQuantityOrdered()
+        );
     }
 
     /**
