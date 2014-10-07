@@ -29,6 +29,7 @@ class Sage50 extends Container
         } else {
             throw new \InvalidArgumentException;
         }
+        (new Annotation())->setup();
     }
 
     /**
