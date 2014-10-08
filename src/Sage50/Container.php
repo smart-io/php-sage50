@@ -7,6 +7,7 @@ use Sinergi\Sage50\Customer\CustomerSyncer;
 use Sinergi\Sage50\SaleOrder\SaleOrderRepository;
 use Sinergi\Sage50\SaleOrder\SaleOrderSyncer;
 use Sinergi\Sage50\SaleOrder\SaleOrderBuilder;
+use Sinergi\Sage50\SaleOrder\Item\ItemRepository as SaleOrderItemRepository;
 
 abstract class Container
 {
@@ -39,6 +40,11 @@ abstract class Container
      * @var SaleOrderRepository
      */
     private $saleOrderRepository;
+
+    /**
+     * @var SaleOrderItemRepository
+     */
+    private $saleOrderItemRepository;
 
     /**
      * @return CustomerSyncer
@@ -146,6 +152,29 @@ abstract class Container
     public function setSaleOrderRepository(SaleOrderRepository $saleOrderRepository)
     {
         $this->saleOrderRepository = $saleOrderRepository;
+        return $this;
+    }
+
+    /**
+     * @return SaleOrderItemRepository
+     */
+    public function getSaleOrderItemRepository()
+    {
+        if (null === $this->saleOrderItemRepository) {
+            $this->saleOrderItemRepository = $this->getEntityManager()->getRepository(
+                'Sinergi\\Sage50\\SaleOrder\\Item\\ItemEntity'
+            );
+        }
+        return $this->saleOrderItemRepository;
+    }
+
+    /**
+     * @param SaleOrderItemRepository $saleOrderItemRepository
+     * @return $this
+     */
+    public function setSaleOrderItemRepository(SaleOrderItemRepository $saleOrderItemRepository)
+    {
+        $this->saleOrderItemRepository = $saleOrderItemRepository;
         return $this;
     }
 }
