@@ -16,7 +16,7 @@ class SaleOrderRepository extends EntityRepository
         $time = '1899-12-30 ' . $dateTime->format('H:i:s');
         return $this->createQueryBuilder('s')
             ->where('s.modificationDate > :date')
-            ->andWhere('s.modificationTime > :time')
+            ->orWhere('s.modificationDate = :date AND s.modificationTime > :time')
             ->setParameter('date', $date)
             ->setParameter('time', $time)
             ->getQuery()

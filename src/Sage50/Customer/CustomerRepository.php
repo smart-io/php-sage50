@@ -16,7 +16,7 @@ class CustomerRepository extends EntityRepository
         $time = '1899-12-30 ' . $dateTime->format('H:i:s');
         return $this->createQueryBuilder('c')
             ->where('c.modificationDate > :date')
-            ->andWhere('c.modificationTime > :time')
+            ->orWhere('c.modificationDate = :date AND c.modificationTime > :time')
             ->setParameter('date', $date)
             ->setParameter('time', $time)
             ->getQuery()
