@@ -1,11 +1,12 @@
 <?php
-namespace Sinergi\Sage50\SaleOrder;
+
+namespace Smart\Sage50\SaleOrder;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Sinergi\Sage50\SaleOrder\SaleOrderRepository")
+ * @ORM\Entity(repositoryClass="Smart\Sage50\SaleOrder\SaleOrderRepository")
  * @ORM\Table(name="tsalordr", indexes={
  *   @ORM\Index(name="KEY_1", columns={"lCusId"}),
  *   @ORM\Index(name="KEY_2", columns={"sSONum"})

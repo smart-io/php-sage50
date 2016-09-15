@@ -1,11 +1,12 @@
 <?php
-namespace Sinergi\Sage50\Customer;
+
+namespace Smart\Sage50\Customer;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Sinergi\Sage50\Customer\CustomerRepository")
+ * @ORM\Entity(repositoryClass="Smart\Sage50\Customer\CustomerRepository")
  * @ORM\Table(name="tcustomr", uniqueConstraints={@ORM\UniqueConstraint(name="KEY_1", columns={"sName"})})
  */
 class CustomerEntity

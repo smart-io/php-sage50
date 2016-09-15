@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\Doctrine;
+
+namespace Smart\Sage50\Doctrine;
 
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\ArrayInput;

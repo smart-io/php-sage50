@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\JournalEntry;
+
+namespace Smart\Sage50\JournalEntry;
 
 use Doctrine\ORM\EntityRepository;
 

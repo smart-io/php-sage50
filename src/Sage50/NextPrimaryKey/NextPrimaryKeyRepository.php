@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\NextPrimaryKey;
+
+namespace Smart\Sage50\NextPrimaryKey;
 
 use Doctrine\ORM\EntityRepository;
 

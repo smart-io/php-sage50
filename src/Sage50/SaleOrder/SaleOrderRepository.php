@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\SaleOrder;
+
+namespace Smart\Sage50\SaleOrder;
 
 use DateTime;
 use Doctrine\ORM\EntityRepository;

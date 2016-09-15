@@ -1,10 +1,11 @@
 <?php
-namespace Sinergi\Sage50\Tests\Tax\TaxCode;
+
+namespace Smart\Sage50\Tests\Tax\TaxCode;
 
 use PHPUnit_Framework_TestCase;
-use Sinergi\Sage50\Tax\TaxCode\TaxCodeEntity;
-use Sinergi\Sage50\Tax\TaxCode\TaxCodeParser;
-use Sinergi\Sage50\Tax\TaxEntity;
+use Smart\Sage50\Tax\TaxCode\TaxCodeEntity;
+use Smart\Sage50\Tax\TaxCode\TaxCodeParser;
+use Smart\Sage50\Tax\TaxEntity;
 
 class TaxCodeParserTest extends PHPUnit_Framework_TestCase
 {

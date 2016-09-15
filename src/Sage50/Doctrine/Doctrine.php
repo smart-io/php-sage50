@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\Doctrine;
+
+namespace Smart\Sage50\Doctrine;
 
 use Doctrine\Common\Annotations\AnnotationReader;
 use Doctrine\Common\Persistence\AbstractManagerRegistry;
@@ -11,7 +12,7 @@ use Doctrine\ORM\Tools\Setup;
 use Symfony\Component\Console\Command\Command as DoctrineCommand;
 use Symfony\Component\Console\Helper\HelperSet;
 use Exception;
-use Sinergi\Config\Config;
+use Smart\Config\Config;
 
 class Doctrine extends AbstractManagerRegistry
 {

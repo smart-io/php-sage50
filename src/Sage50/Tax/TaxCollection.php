@@ -1,7 +1,8 @@
 <?php
-namespace Sinergi\Sage50\Tax;
 
-use Sinergi\Sage50\ArrayCollection;
+namespace Smart\Sage50\Tax;
+
+use Smart\Sage50\ArrayCollection;
 
 class TaxCollection extends ArrayCollection
 {

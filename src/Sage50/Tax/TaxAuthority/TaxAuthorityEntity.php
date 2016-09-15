@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\Tax\TaxAuthority;
+
+namespace Smart\Sage50\Tax\TaxAuthority;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;

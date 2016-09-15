@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\Customer;
+
+namespace Smart\Sage50\Customer;
 
 use DateTime;
 use Doctrine\ORM\EntityRepository;

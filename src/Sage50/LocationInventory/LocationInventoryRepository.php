@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\LocationInventory;
+
+namespace Smart\Sage50\LocationInventory;
 
 use Doctrine\ORM\EntityRepository;
 

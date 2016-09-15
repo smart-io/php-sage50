@@ -1,8 +1,9 @@
 <?php
-namespace Sinergi\Sage50\Tax\TaxCode;
 
-use Sinergi\Sage50\Tax\TaxCollection;
-use Sinergi\Sage50\Tax\TaxEntity;
+namespace Smart\Sage50\Tax\TaxCode;
+
+use Smart\Sage50\Tax\TaxCollection;
+use Smart\Sage50\Tax\TaxEntity;
 
 class TaxCodeParser
 {

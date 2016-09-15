@@ -1,9 +1,10 @@
 <?php
-namespace Sinergi\Sage50\Doctrine;
+
+namespace Smart\Sage50\Doctrine;
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
 use Symfony\Component\Console\Helper\HelperSet;
-use Sinergi\Config\Config;
+use Smart\Config\Config;
 
 class DoctrineRuntime
 {

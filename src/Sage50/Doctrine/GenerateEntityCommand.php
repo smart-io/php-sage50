@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\Doctrine;
+
+namespace Smart\Sage50\Doctrine;
 
 use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand;

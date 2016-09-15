@@ -1,9 +1,9 @@
 <?php
-namespace Sinergi\Sage50;
+
+namespace Smart\Sage50;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Sinergi\Config\Config as SinergiConfig;
-use Sinergi\Sage50\Doctrine\Doctrine;
+use Smart\Sage50\Doctrine\Doctrine;
 
 class Sage50 extends Container
 {
@@ -39,7 +39,7 @@ class Sage50 extends Container
     {
         if (null === $this->entityManager) {
             $doctrine = new Doctrine();
-            $config = new SinergiConfig(__DIR__ . '/../../config');
+            //$config = new SinergiConfig(__DIR__ . '/../../config');
 
             $connection = $config->get('doctrine.connection');
             $config->set('doctrine', [

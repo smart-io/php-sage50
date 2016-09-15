@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\SaleOrder\ItemTax;
+
+namespace Smart\Sage50\SaleOrder\ItemTax;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;

@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50\Employee;
+
+namespace Smart\Sage50\Employee;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;

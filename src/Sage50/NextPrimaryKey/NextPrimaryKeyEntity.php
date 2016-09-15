@@ -1,11 +1,12 @@
 <?php
-namespace Sinergi\Sage50\NextPrimaryKey;
+
+namespace Smart\Sage50\NextPrimaryKey;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Sinergi\Sage50\NextPrimaryKey\NextPrimaryKeyRepository")
+ * @ORM\Entity(repositoryClass="Smart\Sage50\NextPrimaryKey\NextPrimaryKeyRepository")
  * @ORM\Table(name="tnxtpids")
  */
 class NextPrimaryKeyEntity

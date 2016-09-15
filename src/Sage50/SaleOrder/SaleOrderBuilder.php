@@ -1,14 +1,15 @@
 <?php
-namespace Sinergi\Sage50\SaleOrder;
+
+namespace Smart\Sage50\SaleOrder;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Sinergi\Sage50\NextPrimaryKey\NextPrimaryKeyRepository;
-use Sinergi\Sage50\JournalEntry\JournalEntryRepository;
-use Sinergi\Sage50\SaleOrder\Item\ItemEntity;
-use Sinergi\Sage50\SaleOrder\ItemTax\ItemTaxEntity;
-use Sinergi\Sage50\Tax\TaxEntity;
-use Sinergi\Sage50\Tax\TaxCollection;
-use Sinergi\Sage50\LocationInventory\LocationInventoryRepository;
+use Smart\Sage50\NextPrimaryKey\NextPrimaryKeyRepository;
+use Smart\Sage50\JournalEntry\JournalEntryRepository;
+use Smart\Sage50\SaleOrder\Item\ItemEntity;
+use Smart\Sage50\SaleOrder\ItemTax\ItemTaxEntity;
+use Smart\Sage50\Tax\TaxEntity;
+use Smart\Sage50\Tax\TaxCollection;
+use Smart\Sage50\LocationInventory\LocationInventoryRepository;
 
 class SaleOrderBuilder
 {
@@ -54,13 +55,13 @@ class SaleOrderBuilder
     {
         $this->entityManager = $entityManager;
         $this->nextPrimaryKeyRepository = $this->entityManager->getRepository(
-            'Sinergi\\Sage50\\NextPrimaryKey\\NextPrimaryKeyEntity'
+            'Smart\\Sage50\\NextPrimaryKey\\NextPrimaryKeyEntity'
         );
         $this->journalEntryRepository = $this->entityManager->getRepository(
-            'Sinergi\\Sage50\\JournalEntry\\JournalEntryEntity'
+            'Smart\\Sage50\\JournalEntry\\JournalEntryEntity'
         );
         $this->locationInventoryRepository = $this->entityManager->getRepository(
-            'Sinergi\\Sage50\\LocationInventory\\LocationInventoryEntity'
+            'Smart\\Sage50\\LocationInventory\\LocationInventoryEntity'
         );
     }
 

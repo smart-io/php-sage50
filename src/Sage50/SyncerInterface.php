@@ -1,5 +1,6 @@
 <?php
-namespace Sinergi\Sage50;
+
+namespace Smart\Sage50;
 
 use DateTime;
 

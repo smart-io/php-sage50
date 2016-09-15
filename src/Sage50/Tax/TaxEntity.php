@@ -1,8 +1,9 @@
 <?php
-namespace Sinergi\Sage50\Tax;
 
-use Sinergi\Sage50\Tax\TaxCode\TaxCodeEntity;
-use Sinergi\Sage50\Tax\TaxAuthority\TaxAuthorityEntity;
+namespace Smart\Sage50\Tax;
+
+use Smart\Sage50\Tax\TaxCode\TaxCodeEntity;
+use Smart\Sage50\Tax\TaxAuthority\TaxAuthorityEntity;
 
 class TaxEntity
 {

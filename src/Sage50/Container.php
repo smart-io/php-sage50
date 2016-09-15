@@ -1,13 +1,14 @@
 <?php
-namespace Sinergi\Sage50;
+
+namespace Smart\Sage50;
 
 use Doctrine\ORM\EntityManagerInterface;
-use Sinergi\Sage50\Customer\CustomerRepository;
-use Sinergi\Sage50\Customer\CustomerSyncer;
-use Sinergi\Sage50\SaleOrder\SaleOrderRepository;
-use Sinergi\Sage50\SaleOrder\SaleOrderSyncer;
-use Sinergi\Sage50\SaleOrder\SaleOrderBuilder;
-use Sinergi\Sage50\SaleOrder\Item\ItemRepository as SaleOrderItemRepository;
+use Smart\Sage50\Customer\CustomerRepository;
+use Smart\Sage50\Customer\CustomerSyncer;
+use Smart\Sage50\SaleOrder\SaleOrderRepository;
+use Smart\Sage50\SaleOrder\SaleOrderSyncer;
+use Smart\Sage50\SaleOrder\SaleOrderBuilder;
+use Smart\Sage50\SaleOrder\Item\ItemRepository as SaleOrderItemRepository;
 
 abstract class Container
 {
@@ -74,7 +75,7 @@ abstract class Container
     {
         if (null === $this->customerRepository) {
             $this->customerRepository = $this->getEntityManager()->getRepository(
-                'Sinergi\\Sage50\\Customer\\CustomerEntity'
+                'Smart\\Sage50\\Customer\\CustomerEntity'
             );
         }
         return $this->customerRepository;
@@ -139,7 +140,7 @@ abstract class Container
     {
         if (null === $this->saleOrderRepository) {
             $this->saleOrderRepository = $this->getEntityManager()->getRepository(
-                'Sinergi\\Sage50\\SaleOrder\\SaleOrderEntity'
+                'Smart\\Sage50\\SaleOrder\\SaleOrderEntity'
             );
         }
         return $this->saleOrderRepository;
@@ -162,7 +163,7 @@ abstract class Container
     {
         if (null === $this->saleOrderItemRepository) {
             $this->saleOrderItemRepository = $this->getEntityManager()->getRepository(
-                'Sinergi\\Sage50\\SaleOrder\\Item\\ItemEntity'
+                'Smart\\Sage50\\SaleOrder\\Item\\ItemEntity'
             );
         }
         return $this->saleOrderItemRepository;

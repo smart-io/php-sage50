@@ -1,11 +1,12 @@
 <?php
-namespace Sinergi\Sage50\SaleOrder;
+
+namespace Smart\Sage50\SaleOrder;
 
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
-use Sinergi\Sage50\MapperEventsInterface;
-use Sinergi\Sage50\MapperInterface;
-use Sinergi\Sage50\SyncerInterface;
+use Smart\Sage50\MapperEventsInterface;
+use Smart\Sage50\MapperInterface;
+use Smart\Sage50\SyncerInterface;
 
 class SaleOrderSyncer implements SyncerInterface
 {
@@ -53,7 +54,7 @@ class SaleOrderSyncer implements SyncerInterface
             throw new \InvalidArgumentException;
         }
         /** @var SaleOrderRepository $repository */
-        $repository = $this->entityManager->getRepository('Sinergi\\Sage50\\SaleOrder\\SaleOrderEntity');
+        $repository = $this->entityManager->getRepository('Smart\\Sage50\\SaleOrder\\SaleOrderEntity');
         $items = $repository->findModifiedAfter($dateTime);
         foreach ($items as $item) {
             $this->getMapper()->mapFromSage($item);
