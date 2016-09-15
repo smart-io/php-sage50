@@ -3,7 +3,7 @@
     "type": "library",
     "description": "PHP Library to interact with Sage50 Canadian Edition",
     "keywords": ["Sage 50", "Simply Accounting"],
-    "homepage": "https://github.com/smart-io/sage50",
+    "homepage": "https://github.com/smart-io/php-sage50",
     "license": "MIT",
     "authors": [
         {
