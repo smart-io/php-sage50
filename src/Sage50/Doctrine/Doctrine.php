@@ -12,7 +12,7 @@ use Doctrine\ORM\Tools\Setup;
 use Symfony\Component\Console\Command\Command as DoctrineCommand;
 use Symfony\Component\Console\Helper\HelperSet;
 use Exception;
-use Smart\Config\Config;
+use Smart\Sage50\Config;
 
 class Doctrine extends AbstractManagerRegistry
 {
@@ -160,20 +160,22 @@ class Doctrine extends AbstractManagerRegistry
      */
     public function createEntityManager()
     {
-        $connectionConfig = $this->getConfig()->get("doctrine.connection");
+        $dbParams = [
+            'driver'   => 'pdo_mysql',
+            'host'     => $this->getConfig()->getHost(),
+            'user'     => $this->getConfig()->getUser(),
+            'password' => $this->getConfig()->getPassword(),
+            'dbname'   => $this->getConfig()->getDbname(),
+            'charset' => 'latin1',
+        ];
 
-        if (isset($connectionConfig['is_dev_mode'])) {
-            $isDevMode = (bool)$connectionConfig['is_dev_mode'];
-        } else {
-            $isDevMode = false;
-        }
-
+        $isDevMode = $this->getConfig()->isDev();
         $doctrineConfig = Setup::createConfiguration($isDevMode);
 
         $doctrineConfig->setMetadataDriverImpl(
-            new AnnotationDriver(new AnnotationReader(), $connectionConfig['paths'])
+            new AnnotationDriver(new AnnotationReader(), [realpath(__DIR__ . '/../')])
         );
 
-        return EntityManager::create($connectionConfig, $doctrineConfig);
+        return EntityManager::create($dbParams, $doctrineConfig);
     }
 }

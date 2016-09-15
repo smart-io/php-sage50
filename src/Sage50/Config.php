@@ -25,6 +25,11 @@ class Config
     private $password;
 
     /**
+     * @var bool
+     */
+    private $isDev = false;
+
+    /**
      * @param array $parameters
      */
     public function __construct(array $parameters = null)
@@ -126,6 +131,24 @@ class Config
     public function setPassword($password)
     {
         $this->password = $password;
+        return $this;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isDev()
+    {
+        return $this->isDev;
+    }
+
+    /**
+     * @param bool $isDev
+     * @return $this
+     */
+    public function setIsDev($isDev)
+    {
+        $this->isDev = $isDev;
         return $this;
     }
 }
