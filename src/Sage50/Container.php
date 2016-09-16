@@ -4,9 +4,9 @@ namespace Smart\Sage50;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Smart\Sage50\Customer\CustomerRepository;
-use Smart\Sage50\Customer\CustomerSyncer;
+use Smart\Sage50\Customer\CustomerSync;
 use Smart\Sage50\SaleOrder\SaleOrderRepository;
-use Smart\Sage50\SaleOrder\SaleOrderSyncer;
+use Smart\Sage50\SaleOrder\SaleOrderSync;
 use Smart\Sage50\SaleOrder\SaleOrderBuilder;
 use Smart\Sage50\SaleOrder\Item\ItemRepository as SaleOrderItemRepository;
 
@@ -18,9 +18,9 @@ abstract class Container
     abstract function getEntityManager();
 
     /**
-     * @var CustomerSyncer
+     * @var CustomerSync
      */
-    private $customerSyncer;
+    private $customerSync;
 
     /**
      * @var CustomerRepository
@@ -33,9 +33,9 @@ abstract class Container
     private $saleOrderBuilder;
 
     /**
-     * @var SaleOrderSyncer
+     * @var SaleOrderSync
      */
-    private $saleOrderSyncer;
+    private $saleOrderSync;
 
     /**
      * @var SaleOrderRepository
@@ -48,23 +48,23 @@ abstract class Container
     private $saleOrderItemRepository;
 
     /**
-     * @return CustomerSyncer
+     * @return CustomerSync
      */
-    public function getCustomerSyncer()
+    public function getCustomerSync()
     {
-        if (null === $this->customerSyncer) {
-            $this->customerSyncer = new CustomerSyncer($this->getEntityManager());
+        if (null === $this->customerSync) {
+            $this->customerSync = new CustomerSync($this->getEntityManager());
         }
-        return $this->customerSyncer;
+        return $this->customerSync;
     }
 
     /**
-     * @param CustomerSyncer $customerSyncer
+     * @param CustomerSync $customerSync
      * @return $this
      */
-    public function setCustomerSyncer(CustomerSyncer $customerSyncer)
+    public function setCustomerSync(CustomerSync $customerSync)
     {
-        $this->customerSyncer = $customerSyncer;
+        $this->customerSync = $customerSync;
         return $this;
     }
 
@@ -113,23 +113,23 @@ abstract class Container
     }
 
     /**
-     * @return SaleOrderSyncer
+     * @return SaleOrderSync
      */
-    public function getSaleOrderSyncer()
+    public function getSaleOrderSync()
     {
-        if (null === $this->saleOrderSyncer) {
-            $this->saleOrderSyncer = new SaleOrderSyncer($this->getEntityManager());
+        if (null === $this->saleOrderSync) {
+            $this->saleOrderSync = new SaleOrderSync($this->getEntityManager());
         }
-        return $this->saleOrderSyncer;
+        return $this->saleOrderSync;
     }
 
     /**
-     * @param SaleOrderSyncer $saleOrderSyncer
+     * @param SaleOrderSync $saleOrderSync
      * @return $this
      */
-    public function setSaleOrderSyncer(SaleOrderSyncer $saleOrderSyncer)
+    public function setSaleOrderSync(SaleOrderSync $saleOrderSync)
     {
-        $this->saleOrderSyncer = $saleOrderSyncer;
+        $this->saleOrderSync = $saleOrderSync;
         return $this;
     }
 

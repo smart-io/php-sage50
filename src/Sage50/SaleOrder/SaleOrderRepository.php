@@ -4,14 +4,15 @@ namespace Smart\Sage50\SaleOrder;
 
 use DateTime;
 use Doctrine\ORM\EntityRepository;
+use Smart\Sage50\RepositoryInterface;
 
-class SaleOrderRepository extends EntityRepository
+class SaleOrderRepository extends EntityRepository implements RepositoryInterface
 {
     /**
      * @param DateTime $dateTime
      * @return SaleOrderEntity[]
      */
-    public function findModifiedAfter(DateTime $dateTime)
+    public function fetchAllSince(DateTime $dateTime)
     {
         $date = $dateTime->format('Y-m-d') . ' 00:00:00';
         $time = '1899-12-30 ' . $dateTime->format('H:i:s');

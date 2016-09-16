@@ -2,9 +2,7 @@
 
 namespace Smart\Sage50;
 
-use DateTime;
-
-interface SyncerInterface
+interface SyncInterface
 {
     /**
      * @param MapperInterface $mapper
@@ -15,10 +13,4 @@ interface SyncerInterface
      * @return MapperInterface $mapper
      */
     public function getMapper();
-
-    /**
-     * @param DateTime $dateTime
-     * @return mixed
-     */
-    public function syncSince(DateTime $dateTime);
 }

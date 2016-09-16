@@ -4,5 +4,6 @@ namespace Smart\Sage50;
 
 interface MapperEventsInterface
 {
-    public function onFinish();
+    public function onItemComplete();
+    public function onComplete();
 }
