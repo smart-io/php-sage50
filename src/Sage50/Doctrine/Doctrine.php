@@ -169,6 +169,10 @@ class Doctrine extends AbstractManagerRegistry
             'charset' => 'latin1',
         ];
 
+        if ($this->getConfig()->getPort()) {
+            $dbParams['port'] = $this->getConfig()->getPort();
+        }
+
         $isDevMode = $this->getConfig()->isDev();
         $doctrineConfig = Setup::createConfiguration($isDevMode);
 

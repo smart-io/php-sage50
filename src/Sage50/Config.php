@@ -12,7 +12,12 @@ class Config
     /**
      * @var string
      */
-    private $dbname;
+    private $port = '13540';
+
+    /**
+     * @var string
+     */
+    private $dbname = 'simply';
 
     /**
      * @var string
@@ -49,6 +54,9 @@ class Config
                 case 'host':
                     $this->setHost($value);
                     break;
+                case 'port':
+                    $this->setPort($value);
+                    break;
                 case 'dbname':
                     $this->setDbname($value);
                     break;
@@ -77,6 +85,24 @@ class Config
     public function setHost($host)
     {
         $this->host = $host;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getPort()
+    {
+        return $this->port;
+    }
+
+    /**
+     * @param string $port
+     * @return $this
+     */
+    public function setPort($port)
+    {
+        $this->port = $port;
         return $this;
     }
 
