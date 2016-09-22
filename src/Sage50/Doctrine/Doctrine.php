@@ -166,7 +166,7 @@ class Doctrine extends AbstractManagerRegistry
             'user'     => $this->getConfig()->getUser(),
             'password' => $this->getConfig()->getPassword(),
             'dbname'   => $this->getConfig()->getDbname(),
-            'charset' => 'latin1',
+            'charset' => 'utf8',
         ];
 
         if ($this->getConfig()->getPort()) {
