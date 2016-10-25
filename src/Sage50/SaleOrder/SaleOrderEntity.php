@@ -330,9 +330,9 @@ class SaleOrderEntity
 
     /**
      * @ORM\Column(name="nFilled", type="smallint", nullable=true)
-     * @var boolean
+     * @var int
      */
-    private $isFilled = false;
+    private $numberFilled = null;
 
     /**
      * @ORM\Column(name="bReversed", type="boolean", nullable=true)
@@ -1310,20 +1310,20 @@ class SaleOrderEntity
     }
 
     /**
-     * @return boolean
+     * @return int
      */
-    public function isFilled()
+    public function numberFilled()
     {
-        return $this->isFilled;
+        return $this->numberFilled;
     }
 
     /**
-     * @param boolean $isFilled
+     * @param int $numberFilled
      * @return $this
      */
-    public function setIsFilled($isFilled)
+    public function setNumberFilled($numberFilled)
     {
-        $this->isFilled = $isFilled;
+        $this->numberFilled = $numberFilled;
         return $this;
     }
 
