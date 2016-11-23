@@ -6,7 +6,7 @@ use Doctrine\DBAL\Tools\Console\Helper\ConnectionHelper;
 use Doctrine\ORM\Tools\Console\Command\ConvertMappingCommand;
 use Doctrine\ORM\Tools\Console\Helper\EntityManagerHelper;
 use Symfony\Component\Console\Command\Command;
-use Symfony\Component\Console\Helper\DialogHelper;
+use Symfony\Component\Console\Helper\QuestionHelper;
 use Symfony\Component\Console\Helper\HelperSet;
 use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
@@ -21,9 +21,9 @@ class GenerateEntityCommand extends Command
     private $doctrine;
 
     /**
-     * @var DialogHelper
+     * @var QuestionHelper
      */
-    private $dialog;
+    private $question;
 
     /**
      * @var string
@@ -36,7 +36,7 @@ class GenerateEntityCommand extends Command
     public function __construct(Doctrine $doctrine)
     {
         $this->srcDir = dirname(__DIR__);
-        $this->dialog = new DialogHelper();
+        $this->question = new QuestionHelper();
         $this->doctrine = $doctrine;
         parent::__construct();
     }
@@ -60,7 +60,7 @@ class GenerateEntityCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (!$table = $this->getTable()) {
-            $table = $this->dialog->ask($output, 'Table name: ');
+            $table = $this->question->ask($output, 'Table name: ');
         }
 
         $words = explode('_', $table);

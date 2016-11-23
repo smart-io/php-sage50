@@ -1,6 +1,6 @@
 <phpunit backupGlobals="false"
          backupStaticAttributes="false"
-         bootstrap="tests/bootstrap.php"
+         bootstrap="test/bootstrap.php"
          colors="true"
          convertErrorsToExceptions="true"
          convertNoticesToExceptions="true"
@@ -9,7 +9,14 @@
          syntaxCheck="false">
     <testsuites>
         <testsuite name="PHP Sage50 Test Suite">
-            <directory>./tests/Sage50/</directory>
+            <directory>./test/tests/</directory>
         </testsuite>
     </testsuites>
+    <php>
+        <env name="MYSQL_HOST" value=""/>
+        <env name="MYSQL_PORT" value=""/>
+        <env name="MYSQL_DATABASE" value=""/>
+        <env name="MYSQL_USER" value=""/>
+        <env name="MYSQL_PASSWORD" value=""/>
+    </php>
 </phpunit>

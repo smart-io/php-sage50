@@ -2,7 +2,6 @@
 
 namespace Smart\Sage50\SaleOrder\Item;
 
-use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

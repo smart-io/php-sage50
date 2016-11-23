@@ -2,6 +2,7 @@
 
 /bin export-ignore
 /tests export-ignore
+/vendor export-ignore
 /.env export-ignore
 /.env.dist export-ignore
 /.gitattributes export-ignore
@@ -13,6 +14,7 @@
 /CHANGELOG.md export-ignore
 /CONTRIBUTING.md export-ignore
 /php-sage50-logo.svg export-ignore
+/phpunit.xml export-ignore
 /phpunit.xml.dist export-ignore
 /README.md export-ignore
 /ruleset.xml export-ignore

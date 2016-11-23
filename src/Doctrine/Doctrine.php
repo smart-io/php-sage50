@@ -3,6 +3,7 @@
 namespace Smart\Sage50\Doctrine;
 
 use Doctrine\Common\Annotations\AnnotationReader;
+use Doctrine\Common\Cache\ArrayCache;
 use Doctrine\Common\Persistence\AbstractManagerRegistry;
 use Doctrine\ORM\EntityManager;
 use Doctrine\ORM\Mapping\Driver\AnnotationDriver;
@@ -36,11 +37,11 @@ class Doctrine extends AbstractManagerRegistry
      */
     private $config;
 
-    public function __construct()
-    {
-    }
+	public function __construct()
+	{
+	}
 
-    /**
+	/**
      * @return Config
      */
     public function getConfig()
@@ -52,7 +53,7 @@ class Doctrine extends AbstractManagerRegistry
      * @param Config $config
      * @return $this
      */
-    public function setConfig($config)
+    public function setConfig(Config $config)
     {
         $this->config = $config;
         return $this;
@@ -174,7 +175,7 @@ class Doctrine extends AbstractManagerRegistry
         }
 
         $isDevMode = $this->getConfig()->isDev();
-        $doctrineConfig = Setup::createConfiguration($isDevMode);
+        $doctrineConfig = Setup::createConfiguration($isDevMode, null, new ArrayCache());
 
         $doctrineConfig->setMetadataDriverImpl(
             new AnnotationDriver(new AnnotationReader(), [realpath(__DIR__ . '/../')])

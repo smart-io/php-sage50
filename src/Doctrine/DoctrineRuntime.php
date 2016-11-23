@@ -3,8 +3,8 @@
 namespace Smart\Sage50\Doctrine;
 
 use Doctrine\ORM\Tools\Console\ConsoleRunner;
+use Smart\Sage50\Config;
 use Symfony\Component\Console\Helper\HelperSet;
-use Smart\Config\Config;
 
 class DoctrineRuntime
 {
@@ -13,19 +13,10 @@ class DoctrineRuntime
      */
     private $doctrine;
 
-    /**
-     * @var Config
-     */
-    private $config;
-
-    /**
-     * @param string $configDir
-     */
-    public function __construct($configDir)
+    public function __construct(Config $config)
     {
-        $this->config = new Config($configDir, 'dev');
         $this->doctrine = new Doctrine();
-        $this->doctrine->setConfig($this->config);
+	    $this->doctrine->setConfig($config);
     }
 
     public function run()
