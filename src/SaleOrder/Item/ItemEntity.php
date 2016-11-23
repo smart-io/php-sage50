@@ -11,8 +11,8 @@ use Doctrine\ORM\Mapping as ORM;
 class ItemEntity
 {
     const UNIT_TYPE_STOCKING_UNITS = 1;
-    const UNIT_TYPE_BUYING_UNITS = 1;
-    const UNIT_TYPE_SELLING_UNITS = 1;
+    const UNIT_TYPE_BUYING_UNITS = 2;
+    const UNIT_TYPE_SELLING_UNITS = 3;
 
     /**
      * @ORM\Id

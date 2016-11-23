@@ -12,6 +12,7 @@ use Symfony\Component\Console\Input\ArrayInput;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\ConsoleOutput;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\Console\Question\Question;
 
 class GenerateEntityCommand extends Command
 {
@@ -60,7 +61,8 @@ class GenerateEntityCommand extends Command
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         if (!$table = $this->getTable()) {
-            $table = $this->question->ask($output, 'Table name: ');
+	        $question = new Question('Table name: ');
+            $table = strtolower($this->question->ask($input, $output, $question));
         }
 
         $words = explode('_', $table);
