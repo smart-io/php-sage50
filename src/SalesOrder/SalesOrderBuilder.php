@@ -1,17 +1,17 @@
 <?php
 
-namespace Smart\Sage50\SaleOrder;
+namespace Smart\Sage50\SalesOrder;
 
 use Doctrine\ORM\EntityManagerInterface;
 use Smart\Sage50\NextPrimaryKey\NextPrimaryKeyRepository;
 use Smart\Sage50\JournalEntry\JournalEntryRepository;
-use Smart\Sage50\SaleOrder\Item\ItemEntity;
-use Smart\Sage50\SaleOrder\ItemTax\ItemTaxEntity;
+use Smart\Sage50\SalesOrder\Item\ItemEntity;
+use Smart\Sage50\SalesOrder\ItemTax\ItemTaxEntity;
 use Smart\Sage50\Tax\TaxEntity;
 use Smart\Sage50\Tax\TaxCollection;
 use Smart\Sage50\LocationInventory\LocationInventoryRepository;
 
-class SaleOrderBuilder
+class SalesOrderBuilder
 {
     /**
      * @var EntityManagerInterface
@@ -19,9 +19,9 @@ class SaleOrderBuilder
     protected $entityManager;
 
     /**
-     * @var SaleOrderEntity
+     * @var SalesOrderEntity
      */
-    private $saleOrder;
+    private $salesOrder;
 
     /**
      * @var array
@@ -66,31 +66,31 @@ class SaleOrderBuilder
     }
 
     /**
-     * @param SaleOrderEntity $saleOrder
+     * @param SalesOrderEntity $salesOrder
      * @param TaxCollection[] $taxCollections
      */
-    public function createSaleOrder(SaleOrderEntity $saleOrder, array $taxCollections = null)
+    public function createSalesOrder(SalesOrderEntity $salesOrder, array $taxCollections = null)
     {
         if (null !== $taxCollections) {
             $this->taxCollections = $taxCollections;
         }
-        $this->addSaleOrder($saleOrder);
+        $this->addSalesOrder($salesOrder);
     }
 
     /**
-     * @param SaleOrderEntity $saleOrder
+     * @param SalesOrderEntity $salesOrder
      */
-    protected function addSaleOrder(SaleOrderEntity $saleOrder)
+    protected function addSalesOrder(SalesOrderEntity $salesOrder)
     {
-        $this->saleOrder = $saleOrder;
-        $this->saleOrder->setId($this->nextPrimaryKeyRepository->fetchNextSaleOrderId());
-        $this->saleOrder->setNextId($this->journalEntryRepository->fetchNextJournalEntryId());
+        $this->salesOrder = $salesOrder;
+        $this->salesOrder->setId($this->nextPrimaryKeyRepository->fetchNextSalesOrderId());
+        $this->salesOrder->setNextId($this->journalEntryRepository->fetchNextJournalEntryId());
     }
 
-    protected function persistSaleOrder()
+    protected function persistSalesOrder()
     {
-        $this->entityManager->persist($this->saleOrder);
-        $this->entityManager->flush($this->saleOrder);
+        $this->entityManager->persist($this->salesOrder);
+        $this->entityManager->flush($this->salesOrder);
 
         foreach ($this->items as $itemArray) {
             /** @var ItemEntity $item */
@@ -98,25 +98,25 @@ class SaleOrderBuilder
             /** @var ItemTaxEntity[] $itemTaxes */
             $itemTaxes = $itemArray['itemTaxes'];
 
-            $item->setSaleOrderId($this->saleOrder->getId());
+            $item->setSalesOrderId($this->salesOrder->getId());
             $this->entityManager->persist($item);
             foreach ($itemTaxes as $itemTax) {
-                $itemTax->setSaleOrderId($this->saleOrder->getId());
+                $itemTax->setSalesOrderId($this->salesOrder->getId());
                 $this->entityManager->persist($itemTax);
             }
-            $this->increaseInventoryOnSaleOrder($item);
+            $this->increaseInventoryOnSalesOrder($item);
         }
 
-        $this->nextPrimaryKeyRepository->increaseNextSaleOrderId();
+        $this->nextPrimaryKeyRepository->increaseNextSalesOrderId();
         $this->entityManager->flush();
     }
 
     /**
      * @param ItemEntity $item
      */
-    protected function increaseInventoryOnSaleOrder(ItemEntity $item)
+    protected function increaseInventoryOnSalesOrder(ItemEntity $item)
     {
-        $this->locationInventoryRepository->increaseInventoryOnSaleOrder(
+        $this->locationInventoryRepository->increaseInventoryOnSalesOrder(
             $item->getInventoryId(),
             $item->getInventoryLocationId(),
             $item->getQuantityOrdered()
@@ -134,7 +134,7 @@ class SaleOrderBuilder
             'itemTaxes' => [],
         ];
 
-        $item->setSaleOrderItemId(count($this->items));
+        $item->setSalesOrderItemId(count($this->items));
 
         if (null === $taxCollections && null !== $this->taxCollections) {
             $taxCollections = $this->taxCollections;
@@ -168,7 +168,7 @@ class SaleOrderBuilder
         }
         if (null !== $taxId) {
             $itemTax->setTaxId($taxId);
-            $itemTax->setSaleOrderItemId($item->getSaleOrderItemId());
+            $itemTax->setSalesOrderItemId($item->getSalesOrderItemId());
             $itemTax->setTaxAmount($totalTaxAmount);
             $this->items[spl_object_hash($item)]['itemTaxes'][spl_object_hash($itemTax)] = $itemTax;
         }

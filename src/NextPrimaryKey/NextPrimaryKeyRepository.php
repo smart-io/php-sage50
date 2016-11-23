@@ -24,7 +24,7 @@ class NextPrimaryKeyRepository extends EntityRepository
     /**
      * @return int|null
      */
-    public function increaseNextSaleOrderId()
+    public function increaseNextSalesOrderId()
     {
         return $this->increaseNextId(NextPrimaryKeyEntity::SALE_ORDER_ID);
     }
@@ -45,7 +45,7 @@ class NextPrimaryKeyRepository extends EntityRepository
     /**
      * @return int
      */
-    public function fetchNextSaleOrderId()
+    public function fetchNextSalesOrderId()
     {
         return $this->fetchNextId(NextPrimaryKeyEntity::SALE_ORDER_ID);
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart\Sage50\SaleOrder\TotalTaxes;
+namespace Smart\Sage50\SalesOrder\TotalTaxes;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +16,7 @@ class TotalTaxesEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $saleOrderId = 0;
+    private $salesOrderId = 0;
 
     /**
      * @ORM\Id
@@ -41,18 +41,18 @@ class TotalTaxesEntity
     /**
      * @return int
      */
-    public function getSaleOrderId()
+    public function getSalesOrderId()
     {
-        return $this->saleOrderId;
+        return $this->salesOrderId;
     }
 
     /**
-     * @param int $saleOrderId
+     * @param int $salesOrderId
      * @return $this
      */
-    public function setSaleOrderId($saleOrderId)
+    public function setSalesOrderId($salesOrderId)
     {
-        $this->saleOrderId = $saleOrderId;
+        $this->salesOrderId = $salesOrderId;
         return $this;
     }
 

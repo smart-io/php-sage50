@@ -1,16 +1,16 @@
 <?php
 
-namespace Smart\Sage50\SaleOrder;
+namespace Smart\Sage50\SalesOrder;
 
 use DateTime;
 use Doctrine\ORM\EntityRepository;
 use Smart\Sage50\RepositoryInterface;
 
-class SaleOrderRepository extends EntityRepository implements RepositoryInterface
+class SalesOrderRepository extends EntityRepository implements RepositoryInterface
 {
     /**
      * @param DateTime $dateTime
-     * @return SaleOrderEntity[]
+     * @return SalesOrderEntity[]
      */
     public function fetchAllSince(DateTime $dateTime)
     {

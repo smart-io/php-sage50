@@ -91,7 +91,7 @@ class LocationInventoryEntity
      * @ORM\Column(name="dQOnSalOrd", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $quantityOnSaleOrder;
+    private $quantityOnSalesOrder;
 
     /**
      * @ORM\Column(name="dHInStock", type="float", precision=10, scale=0, nullable=true)
@@ -338,18 +338,18 @@ class LocationInventoryEntity
     /**
      * @return float
      */
-    public function getQuantityOnSaleOrder()
+    public function getQuantityOnSalesOrder()
     {
-        return $this->quantityOnSaleOrder;
+        return $this->quantityOnSalesOrder;
     }
 
     /**
-     * @param float $quantityOnSaleOrder
+     * @param float $quantityOnSalesOrder
      * @return $this
      */
-    public function setQuantityOnSaleOrder($quantityOnSaleOrder)
+    public function setQuantityOnSalesOrder($quantityOnSalesOrder)
     {
-        $this->quantityOnSaleOrder = $quantityOnSaleOrder;
+        $this->quantityOnSalesOrder = $quantityOnSalesOrder;
         return $this;
     }
 

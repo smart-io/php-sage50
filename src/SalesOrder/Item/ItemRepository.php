@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart\Sage50\SaleOrder\Item;
+namespace Smart\Sage50\SalesOrder\Item;
 
 use Doctrine\ORM\EntityRepository;
 

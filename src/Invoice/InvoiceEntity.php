@@ -167,7 +167,7 @@ class InvoiceEntity
      * @ORM\Column(name="bFromPO", type="boolean", nullable=true)
      * @var bool
      */
-    private $isFromSaleOrder;
+    private $isFromSalesOrder;
 
     /**
      * @ORM\Column(name="lAcctDptId", type="integer", nullable=true)
@@ -623,16 +623,16 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isFromSaleOrder() {
-		return $this->isFromSaleOrder;
+	public function isFromSalesOrder() {
+		return $this->isFromSalesOrder;
 	}
 
 	/**
-	 * @param boolean $isFromSaleOrder
+	 * @param boolean $isFromSalesOrder
 	 * @return $this
 	 */
-	public function setIsFromSaleOrder($isFromSaleOrder) {
-		$this->isFromSaleOrder = $isFromSaleOrder;
+	public function setIsFromSalesOrder($isFromSalesOrder) {
+		$this->isFromSalesOrder = $isFromSalesOrder;
 		return $this;
 	}
 

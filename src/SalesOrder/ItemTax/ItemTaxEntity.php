@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart\Sage50\SaleOrder\ItemTax;
+namespace Smart\Sage50\SalesOrder\ItemTax;
 
 use Doctrine\ORM\Mapping as ORM;
 
@@ -16,7 +16,7 @@ class ItemTaxEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $saleOrderId = 0;
+    private $salesOrderId = 0;
 
     /**
      * @ORM\Id
@@ -24,7 +24,7 @@ class ItemTaxEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $saleOrderItemId = 0;
+    private $salesOrderItemId = 0;
 
     /**
      * @ORM\Id
@@ -55,36 +55,36 @@ class ItemTaxEntity
     /**
      * @return int
      */
-    public function getSaleOrderId()
+    public function getSalesOrderId()
     {
-        return $this->saleOrderId;
+        return $this->salesOrderId;
     }
 
     /**
-     * @param int $saleOrderId
+     * @param int $salesOrderId
      * @return $this
      */
-    public function setSaleOrderId($saleOrderId)
+    public function setSalesOrderId($salesOrderId)
     {
-        $this->saleOrderId = $saleOrderId;
+        $this->salesOrderId = $salesOrderId;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getSaleOrderItemId()
+    public function getSalesOrderItemId()
     {
-        return $this->saleOrderItemId;
+        return $this->salesOrderItemId;
     }
 
     /**
-     * @param int $saleOrderItemId
+     * @param int $salesOrderItemId
      * @return $this
      */
-    public function setSaleOrderItemId($saleOrderItemId)
+    public function setSalesOrderItemId($salesOrderItemId)
     {
-        $this->saleOrderItemId = $saleOrderItemId;
+        $this->salesOrderItemId = $salesOrderItemId;
         return $this;
     }
 

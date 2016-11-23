@@ -5,10 +5,10 @@ namespace Smart\Sage50;
 use Doctrine\ORM\EntityManagerInterface;
 use Smart\Sage50\Customer\CustomerRepository;
 use Smart\Sage50\Customer\CustomerSync;
-use Smart\Sage50\SaleOrder\SaleOrderRepository;
-use Smart\Sage50\SaleOrder\SaleOrderSync;
-use Smart\Sage50\SaleOrder\SaleOrderBuilder;
-use Smart\Sage50\SaleOrder\Item\ItemRepository as SaleOrderItemRepository;
+use Smart\Sage50\SalesOrder\SalesOrderRepository;
+use Smart\Sage50\SalesOrder\SalesOrderSync;
+use Smart\Sage50\SalesOrder\SalesOrderBuilder;
+use Smart\Sage50\SalesOrder\Item\ItemRepository as SalesOrderItemRepository;
 
 abstract class Container
 {
@@ -28,24 +28,24 @@ abstract class Container
     private $customerRepository;
 
     /**
-     * @var SaleOrderBuilder
+     * @var SalesOrderBuilder
      */
-    private $saleOrderBuilder;
+    private $salesOrderBuilder;
 
     /**
-     * @var SaleOrderSync
+     * @var SalesOrderSync
      */
-    private $saleOrderSync;
+    private $salesOrderSync;
 
     /**
-     * @var SaleOrderRepository
+     * @var SalesOrderRepository
      */
-    private $saleOrderRepository;
+    private $salesOrderRepository;
 
     /**
-     * @var SaleOrderItemRepository
+     * @var SalesOrderItemRepository
      */
-    private $saleOrderItemRepository;
+    private $salesOrderItemRepository;
 
     /**
      * @return CustomerSync
@@ -92,90 +92,90 @@ abstract class Container
     }
 
     /**
-     * @return SaleOrderBuilder
+     * @return SalesOrderBuilder
      */
-    public function getSaleOrderBuilder()
+    public function getSalesOrderBuilder()
     {
-        if (null === $this->saleOrderBuilder) {
-            $this->saleOrderBuilder = new SaleOrderBuilder($this->getEntityManager());
+        if (null === $this->salesOrderBuilder) {
+            $this->salesOrderBuilder = new SalesOrderBuilder($this->getEntityManager());
         }
-        return $this->saleOrderBuilder;
+        return $this->salesOrderBuilder;
     }
 
     /**
-     * @param SaleOrderBuilder $saleOrderBuilder
+     * @param SalesOrderBuilder $salesOrderBuilder
      * @return $this
      */
-    public function setSaleOrderBuilder(SaleOrderBuilder $saleOrderBuilder)
+    public function setSalesOrderBuilder(SalesOrderBuilder $salesOrderBuilder)
     {
-        $this->saleOrderBuilder = $saleOrderBuilder;
+        $this->salesOrderBuilder = $salesOrderBuilder;
         return $this;
     }
 
     /**
-     * @return SaleOrderSync
+     * @return SalesOrderSync
      */
-    public function getSaleOrderSync()
+    public function getSalesOrderSync()
     {
-        if (null === $this->saleOrderSync) {
-            $this->saleOrderSync = new SaleOrderSync($this->getEntityManager());
+        if (null === $this->salesOrderSync) {
+            $this->salesOrderSync = new SalesOrderSync($this->getEntityManager());
         }
-        return $this->saleOrderSync;
+        return $this->salesOrderSync;
     }
 
     /**
-     * @param SaleOrderSync $saleOrderSync
+     * @param SalesOrderSync $salesOrderSync
      * @return $this
      */
-    public function setSaleOrderSync(SaleOrderSync $saleOrderSync)
+    public function setSalesOrderSync(SalesOrderSync $salesOrderSync)
     {
-        $this->saleOrderSync = $saleOrderSync;
+        $this->salesOrderSync = $salesOrderSync;
         return $this;
     }
 
     /**
-     * @return SaleOrderRepository
+     * @return SalesOrderRepository
      */
-    public function getSaleOrderRepository()
+    public function getSalesOrderRepository()
     {
-        if (null === $this->saleOrderRepository) {
-            $this->saleOrderRepository = $this->getEntityManager()->getRepository(
-                'Smart\\Sage50\\SaleOrder\\SaleOrderEntity'
+        if (null === $this->salesOrderRepository) {
+            $this->salesOrderRepository = $this->getEntityManager()->getRepository(
+                'Smart\\Sage50\\SalesOrder\\SalesOrderEntity'
             );
         }
-        return $this->saleOrderRepository;
+        return $this->salesOrderRepository;
     }
 
     /**
-     * @param SaleOrderRepository $saleOrderRepository
+     * @param SalesOrderRepository $salesOrderRepository
      * @return $this
      */
-    public function setSaleOrderRepository(SaleOrderRepository $saleOrderRepository)
+    public function setSalesOrderRepository(SalesOrderRepository $salesOrderRepository)
     {
-        $this->saleOrderRepository = $saleOrderRepository;
+        $this->salesOrderRepository = $salesOrderRepository;
         return $this;
     }
 
     /**
-     * @return SaleOrderItemRepository
+     * @return SalesOrderItemRepository
      */
-    public function getSaleOrderItemRepository()
+    public function getSalesOrderItemRepository()
     {
-        if (null === $this->saleOrderItemRepository) {
-            $this->saleOrderItemRepository = $this->getEntityManager()->getRepository(
-                'Smart\\Sage50\\SaleOrder\\Item\\ItemEntity'
+        if (null === $this->salesOrderItemRepository) {
+            $this->salesOrderItemRepository = $this->getEntityManager()->getRepository(
+                'Smart\\Sage50\\SalesOrder\\Item\\ItemEntity'
             );
         }
-        return $this->saleOrderItemRepository;
+        return $this->salesOrderItemRepository;
     }
 
     /**
-     * @param SaleOrderItemRepository $saleOrderItemRepository
+     * @param SalesOrderItemRepository $salesOrderItemRepository
      * @return $this
      */
-    public function setSaleOrderItemRepository(SaleOrderItemRepository $saleOrderItemRepository)
+    public function setSalesOrderItemRepository(SalesOrderItemRepository $salesOrderItemRepository)
     {
-        $this->saleOrderItemRepository = $saleOrderItemRepository;
+        $this->salesOrderItemRepository = $salesOrderItemRepository;
         return $this;
     }
 }

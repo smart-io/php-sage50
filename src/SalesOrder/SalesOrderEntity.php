@@ -1,18 +1,18 @@
 <?php
 
-namespace Smart\Sage50\SaleOrder;
+namespace Smart\Sage50\SalesOrder;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="Smart\Sage50\SaleOrder\SaleOrderRepository")
+ * @ORM\Entity(repositoryClass="Smart\Sage50\SalesOrder\SalesOrderRepository")
  * @ORM\Table(name="tsalordr", indexes={
  *   @ORM\Index(name="KEY_1", columns={"lCusId"}),
  *   @ORM\Index(name="KEY_2", columns={"sSONum"})
  * })
  */
-class SaleOrderEntity
+class SalesOrderEntity
 {
     /**
      * @ORM\Id
@@ -140,7 +140,7 @@ class SaleOrderEntity
      * @ORM\Column(name="dtSODate", type="datetime", nullable=true)
      * @var DateTime
      */
-    private $saleOrderDate;
+    private $salesOrderDate;
 
     /**
      * @ORM\Column(name="bPrinted", type="boolean", nullable=true)
@@ -736,18 +736,18 @@ class SaleOrderEntity
     /**
      * @return DateTime
      */
-    public function getSaleOrderDate()
+    public function getSalesOrderDate()
     {
-        return $this->saleOrderDate;
+        return $this->salesOrderDate;
     }
 
     /**
-     * @param DateTime $saleOrderDate
+     * @param DateTime $salesOrderDate
      * @return $this
      */
-    public function setSaleOrderDate(DateTime $saleOrderDate)
+    public function setSalesOrderDate(DateTime $salesOrderDate)
     {
-        $this->saleOrderDate = $saleOrderDate;
+        $this->salesOrderDate = $salesOrderDate;
         return $this;
     }
 

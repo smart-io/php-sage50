@@ -12,16 +12,16 @@ class LocationInventoryRepository extends EntityRepository
      * @param int $quantity
      * @return int
      */
-    public function increaseInventoryOnSaleOrder($inventoryId, $inventoryLocationId, $quantity)
+    public function increaseInventoryOnSalesOrder($inventoryId, $inventoryLocationId, $quantity)
     {
         $locationInventory = $this->findBy([
             'inventoryId' => $inventoryId,
             'inventoryLocationId' => $inventoryLocationId
         ]);
         if ($locationInventory instanceof LocationInventoryEntity) {
-            $locationInventory->setQuantityOnSaleOrder($locationInventory->getQuantityOnSaleOrder() + $quantity);
+            $locationInventory->setQuantityOnSalesOrder($locationInventory->getQuantityOnSalesOrder() + $quantity);
             $this->_em->persist($locationInventory);
-            return $locationInventory->getQuantityOnSaleOrder() + $quantity;
+            return $locationInventory->getQuantityOnSalesOrder() + $quantity;
         }
         return null;
     }
