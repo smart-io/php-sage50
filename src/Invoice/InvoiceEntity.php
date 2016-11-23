@@ -4,6 +4,8 @@ namespace Smart\Sage50\Invoice;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Smart\Sage50\Invoice\Item\ItemEntity;
+use Smart\Sage50\Invoice\TotalTaxes\TotalTaxesEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Smart\Sage50\Invoice\InvoiceRepository")
@@ -11,216 +13,229 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class InvoiceEntity
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(name="lITRecId", type="integer")
-     * @ORM\GeneratedValue
-     * @var int
-     */
-    private $id = 0;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(name="lITRecId", type="integer")
+	 * @ORM\GeneratedValue
+	 * @var int
+	 */
+	private $id = 0;
 
-    /**
-     * @ORM\Column(name="sName", type="string", length=52, nullable=true)
-     * @var string
-     */
-    private $customerName;
+	/**
+	 * @ORM\OneToMany(targetEntity="\Smart\Sage50\Invoice\Item\ItemEntity", mappedBy="invoice")
+	 * @var ItemEntity[]
+	 **/
+	private $items;
 
-    /**
-     * @ORM\Column(name="sAddress1", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $billingAddress1;
+	/**
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\TotalTaxes\TotalTaxesEntity", mappedBy="invoice")
+	 * @var \Smart\Sage50\Invoice\TotalTaxes\TotalTaxesEntity
+	 **/
+	private $totalTaxes;
 
-    /**
-     * @ORM\Column(name="sAddress2", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $billingAddress2;
+	/**
+	 * @ORM\Column(name="sName", type="string", length=52, nullable=true)
+	 * @var string
+	 */
+	private $customerName;
 
-    /**
-     * @ORM\Column(name="sAddress3", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $billingAddress3;
+	/**
+	 * @ORM\Column(name="sAddress1", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $billingAddress1;
 
-    /**
-     * @ORM\Column(name="sAddress4", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $billingAddress4;
+	/**
+	 * @ORM\Column(name="sAddress2", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $billingAddress2;
 
-    /**
-     * @ORM\Column(name="sAddress5", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $billingAddress5;
+	/**
+	 * @ORM\Column(name="sAddress3", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $billingAddress3;
 
-    /**
-     * @ORM\Column(name="sShipTo1", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $shippingAddress1;
+	/**
+	 * @ORM\Column(name="sAddress4", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $billingAddress4;
 
-    /**
-     * @ORM\Column(name="sShipTo2", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $shippingAddress2;
+	/**
+	 * @ORM\Column(name="sAddress5", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $billingAddress5;
 
-    /**
-     * @ORM\Column(name="sShipTo3", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $shippingAddress3;
+	/**
+	 * @ORM\Column(name="sShipTo1", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $shippingAddress1;
 
-    /**
-     * @ORM\Column(name="sShipTo4", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $shippingAddress4;
+	/**
+	 * @ORM\Column(name="sShipTo2", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $shippingAddress2;
 
-    /**
-     * @ORM\Column(name="sShipTo5", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $shippingAddress5;
+	/**
+	 * @ORM\Column(name="sShipTo3", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $shippingAddress3;
 
-    /**
-     * @ORM\Column(name="sShipTo6", type="string", length=75, nullable=true)
-     * @var string
-     */
-    private $shippingAddress6;
+	/**
+	 * @ORM\Column(name="sShipTo4", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $shippingAddress4;
 
-    /**
-     * @ORM\Column(name="dTotal", type="float", precision=10, scale=0, nullable=true)
-     * @var float
-     */
-    private $total = 0.00;
+	/**
+	 * @ORM\Column(name="sShipTo5", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $shippingAddress5;
 
-    /**
-     * @ORM\Column(name="nTSActSort", type="smallint", nullable=true)
-     * @var int
-     */
-    private $timeSlipSortMethod;
+	/**
+	 * @ORM\Column(name="sShipTo6", type="string", length=75, nullable=true)
+	 * @var string
+	 */
+	private $shippingAddress6;
 
-    /**
-     * @ORM\Column(name="dtTSStart", type="datetime", nullable=true)
-     * @var DateTime
-     */
-    private $timeSlipConsolidationStartDate;
+	/**
+	 * @ORM\Column(name="dTotal", type="float", precision=10, scale=0, nullable=true)
+	 * @var float
+	 */
+	private $total = 0.00;
 
-    /**
-     * @ORM\Column(name="dtTSEnd", type="datetime", nullable=true)
-     * @var DateTime
-     */
-    private $timeSlipConsolidationEndDate;
+	/**
+	 * @ORM\Column(name="nTSActSort", type="smallint", nullable=true)
+	 * @var int
+	 */
+	private $timeSlipSortMethod;
 
-    /**
-     * @ORM\Column(name="sPONum", type="string", length=20, nullable=true)
-     * @var string
-     */
-    private $orderNumber;
+	/**
+	 * @ORM\Column(name="dtTSStart", type="datetime", nullable=true)
+	 * @var DateTime
+	 */
+	private $timeSlipConsolidationStartDate;
 
-    /**
-     * @ORM\Column(name="sShpprName", type="string", length=20, nullable=true)
-     * @var string
-     */
-    private $shipperName;
+	/**
+	 * @ORM\Column(name="dtTSEnd", type="datetime", nullable=true)
+	 * @var DateTime
+	 */
+	private $timeSlipConsolidationEndDate;
 
-    /**
-     * @ORM\Column(name="sTrackingN", type="string", length=35, nullable=true)
-     * @var string
-     */
-    private $trackingNumber;
+	/**
+	 * @ORM\Column(name="sPONum", type="string", length=20, nullable=true)
+	 * @var string
+	 */
+	private $orderNumber;
 
-    /**
-     * @ORM\Column(name="lAcctId", type="integer", nullable=true)
-     * @var int
-     */
-    private $accountId;
+	/**
+	 * @ORM\Column(name="sShpprName", type="string", length=20, nullable=true)
+	 * @var string
+	 */
+	private $shipperName;
 
-    /**
-     * @ORM\Column(name="bDistByAmt", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $projectAllocationByAmount;
+	/**
+	 * @ORM\Column(name="sTrackingN", type="string", length=35, nullable=true)
+	 * @var string
+	 */
+	private $trackingNumber;
 
-    /**
-     * @ORM\Column(name="b40Data", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isLegacyData;
+	/**
+	 * @ORM\Column(name="lAcctId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $accountId;
 
-    /**
-     * @ORM\Column(name="bDeleted", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isDeleted;
+	/**
+	 * @ORM\Column(name="bDistByAmt", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $projectAllocationByAmount;
 
-    /**
-     * @ORM\Column(name="bNotRecd", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isNotArrived;
+	/**
+	 * @ORM\Column(name="b40Data", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isLegacyData;
 
-    /**
-     * @ORM\Column(name="bFromPO", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isFromSalesOrder;
+	/**
+	 * @ORM\Column(name="bDeleted", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isDeleted;
 
-    /**
-     * @ORM\Column(name="lAcctDptId", type="integer", nullable=true)
-     * @var int
-     */
-    private $accountDepartmentId;
+	/**
+	 * @ORM\Column(name="bNotRecd", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isNotArrived;
 
-    /**
-     * @ORM\Column(name="bAlocToAll", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isProjectAllocationForEntireTransaction;
+	/**
+	 * @ORM\Column(name="bFromPO", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isFromSalesOrder;
 
-    /**
-     * @ORM\Column(name="nTmplType", type="smallint", nullable=true)
-     * @var int
-     */
-    private $templateType;
+	/**
+	 * @ORM\Column(name="lAcctDptId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $accountDepartmentId;
 
-    /**
-     * @ORM\Column(name="lAddrId", type="integer", nullable=true)
-     * @var int
-     */
+	/**
+	 * @ORM\Column(name="bAlocToAll", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isProjectAllocationForEntireTransaction;
+
+	/**
+	 * @ORM\Column(name="nTmplType", type="smallint", nullable=true)
+	 * @var int
+	 */
+	private $templateType;
+
+	/**
+	 * @ORM\Column(name="lAddrId", type="integer", nullable=true)
+	 * @var int
+	 */
 	private $shippingAddressId = 0;
 
-    /**
-     * @ORM\Column(name="dtShipDate", type="datetime", nullable=true)
-     * @var DateTime
-     */
-    private $shipDate;
+	/**
+	 * @ORM\Column(name="dtShipDate", type="datetime", nullable=true)
+	 * @var DateTime
+	 */
+	private $shipDate;
 
-    /**
-     * @ORM\Column(name="nLangPref", type="smallint", nullable=true)
-     * @var int
-     */
+	/**
+	 * @ORM\Column(name="nLangPref", type="smallint", nullable=true)
+	 * @var int
+	 */
 	private $preferredLanguage = 0;
 
-    /**
-     * @ORM\Column(name="bUseVenItm", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isVendorInventory;
+	/**
+	 * @ORM\Column(name="bUseVenItm", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isVendorInventory;
 
-    /**
-     * @ORM\Column(name="lProjId", type="integer", nullable=true)
-     * @var int
-     */
-    private $projectId;
+	/**
+	 * @ORM\Column(name="lProjId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $projectId;
 
 	/**
 	 * @return int
 	 */
-	public function getId() {
+	public function getId()
+	{
 		return $this->id;
 	}
 
@@ -228,15 +243,53 @@ class InvoiceEntity
 	 * @param int $id
 	 * @return $this
 	 */
-	public function setId($id) {
+	public function setId($id)
+	{
 		$this->id = $id;
+		return $this;
+	}
+
+	/**
+	 * @return ItemEntity[]
+	 */
+	public function getItems()
+	{
+		return $this->items;
+	}
+
+	/**
+	 * @param ItemEntity[] $items
+	 * @return $this
+	 */
+	public function setItems($items)
+	{
+		$this->items = $items;
+		return $this;
+	}
+
+	/**
+	 * @return TotalTaxesEntity
+	 */
+	public function getTotalTaxes()
+	{
+		return $this->totalTaxes;
+	}
+
+	/**
+	 * @param TotalTaxesEntity $totalTaxes
+	 * @return $this
+	 */
+	public function setTotalTaxes(TotalTaxesEntity $totalTaxes)
+	{
+		$this->totalTaxes = $totalTaxes;
 		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getCustomerName() {
+	public function getCustomerName()
+	{
 		return $this->customerName;
 	}
 
@@ -244,7 +297,8 @@ class InvoiceEntity
 	 * @param string $customerName
 	 * @return $this
 	 */
-	public function setCustomerName($customerName) {
+	public function setCustomerName($customerName)
+	{
 		$this->customerName = $customerName;
 		return $this;
 	}
@@ -252,7 +306,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getBillingAddress1() {
+	public function getBillingAddress1()
+	{
 		return $this->billingAddress1;
 	}
 
@@ -260,7 +315,8 @@ class InvoiceEntity
 	 * @param string $billingAddress1
 	 * @return $this
 	 */
-	public function setBillingAddress1($billingAddress1) {
+	public function setBillingAddress1($billingAddress1)
+	{
 		$this->billingAddress1 = $billingAddress1;
 		return $this;
 	}
@@ -268,7 +324,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getBillingAddress2() {
+	public function getBillingAddress2()
+	{
 		return $this->billingAddress2;
 	}
 
@@ -276,7 +333,8 @@ class InvoiceEntity
 	 * @param string $billingAddress2
 	 * @return $this
 	 */
-	public function setBillingAddress2($billingAddress2) {
+	public function setBillingAddress2($billingAddress2)
+	{
 		$this->billingAddress2 = $billingAddress2;
 		return $this;
 	}
@@ -284,7 +342,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getBillingAddress3() {
+	public function getBillingAddress3()
+	{
 		return $this->billingAddress3;
 	}
 
@@ -292,7 +351,8 @@ class InvoiceEntity
 	 * @param string $billingAddress3
 	 * @return $this
 	 */
-	public function setBillingAddress3($billingAddress3) {
+	public function setBillingAddress3($billingAddress3)
+	{
 		$this->billingAddress3 = $billingAddress3;
 		return $this;
 	}
@@ -300,7 +360,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getBillingAddress4() {
+	public function getBillingAddress4()
+	{
 		return $this->billingAddress4;
 	}
 
@@ -308,7 +369,8 @@ class InvoiceEntity
 	 * @param string $billingAddress4
 	 * @return $this
 	 */
-	public function setBillingAddress4($billingAddress4) {
+	public function setBillingAddress4($billingAddress4)
+	{
 		$this->billingAddress4 = $billingAddress4;
 		return $this;
 	}
@@ -316,7 +378,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getBillingAddress5() {
+	public function getBillingAddress5()
+	{
 		return $this->billingAddress5;
 	}
 
@@ -324,7 +387,8 @@ class InvoiceEntity
 	 * @param string $billingAddress5
 	 * @return $this
 	 */
-	public function setBillingAddress5($billingAddress5) {
+	public function setBillingAddress5($billingAddress5)
+	{
 		$this->billingAddress5 = $billingAddress5;
 		return $this;
 	}
@@ -332,7 +396,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShippingAddress1() {
+	public function getShippingAddress1()
+	{
 		return $this->shippingAddress1;
 	}
 
@@ -340,7 +405,8 @@ class InvoiceEntity
 	 * @param string $shippingAddress1
 	 * @return $this
 	 */
-	public function setShippingAddress1($shippingAddress1) {
+	public function setShippingAddress1($shippingAddress1)
+	{
 		$this->shippingAddress1 = $shippingAddress1;
 		return $this;
 	}
@@ -348,7 +414,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShippingAddress2() {
+	public function getShippingAddress2()
+	{
 		return $this->shippingAddress2;
 	}
 
@@ -356,7 +423,8 @@ class InvoiceEntity
 	 * @param string $shippingAddress2
 	 * @return $this
 	 */
-	public function setShippingAddress2($shippingAddress2) {
+	public function setShippingAddress2($shippingAddress2)
+	{
 		$this->shippingAddress2 = $shippingAddress2;
 		return $this;
 	}
@@ -364,7 +432,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShippingAddress3() {
+	public function getShippingAddress3()
+	{
 		return $this->shippingAddress3;
 	}
 
@@ -372,7 +441,8 @@ class InvoiceEntity
 	 * @param string $shippingAddress3
 	 * @return $this
 	 */
-	public function setShippingAddress3($shippingAddress3) {
+	public function setShippingAddress3($shippingAddress3)
+	{
 		$this->shippingAddress3 = $shippingAddress3;
 		return $this;
 	}
@@ -380,7 +450,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShippingAddress4() {
+	public function getShippingAddress4()
+	{
 		return $this->shippingAddress4;
 	}
 
@@ -388,7 +459,8 @@ class InvoiceEntity
 	 * @param string $shippingAddress4
 	 * @return $this
 	 */
-	public function setShippingAddress4($shippingAddress4) {
+	public function setShippingAddress4($shippingAddress4)
+	{
 		$this->shippingAddress4 = $shippingAddress4;
 		return $this;
 	}
@@ -396,7 +468,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShippingAddress5() {
+	public function getShippingAddress5()
+	{
 		return $this->shippingAddress5;
 	}
 
@@ -404,7 +477,8 @@ class InvoiceEntity
 	 * @param string $shippingAddress5
 	 * @return $this
 	 */
-	public function setShippingAddress5($shippingAddress5) {
+	public function setShippingAddress5($shippingAddress5)
+	{
 		$this->shippingAddress5 = $shippingAddress5;
 		return $this;
 	}
@@ -412,7 +486,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShippingAddress6() {
+	public function getShippingAddress6()
+	{
 		return $this->shippingAddress6;
 	}
 
@@ -420,7 +495,8 @@ class InvoiceEntity
 	 * @param string $shippingAddress6
 	 * @return $this
 	 */
-	public function setShippingAddress6($shippingAddress6) {
+	public function setShippingAddress6($shippingAddress6)
+	{
 		$this->shippingAddress6 = $shippingAddress6;
 		return $this;
 	}
@@ -428,7 +504,8 @@ class InvoiceEntity
 	/**
 	 * @return float
 	 */
-	public function getTotal() {
+	public function getTotal()
+	{
 		return $this->total;
 	}
 
@@ -436,7 +513,8 @@ class InvoiceEntity
 	 * @param float $total
 	 * @return $this
 	 */
-	public function setTotal($total) {
+	public function setTotal($total)
+	{
 		$this->total = $total;
 		return $this;
 	}
@@ -444,7 +522,8 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getTimeSlipSortMethod() {
+	public function getTimeSlipSortMethod()
+	{
 		return $this->timeSlipSortMethod;
 	}
 
@@ -452,7 +531,8 @@ class InvoiceEntity
 	 * @param int $timeSlipSortMethod
 	 * @return $this
 	 */
-	public function setTimeSlipSortMethod($timeSlipSortMethod) {
+	public function setTimeSlipSortMethod($timeSlipSortMethod)
+	{
 		$this->timeSlipSortMethod = $timeSlipSortMethod;
 		return $this;
 	}
@@ -460,7 +540,8 @@ class InvoiceEntity
 	/**
 	 * @return DateTime
 	 */
-	public function getTimeSlipConsolidationStartDate() {
+	public function getTimeSlipConsolidationStartDate()
+	{
 		return $this->timeSlipConsolidationStartDate;
 	}
 
@@ -468,7 +549,8 @@ class InvoiceEntity
 	 * @param DateTime $timeSlipConsolidationStartDate
 	 * @return $this
 	 */
-	public function setTimeSlipConsolidationStartDate(DateTime $timeSlipConsolidationStartDate) {
+	public function setTimeSlipConsolidationStartDate(DateTime $timeSlipConsolidationStartDate)
+	{
 		$this->timeSlipConsolidationStartDate = $timeSlipConsolidationStartDate;
 		return $this;
 	}
@@ -476,7 +558,8 @@ class InvoiceEntity
 	/**
 	 * @return DateTime
 	 */
-	public function getTimeSlipConsolidationEndDate() {
+	public function getTimeSlipConsolidationEndDate()
+	{
 		return $this->timeSlipConsolidationEndDate;
 	}
 
@@ -484,7 +567,8 @@ class InvoiceEntity
 	 * @param DateTime $timeSlipConsolidationEndDate
 	 * @return $this
 	 */
-	public function setTimeSlipConsolidationEndDate(DateTime $timeSlipConsolidationEndDate) {
+	public function setTimeSlipConsolidationEndDate(DateTime $timeSlipConsolidationEndDate)
+	{
 		$this->timeSlipConsolidationEndDate = $timeSlipConsolidationEndDate;
 		return $this;
 	}
@@ -492,7 +576,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getOrderNumber() {
+	public function getOrderNumber()
+	{
 		return $this->orderNumber;
 	}
 
@@ -500,7 +585,8 @@ class InvoiceEntity
 	 * @param string $orderNumber
 	 * @return $this
 	 */
-	public function setOrderNumber($orderNumber) {
+	public function setOrderNumber($orderNumber)
+	{
 		$this->orderNumber = $orderNumber;
 		return $this;
 	}
@@ -508,7 +594,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getShipperName() {
+	public function getShipperName()
+	{
 		return $this->shipperName;
 	}
 
@@ -516,7 +603,8 @@ class InvoiceEntity
 	 * @param string $shipperName
 	 * @return $this
 	 */
-	public function setShipperName($shipperName) {
+	public function setShipperName($shipperName)
+	{
 		$this->shipperName = $shipperName;
 		return $this;
 	}
@@ -524,7 +612,8 @@ class InvoiceEntity
 	/**
 	 * @return string
 	 */
-	public function getTrackingNumber() {
+	public function getTrackingNumber()
+	{
 		return $this->trackingNumber;
 	}
 
@@ -532,7 +621,8 @@ class InvoiceEntity
 	 * @param string $trackingNumber
 	 * @return $this
 	 */
-	public function setTrackingNumber($trackingNumber) {
+	public function setTrackingNumber($trackingNumber)
+	{
 		$this->trackingNumber = $trackingNumber;
 		return $this;
 	}
@@ -540,16 +630,17 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getAccountId() {
+	public function getAccountId()
+	{
 		return $this->accountId;
 	}
 
 	/**
 	 * @param int $accountId
-	 *
 	 * @return $this
 	 */
-	public function setAccountId($accountId) {
+	public function setAccountId($accountId)
+	{
 		$this->accountId = $accountId;
 		return $this;
 	}
@@ -557,7 +648,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isProjectAllocationByAmount() {
+	public function isProjectAllocationByAmount()
+	{
 		return $this->projectAllocationByAmount;
 	}
 
@@ -565,7 +657,8 @@ class InvoiceEntity
 	 * @param boolean $projectAllocationByAmount
 	 * @return $this
 	 */
-	public function setProjectAllocationByAmount($projectAllocationByAmount) {
+	public function setProjectAllocationByAmount($projectAllocationByAmount)
+	{
 		$this->projectAllocationByAmount = $projectAllocationByAmount;
 		return $this;
 	}
@@ -573,7 +666,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isLegacyData() {
+	public function isLegacyData()
+	{
 		return $this->isLegacyData;
 	}
 
@@ -582,7 +676,8 @@ class InvoiceEntity
 	 *
 	 * @return $this
 	 */
-	public function setIsLegacyData($isLegacyData) {
+	public function setIsLegacyData($isLegacyData)
+	{
 		$this->isLegacyData = $isLegacyData;
 		return $this;
 	}
@@ -590,7 +685,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isDeleted() {
+	public function isDeleted()
+	{
 		return $this->isDeleted;
 	}
 
@@ -599,7 +695,8 @@ class InvoiceEntity
 	 *
 	 * @return $this
 	 */
-	public function setIsDeleted($isDeleted) {
+	public function setIsDeleted($isDeleted)
+	{
 		$this->isDeleted = $isDeleted;
 		return $this;
 	}
@@ -607,7 +704,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isNotArrived() {
+	public function isNotArrived()
+	{
 		return $this->isNotArrived;
 	}
 
@@ -615,7 +713,8 @@ class InvoiceEntity
 	 * @param boolean $isNotArrived
 	 * @return $this
 	 */
-	public function setIsNotArrived($isNotArrived) {
+	public function setIsNotArrived($isNotArrived)
+	{
 		$this->isNotArrived = $isNotArrived;
 		return $this;
 	}
@@ -623,7 +722,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isFromSalesOrder() {
+	public function isFromSalesOrder()
+	{
 		return $this->isFromSalesOrder;
 	}
 
@@ -631,7 +731,8 @@ class InvoiceEntity
 	 * @param boolean $isFromSalesOrder
 	 * @return $this
 	 */
-	public function setIsFromSalesOrder($isFromSalesOrder) {
+	public function setIsFromSalesOrder($isFromSalesOrder)
+	{
 		$this->isFromSalesOrder = $isFromSalesOrder;
 		return $this;
 	}
@@ -639,7 +740,8 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getAccountDepartmentId() {
+	public function getAccountDepartmentId()
+	{
 		return $this->accountDepartmentId;
 	}
 
@@ -647,7 +749,8 @@ class InvoiceEntity
 	 * @param int $accountDepartmentId
 	 * @return $this
 	 */
-	public function setAccountDepartmentId($accountDepartmentId) {
+	public function setAccountDepartmentId($accountDepartmentId)
+	{
 		$this->accountDepartmentId = $accountDepartmentId;
 		return $this;
 	}
@@ -655,7 +758,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isProjectAllocationForEntireTransaction() {
+	public function isProjectAllocationForEntireTransaction()
+	{
 		return $this->isProjectAllocationForEntireTransaction;
 	}
 
@@ -664,7 +768,8 @@ class InvoiceEntity
 	 *
 	 * @return $this
 	 */
-	public function setIsProjectAllocationForEntireTransaction($isProjectAllocationForEntireTransaction) {
+	public function setIsProjectAllocationForEntireTransaction($isProjectAllocationForEntireTransaction)
+	{
 		$this->isProjectAllocationForEntireTransaction = $isProjectAllocationForEntireTransaction;
 		return $this;
 	}
@@ -672,7 +777,8 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getTemplateType() {
+	public function getTemplateType()
+	{
 		return $this->templateType;
 	}
 
@@ -680,7 +786,8 @@ class InvoiceEntity
 	 * @param int $templateType
 	 * @return $this
 	 */
-	public function setTemplateType($templateType) {
+	public function setTemplateType($templateType)
+	{
 		$this->templateType = $templateType;
 		return $this;
 	}
@@ -688,7 +795,8 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getShippingAddressId() {
+	public function getShippingAddressId()
+	{
 		return $this->shippingAddressId;
 	}
 
@@ -696,7 +804,8 @@ class InvoiceEntity
 	 * @param int $shippingAddressId
 	 * @return $this
 	 */
-	public function setShippingAddressId($shippingAddressId) {
+	public function setShippingAddressId($shippingAddressId)
+	{
 		$this->shippingAddressId = $shippingAddressId;
 		return $this;
 	}
@@ -704,7 +813,8 @@ class InvoiceEntity
 	/**
 	 * @return DateTime
 	 */
-	public function getShipDate() {
+	public function getShipDate()
+	{
 		return $this->shipDate;
 	}
 
@@ -712,7 +822,8 @@ class InvoiceEntity
 	 * @param DateTime $shipDate
 	 * @return $this
 	 */
-	public function setShipDate(DateTime $shipDate) {
+	public function setShipDate(DateTime $shipDate)
+	{
 		$this->shipDate = $shipDate;
 
 		return $this;
@@ -721,7 +832,8 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getPreferredLanguage() {
+	public function getPreferredLanguage()
+	{
 		return $this->preferredLanguage;
 	}
 
@@ -729,7 +841,8 @@ class InvoiceEntity
 	 * @param int $preferredLanguage
 	 * @return $this
 	 */
-	public function setPreferredLanguage($preferredLanguage) {
+	public function setPreferredLanguage($preferredLanguage)
+	{
 		$this->preferredLanguage = $preferredLanguage;
 		return $this;
 	}
@@ -737,7 +850,8 @@ class InvoiceEntity
 	/**
 	 * @return boolean
 	 */
-	public function isVendorInventory() {
+	public function isVendorInventory()
+	{
 		return $this->isVendorInventory;
 	}
 
@@ -745,7 +859,8 @@ class InvoiceEntity
 	 * @param boolean $isVendorInventory
 	 * @return $this
 	 */
-	public function setIsVendorInventory($isVendorInventory) {
+	public function setIsVendorInventory($isVendorInventory)
+	{
 		$this->isVendorInventory = $isVendorInventory;
 		return $this;
 	}
@@ -753,7 +868,8 @@ class InvoiceEntity
 	/**
 	 * @return int
 	 */
-	public function getProjectId() {
+	public function getProjectId()
+	{
 		return $this->projectId;
 	}
 
@@ -761,7 +877,8 @@ class InvoiceEntity
 	 * @param int $projectId
 	 * @return $this
 	 */
-	public function setProjectId($projectId) {
+	public function setProjectId($projectId)
+	{
 		$this->projectId = $projectId;
 		return $this;
 	}

@@ -3,59 +3,70 @@
 namespace Smart\Sage50\Invoice\ItemTax;
 
 use Doctrine\ORM\Mapping as ORM;
+use Smart\Sage50\Invoice\Item\ItemEntity;
 
 /**
  * @ORM\Entity
  * @ORM\Table(name="titlulit")
  */
-class ItemTax
+class ItemTaxEntity
 {
-    /**
-     * @ORM\Id
-     * @ORM\Column(name="lITRecId", type="integer")
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @var int
-     */
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(name="lITRecId", type="integer")
+	 * @ORM\GeneratedValue(strategy="NONE")
+	 * @var int
+	 */
 	private $invoiceId = 0;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(name="nLineNum", type="smallint")
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @var int
-     */
-	private $invoiceItemId = 0;
+	/**
+	 * @ORM\Id
+	 * @ORM\Column(name="nLineNum", type="smallint")
+	 * @ORM\GeneratedValue(strategy="NONE")
+	 * @var int
+	 */
+	private $itemId = 0;
 
-    /**
-     * @ORM\Id
-     * @ORM\Column(name="lTaxAuth", type="integer")
-     * @ORM\GeneratedValue(strategy="NONE")
-     * @var int
-     */
+	/**
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\Item\ItemEntity", mappedBy="tax")
+	 * @ORM\JoinColumns({
+	 *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
+	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+	 * })
+	 * @var \Smart\Sage50\Invoice\Item\ItemEntity
+	 **/
+	private $item;
+
+	/**
+	 * @ORM\Column(name="lTaxAuth", type="integer")
+	 * @ORM\GeneratedValue(strategy="NONE")
+	 * @var int
+	 */
 	private $taxId = 0;
 
-    /**
-     * @ORM\Column(name="bExempt", type="boolean", nullable=true)
-     * @var bool
-     */
+	/**
+	 * @ORM\Column(name="bExempt", type="boolean", nullable=true)
+	 * @var bool
+	 */
 	private $isTaxExempt = false;
 
-    /**
-     * @ORM\Column(name="dTaxAmt", type="float", precision=10, scale=0, nullable=true)
-     * @var float
-     */
+	/**
+	 * @ORM\Column(name="dTaxAmt", type="float", precision=10, scale=0, nullable=true)
+	 * @var float
+	 */
 	private $taxAmount = 0;
 
-    /**
-     * @ORM\Column(name="lDeptId", type="integer", nullable=true)
-     * @var int
-     */
-    private $departmentId;
+	/**
+	 * @ORM\Column(name="lDeptId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $departmentId;
 
 	/**
 	 * @return int
 	 */
-	public function getInvoiceId() {
+	public function getInvoiceId()
+	{
 		return $this->invoiceId;
 	}
 
@@ -63,7 +74,8 @@ class ItemTax
 	 * @param int $invoiceId
 	 * @return $this
 	 */
-	public function setInvoiceId($invoiceId) {
+	public function setInvoiceId($invoiceId)
+	{
 		$this->invoiceId = $invoiceId;
 		return $this;
 	}
@@ -71,23 +83,44 @@ class ItemTax
 	/**
 	 * @return int
 	 */
-	public function getInvoiceItemId() {
-		return $this->invoiceItemId;
+	public function getItemId()
+	{
+		return $this->itemId;
 	}
 
 	/**
-	 * @param int $invoiceItemId
+	 * @param int $itemId
 	 * @return $this
 	 */
-	public function setInvoiceItemId($invoiceItemId) {
-		$this->invoiceItemId = $invoiceItemId;
+	public function setItemId($itemId)
+	{
+		$this->itemId = $itemId;
+		return $this;
+	}
+
+	/**
+	 * @return ItemEntity
+	 */
+	public function getItem()
+	{
+		return $this->item;
+	}
+
+	/**
+	 * @param ItemEntity $item
+	 * @return $this
+	 */
+	public function setItem(ItemEntity $item)
+	{
+		$this->item = $item;
 		return $this;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getTaxId() {
+	public function getTaxId()
+	{
 		return $this->taxId;
 	}
 
@@ -95,7 +128,8 @@ class ItemTax
 	 * @param int $taxId
 	 * @return $this
 	 */
-	public function setTaxId($taxId) {
+	public function setTaxId($taxId)
+	{
 		$this->taxId = $taxId;
 		return $this;
 	}
@@ -103,7 +137,8 @@ class ItemTax
 	/**
 	 * @return boolean
 	 */
-	public function isTaxExempt() {
+	public function isTaxExempt()
+	{
 		return $this->isTaxExempt;
 	}
 
@@ -111,7 +146,8 @@ class ItemTax
 	 * @param boolean $isTaxExempt
 	 * @return $this
 	 */
-	public function setIsTaxExempt($isTaxExempt) {
+	public function setIsTaxExempt($isTaxExempt)
+	{
 		$this->isTaxExempt = $isTaxExempt;
 		return $this;
 	}
@@ -119,7 +155,8 @@ class ItemTax
 	/**
 	 * @return float
 	 */
-	public function getTaxAmount() {
+	public function getTaxAmount()
+	{
 		return $this->taxAmount;
 	}
 
@@ -127,7 +164,8 @@ class ItemTax
 	 * @param float $taxAmount
 	 * @return $this
 	 */
-	public function setTaxAmount($taxAmount) {
+	public function setTaxAmount($taxAmount)
+	{
 		$this->taxAmount = $taxAmount;
 		return $this;
 	}
@@ -135,7 +173,8 @@ class ItemTax
 	/**
 	 * @return int
 	 */
-	public function getDepartmentId() {
+	public function getDepartmentId()
+	{
 		return $this->departmentId;
 	}
 
@@ -143,7 +182,8 @@ class ItemTax
 	 * @param int $departmentId
 	 * @return $this
 	 */
-	public function setDepartmentId($departmentId) {
+	public function setDepartmentId($departmentId)
+	{
 		$this->departmentId = $departmentId;
 		return $this;
 	}

@@ -4,6 +4,8 @@ namespace Smart\Sage50\SalesOrder;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Smart\Sage50\SalesOrder\Item\ItemEntity;
+use Smart\Sage50\SalesOrder\TotalTaxes\TotalTaxesEntity;
 
 /**
  * @ORM\Entity(repositoryClass="Smart\Sage50\SalesOrder\SalesOrderRepository")
@@ -28,7 +30,19 @@ class SalesOrderEntity
      */
     private $customerId;
 
-    /**
+	/**
+	 * @ORM\OneToMany(targetEntity="\Smart\Sage50\SalesOrder\Item\ItemEntity", mappedBy="salesOrder")
+	 * @var ItemEntity[]
+	 **/
+	private $items;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\TotalTaxes\TotalTaxesEntity", mappedBy="salesOrder")
+	 * @var TotalTaxesEntity
+	 **/
+	private $totalTaxes;
+
+	/**
      * @ORM\Column(name="sSONum", type="string", length=20, nullable=true)
      * @var string
      */
@@ -400,6 +414,42 @@ class SalesOrderEntity
         $this->customerId = $customerId;
         return $this;
     }
+
+	/**
+	 * @return Item\ItemEntity[]
+	 */
+	public function getItems()
+	{
+		return $this->items;
+	}
+
+	/**
+	 * @param Item\ItemEntity[] $items
+	 * @return $this
+	 */
+	public function setItems($items)
+	{
+		$this->items = $items;
+		return $this;
+	}
+
+	/**
+	 * @return TotalTaxesEntity
+	 */
+	public function getTotalTaxes()
+	{
+		return $this->totalTaxes;
+	}
+
+	/**
+	 * @param TotalTaxesEntity $totalTaxes
+	 * @return $this
+	 */
+	public function setTotalTaxes(TotalTaxesEntity $totalTaxes)
+	{
+		$this->totalTaxes = $totalTaxes;
+		return $this;
+	}
 
     /**
      * @return string
