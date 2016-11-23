@@ -1,0 +1,16 @@
+tools:
+    php_cs_fixer:
+        config:
+            level: psr2
+    php_code_sniffer:
+        config:
+            standard: "PSR2"
+
+build:
+    tests:
+        override:
+            -
+                command: 'phpunit --coverage-clover=phpunit-coverage.xml'
+                coverage:
+                    file: 'phpunit-coverage.xml'
+                    format: 'php-clover'

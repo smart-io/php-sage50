@@ -21,3 +21,4 @@ compass_app_log.txt
 /npm-debug.log
 /stylesheets/
 build.txt
+.env
