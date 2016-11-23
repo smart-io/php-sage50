@@ -4,7 +4,7 @@ namespace Smart\Sage50;
 
 use Doctrine\ORM\EntityManagerInterface;
 
-abstract class Sync implements SyncFromSage50Interface, SyncToSage50Interface
+abstract class Sync
 {
     /**
      * @var MapperInterface

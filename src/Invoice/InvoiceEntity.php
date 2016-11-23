@@ -6,7 +6,7 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Smart\Sage50\Invoice\InvoiceRepository")
  * @ORM\Table(name="titlu")
  */
 class InvoiceEntity
