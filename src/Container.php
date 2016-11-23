@@ -5,6 +5,8 @@ namespace Smart\Sage50;
 use Doctrine\ORM\EntityManagerInterface;
 use Smart\Sage50\Customer\CustomerRepository;
 use Smart\Sage50\Customer\CustomerSync;
+use Smart\Sage50\Invoice\InvoiceRepository;
+use Smart\Sage50\Invoice\InvoiceSync;
 use Smart\Sage50\SalesOrder\SalesOrderRepository;
 use Smart\Sage50\SalesOrder\SalesOrderSync;
 use Smart\Sage50\SalesOrder\SalesOrderBuilder;
@@ -26,6 +28,16 @@ abstract class Container
      * @var CustomerRepository
      */
     private $customerRepository;
+
+    /**
+     * @var InvoiceSync
+     */
+    private $invoiceSync;
+
+    /**
+     * @var InvoiceRepository
+     */
+    private $invoiceRepository;
 
     /**
      * @var SalesOrderBuilder
@@ -90,6 +102,50 @@ abstract class Container
         $this->customerRepository = $customerRepository;
         return $this;
     }
+
+	/**
+	 * @return InvoiceSync
+	 */
+	public function getInvoiceSync()
+	{
+		if (null === $this->invoiceSync) {
+			$this->invoiceSync = new InvoiceSync($this->getEntityManager());
+		}
+		return $this->invoiceSync;
+	}
+
+	/**
+	 * @param InvoiceSync $invoiceSync
+	 * @return $this
+	 */
+	public function setInvoiceSync(InvoiceSync $invoiceSync)
+	{
+		$this->invoiceSync = $invoiceSync;
+		return $this;
+	}
+
+	/**
+	 * @return InvoiceRepository
+	 */
+	public function getInvoiceRepository()
+	{
+		if (null === $this->invoiceRepository) {
+			$this->invoiceRepository = $this->getEntityManager()->getRepository(
+				'Smart\\Sage50\\Invoice\\InvoiceEntity'
+			);
+		}
+		return $this->invoiceRepository;
+	}
+
+	/**
+	 * @param InvoiceRepository $invoiceRepository
+	 * @return $this
+	 */
+	public function setInvoiceRepository(InvoiceRepository $invoiceRepository)
+	{
+		$this->invoiceRepository = $invoiceRepository;
+		return $this;
+	}
 
     /**
      * @return SalesOrderBuilder

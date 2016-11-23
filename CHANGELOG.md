@@ -1,3 +1,6 @@
 # CHANGELOG
 
-## 6.1.0 (released 2016-10-28)
+## 0.3.0 (released 2016-11-23)
+
+- Changed Sale Order name to Sales Order
+- Added Invoices
