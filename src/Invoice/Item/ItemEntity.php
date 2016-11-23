@@ -26,7 +26,7 @@ class ItemEntity
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceEntity", inversedBy="items")
-	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId", onDelete="CASCADE")
+	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId")
 	 */
 	private $invoice;
 

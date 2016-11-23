@@ -3,6 +3,7 @@
 namespace Smart\Sage50\SalesOrder\TotalTaxes;
 
 use Doctrine\ORM\Mapping as ORM;
+use Smart\Sage50\SalesOrder\SalesOrderEntity;
 
 /**
  * @ORM\Entity
@@ -18,7 +19,14 @@ class TotalTaxesEntity
      */
     private $salesOrderId = 0;
 
-    /**
+	/**
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\SalesOrderEntity", mappedBy="totalTaxes")
+	 * @ORM\JoinColumn(name="lSORecId", referencedColumnName="lId")
+	 * @var SalesOrderEntity
+	 **/
+	private $salesOrder;
+
+	/**
      * @ORM\Id
      * @ORM\Column(name="lTaxAuth", type="integer")
      * @ORM\GeneratedValue(strategy="NONE")
@@ -55,6 +63,24 @@ class TotalTaxesEntity
         $this->salesOrderId = $salesOrderId;
         return $this;
     }
+
+	/**
+	 * @return SalesOrderEntity
+	 */
+	public function getSalesOrder()
+	{
+		return $this->salesOrder;
+	}
+
+	/**
+	 * @param SalesOrderEntity $salesOrder
+	 * @return $this
+	 */
+	public function setSalesOrder(SalesOrderEntity $salesOrder)
+	{
+		$this->salesOrder = $salesOrder;
+		return $this;
+	}
 
     /**
      * @return int

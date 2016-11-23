@@ -3,6 +3,7 @@
 namespace Smart\Sage50\SalesOrder\ItemTax;
 
 use Doctrine\ORM\Mapping as ORM;
+use Smart\Sage50\SalesOrder\Item\ItemEntity;
 
 /**
  * @ORM\Entity
@@ -24,10 +25,19 @@ class ItemTaxEntity
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
      */
-    private $salesOrderItemId = 0;
+    private $itemId = 0;
 
-    /**
-     * @ORM\Id
+	/**
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\Item\ItemEntity", mappedBy="tax")
+	 * @ORM\JoinColumns({
+	 *   @ORM\JoinColumn(name="lSORecId", referencedColumnName="lSORecId"),
+	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+	 * })
+	 * @var ItemEntity
+	 **/
+	private $item;
+
+	/**
      * @ORM\Column(name="lTaxAuth", type="integer")
      * @ORM\GeneratedValue(strategy="NONE")
      * @var int
@@ -73,20 +83,38 @@ class ItemTaxEntity
     /**
      * @return int
      */
-    public function getSalesOrderItemId()
+    public function getItemId()
     {
-        return $this->salesOrderItemId;
+        return $this->itemId;
     }
 
     /**
-     * @param int $salesOrderItemId
+     * @param int $itemId
      * @return $this
      */
-    public function setSalesOrderItemId($salesOrderItemId)
+    public function setItemId($itemId)
     {
-        $this->salesOrderItemId = $salesOrderItemId;
+        $this->itemId = $itemId;
         return $this;
     }
+
+	/**
+	 * @return ItemEntity
+	 */
+	public function getItem()
+	{
+		return $this->item;
+	}
+
+	/**
+	 * @param ItemEntity $item
+	 * @return $this
+	 */
+	public function setItem($item)
+	{
+		$this->item = $item;
+		return $this;
+	}
 
     /**
      * @return int
