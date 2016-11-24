@@ -17,12 +17,14 @@ class InvoiceRepository extends EntityRepository implements RepositoryInterface
 	    $date = $dateTime->format('Y-m-d') . ' 00:00:00';
 	    $time = '1899-12-30 ' . $dateTime->format('H:i:s');
 	    return $this->createQueryBuilder('i')
-	                ->where('i.modificationDate > :date')
-	                ->orWhere('i.modificationDate = :date AND i.modificationTime > :time')
-	                ->setParameter('date', $date)
-	                ->setParameter('time', $time)
-	                ->getQuery()
-	                ->getResult();
+		    ->where('i.journalType = :type')
+		    ->andWhere('i.isReversed = 0')
+		    ->andWhere('i.modificationDate > :date OR i.modificationDate = :date AND i.modificationTime > :time')
+		    ->setParameter('date', $date)
+		    ->setParameter('time', $time)
+		    ->setParameter('type', InvoiceEntity::JOURNAL_TYPE_SALES_ORDERS_AND_QUOTES)
+		    ->getQuery()
+		    ->getResult();
     }
 
 	/**
@@ -36,12 +38,14 @@ class InvoiceRepository extends EntityRepository implements RepositoryInterface
 	    $date = $dateTime->format('Y-m-d') . ' 00:00:00';
 	    $time = '1899-12-30 ' . $dateTime->format('H:i:s');
 	    return $this->createQueryBuilder('i')
-		    ->where('i.modificationDate > :date')
-		    ->orWhere('i.modificationDate = :date AND i.modificationTime > :time')
+		    ->where('i.journalType = :type')
+		    ->andWhere('i.isReversed = 0')
+		    ->andWhere('i.modificationDate > :date OR i.modificationDate = :date AND i.modificationTime > :time')
 		    ->setMaxResults($limit)
 		    ->setFirstResult($offset)
 		    ->setParameter('date', $date)
 		    ->setParameter('time', $time)
+		    ->setParameter('type', InvoiceEntity::JOURNAL_TYPE_SALES_ORDERS_AND_QUOTES)
 		    ->getQuery()
 		    ->getResult();
     }

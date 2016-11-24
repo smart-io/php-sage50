@@ -20,7 +20,7 @@ class InvoiceEntity
 	const JOURNAL_TYPE_ADJUSTMENTS = 14;
 
 	const ORDER_TYPE_REGULAR = 0;
-	const ORDER_TYPE_WEB_STORE = 0;
+	const ORDER_TYPE_WEB_STORE = 1;
 
 	/**
 	 * @ORM\Id
