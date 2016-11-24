@@ -10,10 +10,10 @@ use Smart\Sage50\MapperFromSage50Interface;
 use Smart\Sage50\MapperToSage50Interface;
 use Smart\Sage50\RepositoryInterface;
 use Smart\Sage50\Sync;
-use Smart\Sage50\SyncFromSage50ByDateInterface;
+use Smart\Sage50\SyncFromSage50Interface;
 use Smart\Sage50\SyncToSage50Interface;
 
-class CustomerSync extends Sync implements SyncFromSage50ByDateInterface, SyncToSage50Interface
+class CustomerSync extends Sync implements SyncFromSage50Interface, SyncToSage50Interface
 {
     public function syncFromSage50(DateTime $dateTime)
     {

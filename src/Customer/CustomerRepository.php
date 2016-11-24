@@ -24,13 +24,4 @@ class CustomerRepository extends EntityRepository implements RepositoryInterface
             ->getQuery()
             ->getResult();
     }
-
-	/**
-	 * @param int $id
-	 * @throws Exception
-	 */
-	public function fetchNewAfterId($id)
-    {
-	    throw new Exception('Customers do not support fetch new after ID');
-    }
 }

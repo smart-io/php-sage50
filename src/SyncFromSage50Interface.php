@@ -4,7 +4,7 @@ namespace Smart\Sage50;
 
 use DateTime;
 
-interface SyncFromSage50ByDateInterface extends SyncInterface
+interface SyncFromSage50Interface extends SyncInterface
 {
     /**
      * @param DateTime $dateTime

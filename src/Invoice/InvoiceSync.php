@@ -6,20 +6,20 @@ use DateTime;
 use Smart\Sage50\MapperEventsInterface;
 use Smart\Sage50\MapperFromSage50Interface;
 use Smart\Sage50\Sync;
-use Smart\Sage50\SyncFromSage50ByIdInterface;
+use Smart\Sage50\SyncFromSage50Interface;
 use Smart\Sage50\SyncToSage50Interface;
 
-class InvoiceSync extends Sync implements SyncFromSage50ByIdInterface, SyncToSage50Interface
+class InvoiceSync extends Sync implements SyncFromSage50Interface, SyncToSage50Interface
 {
-    public function syncFromSage50($id)
+    public function syncFromSage50(DateTime $dateTime)
     {
         $mapper = $this->getMapper();
         if (null === $mapper || !($mapper instanceof MapperFromSage50Interface)) {
             throw new InvalidMapperException();
         }
-        /** @var InvoiceLookupRepository $repository */
-        $repository = $this->entityManager->getRepository('Smart\\Sage50\\Invoice\\InvoiceLookup\\InvoiceLookupEntity');
-        $items = $repository->fetchNewAfterId($id);
+        /** @var InvoiceRepository $repository */
+        $repository = $this->entityManager->getRepository('Smart\\Sage50\\Invoice\\InvoiceEntity');
+        $items = $repository->fetchAllSince($dateTime);
         foreach ($items as $item) {
             $mappedItem = $mapper->mapFromSage50($item);
             if ($mapper instanceof MapperEventsInterface) {

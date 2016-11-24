@@ -24,13 +24,4 @@ class SalesOrderRepository extends EntityRepository implements RepositoryInterfa
             ->getQuery()
             ->getResult();
     }
-
-	/**
-	 * @param int $id
-	 * @throws Exception
-	 */
-	public function fetchNewAfterId($id)
-    {
-	    throw new Exception('Sales Order do not support fetch new after ID');
-    }
 }

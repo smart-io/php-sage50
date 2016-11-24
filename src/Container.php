@@ -5,8 +5,8 @@ namespace Smart\Sage50;
 use Doctrine\ORM\EntityManagerInterface;
 use Smart\Sage50\Customer\CustomerRepository;
 use Smart\Sage50\Customer\CustomerSync;
-use Smart\Sage50\Invoice\InvoiceLookup\InvoiceLookupRepository;
-use Smart\Sage50\Invoice\InvoiceLookup\InvoiceSync;
+use Smart\Sage50\Invoice\InvoiceRepository;
+use Smart\Sage50\Invoice\InvoiceSync;
 use Smart\Sage50\SalesOrder\Item\ItemRepository as SalesOrderItemRepository;
 use Smart\Sage50\SalesOrder\SalesOrderBuilder;
 use Smart\Sage50\SalesOrder\SalesOrderRepository;
@@ -35,7 +35,7 @@ abstract class Container
     private $invoiceSync;
 
     /**
-     * @var InvoiceLookupRepository
+     * @var InvoiceRepository
      */
     private $invoiceRepository;
 
@@ -125,24 +125,23 @@ abstract class Container
 	}
 
 	/**
-	 * @return InvoiceLookupRepository
+	 * @return InvoiceRepository
 	 */
 	public function getInvoiceRepository()
 	{
 		if (null === $this->invoiceRepository) {
 			$this->invoiceRepository = $this->getEntityManager()->getRepository(
-				'Smart\\Sage50\\Invoice\\InvoiceLookup\\InvoiceLookupEntity'
+				'Smart\\Sage50\\Invoice\\InvoiceEntity'
 			);
 		}
 		return $this->invoiceRepository;
 	}
 
 	/**
-	 * @param InvoiceLookupRepository $invoiceRepository
-	 *
-*@return $this
+	 * @param InvoiceRepository $invoiceRepository
+	 * @return $this
 	 */
-	public function setInvoiceRepository( InvoiceLookupRepository $invoiceRepository)
+	public function setInvoiceRepository(InvoiceRepository $invoiceRepository)
 	{
 		$this->invoiceRepository = $invoiceRepository;
 		return $this;

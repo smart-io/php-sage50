@@ -7,5 +7,4 @@ use DateTime;
 interface RepositoryInterface
 {
     public function fetchAllSince(DateTime $dateTime);
-    public function fetchNewAfterId($id);
 }
