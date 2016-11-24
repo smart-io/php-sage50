@@ -20,8 +20,9 @@ class InvoiceSync extends Sync implements SyncFromSage50Interface, SyncToSage50I
         /** @var InvoiceRepository $repository */
         $repository = $this->entityManager->getRepository('Smart\\Sage50\\Invoice\\InvoiceEntity');
 	    $offset = 0;
+
 	    while (true) {
-		    $items = $repository->fetchSince($dateTime, $offset, $limit < 100 ? $limit : 100);
+		    $items = $repository->fetchSince($dateTime, $offset, $limit !== null && $limit < 100 ? $limit : 100);
 		    if (!count($items)) {
 			    break;
 		    }
@@ -32,7 +33,7 @@ class InvoiceSync extends Sync implements SyncFromSage50Interface, SyncToSage50I
 			    }
 		    }
 		    $offset += 100;
-		    if ($offset >= $limit) {
+		    if ($limit !== null && $offset >= $limit) {
 			    break;
 		    }
 	    }
