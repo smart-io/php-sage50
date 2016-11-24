@@ -15,7 +15,7 @@ use Smart\Sage50\SyncToSage50Interface;
 
 class CustomerSync extends Sync implements SyncFromSage50Interface, SyncToSage50Interface
 {
-    public function syncFromSage50(DateTime $dateTime)
+    public function syncFromSage50(DateTime $dateTime, $limit = null)
     {
         $mapper = $this->getMapper();
         if (null === $mapper || !($mapper instanceof MapperFromSage50Interface)) {

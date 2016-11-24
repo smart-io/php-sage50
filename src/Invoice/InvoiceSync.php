@@ -11,7 +11,7 @@ use Smart\Sage50\SyncToSage50Interface;
 
 class InvoiceSync extends Sync implements SyncFromSage50Interface, SyncToSage50Interface
 {
-    public function syncFromSage50(DateTime $dateTime)
+    public function syncFromSage50(DateTime $dateTime, $limit = null)
     {
         $mapper = $this->getMapper();
         if (null === $mapper || !($mapper instanceof MapperFromSage50Interface)) {
@@ -19,13 +19,23 @@ class InvoiceSync extends Sync implements SyncFromSage50Interface, SyncToSage50I
         }
         /** @var InvoiceRepository $repository */
         $repository = $this->entityManager->getRepository('Smart\\Sage50\\Invoice\\InvoiceEntity');
-        $items = $repository->fetchAllSince($dateTime);
-        foreach ($items as $item) {
-            $mappedItem = $mapper->mapFromSage50($item);
-            if ($mapper instanceof MapperEventsInterface) {
-                $mapper->onItemComplete($mappedItem);
-            }
-        }
+	    $offset = 0;
+	    while (true) {
+		    $items = $repository->fetchSince($dateTime, $offset, $limit < 100 ? $limit : 100);
+		    if (!count($items)) {
+			    break;
+		    }
+		    foreach ($items as $item) {
+			    $mappedItem = $mapper->mapFromSage50($item);
+			    if ($mapper instanceof MapperEventsInterface) {
+				    $mapper->onItemComplete($mappedItem);
+			    }
+		    }
+		    $offset += 100;
+		    if ($offset >= $limit) {
+			    break;
+		    }
+	    }
         if ($this->mapper instanceof MapperEventsInterface) {
             $this->mapper->onComplete();
         }
