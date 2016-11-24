@@ -27,12 +27,12 @@ class TotalTaxesEntity
 	 **/
 	private $invoice;
 
-	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\InvoiceLookupEntity", inversedBy="totalTaxes")
-	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId")
-	 * @var InvoiceLookupEntity
-	 **/
-	private $invoiceLookup;
+    /**
+     * @ORM\ManyToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\InvoiceLookupEntity", inversedBy="totalTaxes")
+     * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId")
+     * @var InvoiceLookupEntity
+     */
+    private $invoiceLookup;
 
 	/**
 	 * @ORM\Id

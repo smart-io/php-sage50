@@ -7,8 +7,6 @@ use PHPUnit_Framework_TestCase;
 use Smart\Sage50\Config;
 use Smart\Sage50\Doctrine\Doctrine;
 use Smart\Sage50\Invoice\InvoiceEntity;
-use Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity;
-use Smart\Sage50\Invoice\InvoiceLookup\TotalTaxes\TotalTaxesEntity;
 
 class InvoiceRepositoryTest extends PHPUnit_Framework_TestCase
 {
@@ -53,9 +51,6 @@ class InvoiceRepositoryTest extends PHPUnit_Framework_TestCase
 		/** @var InvoiceEntity $invoice */
 		$invoice = $result[0];
 
-		$this->assertInstanceOf(TotalTaxesEntity::class, $invoice->getInvoiceLookup()->getTotalTaxes());
-
 		$this->assertGreaterThanOrEqual(1, count($invoice->getInvoiceLookup()->getItems()));
-		$this->assertInstanceOf(ItemTaxEntity::class, $invoice->getInvoiceLookup()->getItems()[0]->getTax());
 	}
 }

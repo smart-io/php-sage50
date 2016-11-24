@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.0 (released 2016-11-24)
+
+- Fixed the way tax models are handled
+
 ## 0.4.4 (released 2016-11-24)
 
 - Fixed issue with doctrine

@@ -36,11 +36,11 @@ class SalesOrderEntity
 	 **/
 	private $items;
 
-	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\TotalTaxes\TotalTaxesEntity", mappedBy="salesOrder")
-	 * @var TotalTaxesEntity
-	 **/
-	private $totalTaxes;
+    /**
+     * @ORM\OneToMany(targetEntity="\Smart\Sage50\SalesOrder\TotalTaxes\TotalTaxesEntity", mappedBy="salesOrder")
+     * @var TotalTaxesEntity[]
+     **/
+    private $totalTaxes;
 
 	/**
      * @ORM\Column(name="sSONum", type="string", length=20, nullable=true)
@@ -433,23 +433,21 @@ class SalesOrderEntity
 		return $this;
 	}
 
-	/**
-	 * @return TotalTaxesEntity
-	 */
-	public function getTotalTaxes()
-	{
-		return $this->totalTaxes;
-	}
+    /**
+     * @return TotalTaxesEntity[]
+     */
+    public function getTotalTaxes()
+    {
+        return $this->totalTaxes;
+    }
 
-	/**
-	 * @param TotalTaxesEntity $totalTaxes
-	 * @return $this
-	 */
-	public function setTotalTaxes(TotalTaxesEntity $totalTaxes)
-	{
-		$this->totalTaxes = $totalTaxes;
-		return $this;
-	}
+    /**
+     * @param TotalTaxesEntity[] $totalTaxes
+     */
+    public function setTotalTaxes($totalTaxes)
+    {
+        $this->totalTaxes = $totalTaxes;
+    }
 
     /**
      * @return string

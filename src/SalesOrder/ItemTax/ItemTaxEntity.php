@@ -28,13 +28,13 @@ class ItemTaxEntity
     private $itemId = 0;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\Item\ItemEntity", inversedBy="tax")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="lSORecId", referencedColumnName="lSORecId"),
-	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
-	 * })
+     * @ORM\ManyToOne(targetEntity="\Smart\Sage50\SalesOrder\Item\ItemEntity", inversedBy="tax")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lSORecId", referencedColumnName="lSORecId"),
+     *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+     * })
 	 * @var ItemEntity
-	 **/
+	 */
 	private $item;
 
 	/**

@@ -28,12 +28,12 @@ class ItemTaxEntity
 	private $itemId = 0;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity", inversedBy="tax")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
-	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
-	 * })
-	 * @var \Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity
+     * @ORM\ManyToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity", inversedBy="tax")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
+     *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+     * })
+	 * @var ItemEntity
 	 **/
 	private $item;
 

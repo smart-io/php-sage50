@@ -38,23 +38,23 @@ class ItemEntity
      */
     private $inventoryId = 0;
 
-	/**
-	 * @ORM\ManyToOne(targetEntity="\Smart\Sage50\SalesOrder\SalesOrderEntity", inversedBy="items")
-	 * @ORM\JoinColumn(name="lSOId", referencedColumnName="lId")
-	 */
-	private $salesOrder;
+    /**
+     * @ORM\ManyToOne(targetEntity="\Smart\Sage50\SalesOrder\SalesOrderEntity", inversedBy="items")
+     * @ORM\JoinColumn(name="lSOId", referencedColumnName="lId")
+     */
+    private $salesOrder;
 
-	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\ItemTax\ItemTaxEntity", mappedBy="item")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="lSOId", referencedColumnName="lSORecId"),
-	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
-	 * })
-	 * @var ItemTaxEntity
-	 **/
-	private $tax;
+    /**
+     * @ORM\OneToMany(targetEntity="\Smart\Sage50\SalesOrder\ItemTax\ItemTaxEntity", mappedBy="item")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lSOId", referencedColumnName="lSORecId"),
+     *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+     * })
+     * @var ItemTaxEntity[]
+     **/
+    private $taxes;
 
-	/**
+    /**
      * @ORM\Column(name="sPartCode", type="string", length=52, nullable=true)
      * @var string
      */
@@ -216,41 +216,39 @@ class ItemEntity
         return $this;
     }
 
-	/**
-	 * @return SalesOrderEntity
-	 */
-	public function getSalesOrder()
-	{
-		return $this->salesOrder;
-	}
+    /**
+     * @return SalesOrderEntity
+     */
+    public function getSalesOrder()
+    {
+        return $this->salesOrder;
+    }
 
-	/**
-	 * @param SalesOrderEntity $salesOrder
-	 * @return $this
-	 */
-	public function setSalesOrder($salesOrder)
-	{
-		$this->salesOrder = $salesOrder;
-		return $this;
-	}
+    /**
+     * @param SalesOrderEntity $salesOrder
+     * @return $this
+     */
+    public function setSalesOrder($salesOrder)
+    {
+        $this->salesOrder = $salesOrder;
+        return $this;
+    }
 
-	/**
-	 * @return ItemTaxEntity
-	 */
-	public function getTax()
-	{
-		return $this->tax;
-	}
+    /**
+     * @return ItemTaxEntity[]
+     */
+    public function getTaxes()
+    {
+        return $this->taxes;
+    }
 
-	/**
-	 * @param ItemTaxEntity $tax
-	 * @return $this
-	 */
-	public function setTax(ItemTaxEntity $tax)
-	{
-		$this->tax = $tax;
-		return $this;
-	}
+    /**
+     * @param ItemTaxEntity[] $taxes
+     */
+    public function setTaxes($taxes)
+    {
+        $this->taxes = $taxes;
+    }
 
     /**
      * @return int

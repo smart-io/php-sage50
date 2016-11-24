@@ -47,15 +47,15 @@ class ItemEntity
 	 */
 	private $id = 0;
 
-	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity", mappedBy="item")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
-	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
-	 * })
-	 * @var \Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity
-	 **/
-	private $tax;
+    /**
+     * @ORM\OneToMany(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity", mappedBy="item")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
+     *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+     * })
+     * @var ItemTaxEntity[]
+     **/
+    private $taxes;
 
 	/**
 	 * @ORM\Column(name="sItem", type="string", length=52, nullable=true)
@@ -244,23 +244,21 @@ class ItemEntity
 		return $this;
 	}
 
-	/**
-	 * @return \Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity
-	 */
-	public function getTax()
-	{
-		return $this->tax;
-	}
+    /**
+     * @return ItemTaxEntity[]
+     */
+    public function getTaxes()
+    {
+        return $this->taxes;
+    }
 
-	/**
-	 * @param \Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity $tax
-	 * @return $this
-	 */
-	public function setTax(ItemTaxEntity $tax)
-	{
-		$this->tax = $tax;
-		return $this;
-	}
+    /**
+     * @param ItemTaxEntity[] $taxes
+     */
+    public function setTaxes($taxes)
+    {
+        $this->taxes = $taxes;
+    }
 
 	/**
 	 * @return string

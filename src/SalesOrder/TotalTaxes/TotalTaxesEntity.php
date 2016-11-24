@@ -19,12 +19,12 @@ class TotalTaxesEntity
      */
     private $salesOrderId = 0;
 
-	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\SalesOrderEntity", mappedBy="totalTaxes")
-	 * @ORM\JoinColumn(name="lSORecId", referencedColumnName="lId")
-	 * @var SalesOrderEntity
-	 **/
-	private $salesOrder;
+    /**
+     * @ORM\ManyToOne(targetEntity="\Smart\Sage50\SalesOrder\SalesOrderEntity", inversedBy="totalTaxes")
+     * @ORM\JoinColumn(name="lSORecId", referencedColumnName="lId")
+     * @var SalesOrderEntity
+     **/
+    private $salesOrder;
 
 	/**
      * @ORM\Id
