@@ -2,9 +2,9 @@
 
 namespace Smart\Sage50\Invoice;
 
-use Exception;
 use DateTime;
 use Doctrine\ORM\EntityRepository;
+use Exception;
 use Smart\Sage50\RepositoryInterface;
 
 class InvoiceRepository extends EntityRepository implements RepositoryInterface
@@ -20,7 +20,7 @@ class InvoiceRepository extends EntityRepository implements RepositoryInterface
 
 	/**
 	 * @param int $id
-	 * @return InvoiceEntity[]
+	 * @return InvoiceLookupEntity[]
 	 */
     public function fetchNewAfterId($id)
 	{

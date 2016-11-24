@@ -1,9 +1,10 @@
 <?php
 
-namespace Smart\Sage50\Invoice\TotalTaxes;
+namespace Smart\Sage50\Invoice\InvoiceLookup\TotalTaxes;
 
 use Doctrine\ORM\Mapping as ORM;
 use Smart\Sage50\Invoice\InvoiceEntity;
+use Smart\Sage50\Invoice\InvoiceLookup\InvoiceLookupEntity;
 
 /**
  * @ORM\Entity
@@ -20,11 +21,18 @@ class TotalTaxesEntity
 	private $invoiceId = 0;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceEntity", mappedBy="totalTaxes")
-	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId")
-	 * @var \Smart\Sage50\Invoice\InvoiceEntity
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceEntity")
+	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lId")
+	 * @var InvoiceEntity
 	 **/
 	private $invoice;
+
+	/**
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\InvoiceLookupEntity", inversedBy="totalTaxes")
+	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId")
+	 * @var InvoiceLookupEntity
+	 **/
+	private $invoiceLookup;
 
 	/**
 	 * @ORM\Id
@@ -74,12 +82,26 @@ class TotalTaxesEntity
 
 	/**
 	 * @param InvoiceEntity $invoice
-	 * @return $this
 	 */
-	public function setInvoice($invoice)
+	public function setInvoice( $invoice )
 	{
 		$this->invoice = $invoice;
-		return $this;
+	}
+
+	/**
+	 * @return InvoiceLookupEntity
+	 */
+	public function getInvoiceLookup()
+	{
+		return $this->invoiceLookup;
+	}
+
+	/**
+	 * @param InvoiceLookupEntity $invoiceLookup
+	 */
+	public function setInvoiceLookup( $invoiceLookup )
+	{
+		$this->invoiceLookup = $invoiceLookup;
 	}
 
 	/**

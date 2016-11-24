@@ -1,9 +1,9 @@
 <?php
 
-namespace Smart\Sage50\Invoice\ItemTax;
+namespace Smart\Sage50\Invoice\InvoiceLookup\ItemTax;
 
 use Doctrine\ORM\Mapping as ORM;
-use Smart\Sage50\Invoice\Item\ItemEntity;
+use Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity;
 
 /**
  * @ORM\Entity
@@ -28,12 +28,12 @@ class ItemTaxEntity
 	private $itemId = 0;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\Item\ItemEntity", mappedBy="tax")
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity", inversedBy="tax")
 	 * @ORM\JoinColumns({
 	 *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
 	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
 	 * })
-	 * @var \Smart\Sage50\Invoice\Item\ItemEntity
+	 * @var \Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity
 	 **/
 	private $item;
 

@@ -4,18 +4,13 @@ namespace Smart\Sage50\Invoice\Item;
 
 use Doctrine\ORM\Mapping as ORM;
 use Smart\Sage50\Invoice\InvoiceEntity;
-use Smart\Sage50\Invoice\ItemTax\ItemTaxEntity;
 
 /**
  * @ORM\Entity
- * @ORM\Table(name="titluli")
+ * @ORM\Table(name="titrline", indexes={@ORM\Index(name="KEY_1", columns={"lInventId"})})
  */
 class ItemEntity
 {
-	const UNIT_TYPE_STOCKING_UNITS = 1;
-	const UNIT_TYPE_BUYING_UNITS = 2;
-	const UNIT_TYPE_SELLING_UNITS = 3;
-
 	/**
 	 * @ORM\Id
 	 * @ORM\Column(name="lITRecId", type="integer")
@@ -26,7 +21,8 @@ class ItemEntity
 
 	/**
 	 * @ORM\ManyToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceEntity", inversedBy="items")
-	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId")
+	 * @ORM\JoinColumn(name="lITRecId", referencedColumnName="lId")
+	 * @var InvoiceEntity
 	 */
 	private $invoice;
 
@@ -39,104 +35,100 @@ class ItemEntity
 	private $id = 0;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\ItemTax\ItemTaxEntity", mappedBy="item")
-	 * @ORM\JoinColumns({
-	 *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
-	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
-	 * })
-	 * @var \Smart\Sage50\Invoice\ItemTax\ItemTaxEntity
-	 **/
-	private $tax;
-
-	/**
-	 * @ORM\Column(name="sItem", type="string", length=52, nullable=true)
+	 * @ORM\Column(name="sSource", type="string", length=52, nullable=true)
 	 * @var string
 	 */
-	private $itemNumber;
+	private $sourceDescription;
 
 	/**
-	 * @ORM\Column(name="sUnits", type="string", length=15, nullable=true)
-	 * @var string
-	 */
-	private $unit = '';
-
-	/**
-	 * @ORM\Column(name="nUnitType", type="smallint", nullable=true)
+	 * @ORM\Column(name="lInventId", type="integer", nullable=true)
 	 * @var int
 	 */
-	private $unitType = self::UNIT_TYPE_SELLING_UNITS;
+	private $inventoryId = 0;
 
 	/**
-	 * @ORM\Column(name="sDesc", type="string", length=255, nullable=true)
-	 * @var string
+	 * @ORM\Column(name="lAcctId", type="integer", nullable=true)
+	 * @var int
 	 */
-	private $itemDescription = '';
+	private $accountId = 0;
 
 	/**
-	 * @ORM\Column(name="dAmtInclTx", type="float", precision=10, scale=0, nullable=true)
+	 * @ORM\Column(name="dQty", type="float", precision=10, scale=0, nullable=true)
 	 * @var float
 	 */
-	private $subtotal;
-
-	/**
-	 * @ORM\Column(name="dOrdered", type="float", precision=10, scale=0, nullable=true)
-	 * @var float
-	 */
-	private $quantityOrdered = 0;
-
-	/**
-	 * @ORM\Column(name="dRemaining", type="float", precision=10, scale=0, nullable=true)
-	 * @var float
-	 */
-	private $quantityBackOrder = 0;
+	private $quantitySold;
 
 	/**
 	 * @ORM\Column(name="dPrice", type="float", precision=10, scale=0, nullable=true)
 	 * @var float
 	 */
-	private $itemPrice = 0;
+	private $price = 0;
 
 	/**
-	 * @ORM\Column(name="dDutyPer", type="float", precision=10, scale=0, nullable=true)
+	 * @ORM\Column(name="dAmt", type="float", precision=10, scale=0, nullable=true)
 	 * @var float
 	 */
-	private $dutyPercentage;
+	private $amount;
 
 	/**
-	 * @ORM\Column(name="dDutyAmt", type="float", precision=10, scale=0, nullable=true)
+	 * @ORM\Column(name="dCost", type="float", precision=10, scale=0, nullable=true)
 	 * @var float
 	 */
-	private $dutyAmount;
+	private $cost;
 
 	/**
-	 * @ORM\Column(name="bFreight", type="boolean", nullable=true)
+	 * @ORM\Column(name="dRev", type="float", precision=10, scale=0, nullable=true)
+	 * @var float
+	 */
+	private $revenue;
+
+	/**
+	 * @ORM\Column(name="bTsfIn", type="boolean", nullable=true)
 	 * @var bool
 	 */
-	private $isFreightItem;
+	private $assemblyComponentsLine;
 
 	/**
-	 * @ORM\Column(name="lTaxCode", type="integer", nullable=true)
-	 * @var int
-	 */
-	private $taxCodeId = 0;
-
-	/**
-	 * @ORM\Column(name="lTaxRev", type="integer", nullable=true)
-	 * @var int
-	 */
-	private $taxRevision = 0;
-
-	/**
-	 * @ORM\Column(name="dTaxAmt", type="float", precision=10, scale=0, nullable=true)
-	 * @var float
-	 */
-	private $taxes;
-
-	/**
-	 * @ORM\Column(name="bTSLine", type="boolean", nullable=true)
+	 * @ORM\Column(name="bVarLine", type="boolean", nullable=true)
 	 * @var bool
 	 */
-	private $isTimeSlipItem;
+	private $varianceLine;
+
+	/**
+	 * @ORM\Column(name="bReversal", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isReversal = false;
+
+	/**
+	 * @ORM\Column(name="bService", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isServiceItem = false;
+
+	/**
+	 * @ORM\Column(name="lAcctDptId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $accountDepartmentId;
+
+	/**
+	 * @ORM\Column(name="lInvLocId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $inventoryLocationId = 1;
+
+	/**
+	 * @ORM\Column(name="bDefPrc", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isDefaultPrice = true;
+
+	/**
+	 * @ORM\Column(name="lPrcListId", type="integer", nullable=true)
+	 * @var int
+	 */
+	private $priceListId = 0;
 
 	/**
 	 * @ORM\Column(name="dBasePrice", type="float", precision=10, scale=0, nullable=true)
@@ -151,22 +143,22 @@ class ItemEntity
 	private $lineDiscountPercentage = 0;
 
 	/**
-	 * @ORM\Column(name="dVenRel", type="float", precision=10, scale=0, nullable=true)
-	 * @var float
-	 */
-	private $vendorRelationship;
-
-	/**
-	 * @ORM\Column(name="bVenToStk", type="boolean", nullable=true)
+	 * @ORM\Column(name="bDefBsPric", type="boolean", nullable=true)
 	 * @var bool
 	 */
-	private $isVendorToStock;
+	private $isDefaultBasePrice = true;
 
 	/**
-	 * @ORM\Column(name="bDefDesc", type="boolean", nullable=true)
+	 * @ORM\Column(name="bDelInv", type="boolean", nullable=true)
 	 * @var bool
 	 */
-	private $isDefaultDescriptionUsed;
+	private $isDeleted;
+
+	/**
+	 * @ORM\Column(name="bUseVenItm", type="boolean", nullable=true)
+	 * @var bool
+	 */
+	private $isVendorInventory;
 
 	/**
 	 * @return int
@@ -178,30 +170,25 @@ class ItemEntity
 
 	/**
 	 * @param int $invoiceId
-	 * @return $this
 	 */
 	public function setInvoiceId($invoiceId)
 	{
 		$this->invoiceId = $invoiceId;
-		return $this;
 	}
 
 	/**
 	 * @return InvoiceEntity
 	 */
-	public function getInvoice()
-	{
+	public function getInvoice() {
 		return $this->invoice;
 	}
 
 	/**
 	 * @param InvoiceEntity $invoice
-	 * @return $this
 	 */
 	public function setInvoice(InvoiceEntity $invoice)
 	{
 		$this->invoice = $invoice;
-		return $this;
 	}
 
 	/**
@@ -214,300 +201,266 @@ class ItemEntity
 
 	/**
 	 * @param int $id
-	 * @return $this
 	 */
 	public function setId($id)
 	{
 		$this->id = $id;
-		return $this;
-	}
-
-	/**
-	 * @return \Smart\Sage50\Invoice\ItemTax\ItemTaxEntity
-	 */
-	public function getTax()
-	{
-		return $this->tax;
-	}
-
-	/**
-	 * @param \Smart\Sage50\Invoice\ItemTax\ItemTaxEntity $tax
-	 * @return $this
-	 */
-	public function setTax(ItemTaxEntity $tax)
-	{
-		$this->tax = $tax;
-		return $this;
 	}
 
 	/**
 	 * @return string
 	 */
-	public function getItemNumber()
+	public function getSourceDescription()
 	{
-		return $this->itemNumber;
+		return $this->sourceDescription;
 	}
 
 	/**
-	 * @param string $itemNumber
-	 * @return $this
+	 * @param string $sourceDescription
 	 */
-	public function setItemNumber($itemNumber)
+	public function setSourceDescription($sourceDescription)
 	{
-		$this->itemNumber = $itemNumber;
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getUnit()
-	{
-		return $this->unit;
-	}
-
-	/**
-	 * @param string $unit
-	 * @return $this
-	 */
-	public function setUnit($unit)
-	{
-		$this->unit = $unit;
-		return $this;
+		$this->sourceDescription = $sourceDescription;
 	}
 
 	/**
 	 * @return int
 	 */
-	public function getUnitType()
+	public function getInventoryId()
 	{
-		return $this->unitType;
+		return $this->inventoryId;
 	}
 
 	/**
-	 * @param int $unitType
-	 * @return $this
+	 * @param int $inventoryId
 	 */
-	public function setUnitType($unitType)
+	public function setInventoryId($inventoryId)
 	{
-		$this->unitType = $unitType;
-		return $this;
+		$this->inventoryId = $inventoryId;
 	}
 
 	/**
-	 * @return string
+	 * @return int
 	 */
-	public function getItemDescription()
+	public function getAccountId()
 	{
-		return $this->itemDescription;
+		return $this->accountId;
 	}
 
 	/**
-	 * @param string $itemDescription
-	 * @return $this
+	 * @param int $accountId
 	 */
-	public function setItemDescription($itemDescription)
+	public function setAccountId($accountId)
 	{
-		$this->itemDescription = $itemDescription;
-		return $this;
+		$this->accountId = $accountId;
 	}
 
 	/**
 	 * @return float
 	 */
-	public function getSubtotal()
+	public function getQuantitySold()
 	{
-		return $this->subtotal;
+		return $this->quantitySold;
 	}
 
 	/**
-	 * @param float $subtotal
-	 * @return $this
+	 * @param float $quantitySold
 	 */
-	public function setSubtotal($subtotal)
+	public function setQuantitySold($quantitySold)
 	{
-		$this->subtotal = $subtotal;
-		return $this;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getQuantityOrdered()
-	{
-		return $this->quantityOrdered;
-	}
-
-	/**
-	 * @param float $quantityOrdered
-	 * @return $this
-	 */
-	public function setQuantityOrdered($quantityOrdered)
-	{
-		$this->quantityOrdered = $quantityOrdered;
-		return $this;
+		$this->quantitySold = $quantitySold;
 	}
 
 	/**
 	 * @return float
 	 */
-	public function getQuantityBackOrder()
+	public function getPrice()
 	{
-		return $this->quantityBackOrder;
+		return $this->price;
 	}
 
 	/**
-	 * @param float $quantityBackOrder
-	 * @return $this
+	 * @param float $price
 	 */
-	public function setQuantityBackOrder($quantityBackOrder)
+	public function setPrice($price)
 	{
-		$this->quantityBackOrder = $quantityBackOrder;
-		return $this;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getItemPrice()
-	{
-		return $this->itemPrice;
-	}
-
-	/**
-	 * @param float $itemPrice
-	 * @return $this
-	 */
-	public function setItemPrice($itemPrice)
-	{
-		$this->itemPrice = $itemPrice;
-		return $this;
+		$this->price = $price;
 	}
 
 	/**
 	 * @return float
 	 */
-	public function getDutyPercentage()
+	public function getAmount()
 	{
-		return $this->dutyPercentage;
+		return $this->amount;
 	}
 
 	/**
-	 * @param float $dutyPercentage
-	 * @return $this
+	 * @param float $amount
 	 */
-	public function setDutyPercentage($dutyPercentage)
+	public function setAmount($amount)
 	{
-		$this->dutyPercentage = $dutyPercentage;
-		return $this;
+		$this->amount = $amount;
 	}
 
 	/**
 	 * @return float
 	 */
-	public function getDutyAmount()
+	public function getCost()
 	{
-		return $this->dutyAmount;
+		return $this->cost;
 	}
 
 	/**
-	 * @param float $dutyAmount
-	 * @return $this
+	 * @param float $cost
 	 */
-	public function setDutyAmount($dutyAmount)
+	public function setCost($cost)
 	{
-		$this->dutyAmount = $dutyAmount;
-		return $this;
+		$this->cost = $cost;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function getRevenue()
+	{
+		return $this->revenue;
+	}
+
+	/**
+	 * @param float $revenue
+	 */
+	public function setRevenue($revenue)
+	{
+		$this->revenue = $revenue;
 	}
 
 	/**
 	 * @return boolean
 	 */
-	public function isFreightItem()
+	public function isAssemblyComponentsLine()
 	{
-		return $this->isFreightItem;
+		return $this->assemblyComponentsLine;
 	}
 
 	/**
-	 * @param boolean $isFreightItem
-	 * @return $this
+	 * @param boolean $assemblyComponentsLine
 	 */
-	public function setIsFreightItem($isFreightItem)
+	public function setAssemblyComponentsLine($assemblyComponentsLine)
 	{
-		$this->isFreightItem = $isFreightItem;
-		return $this;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getTaxCodeId()
-	{
-		return $this->taxCodeId;
-	}
-
-	/**
-	 * @param int $taxCodeId
-	 * @return $this
-	 */
-	public function setTaxCodeId($taxCodeId)
-	{
-		$this->taxCodeId = $taxCodeId;
-		return $this;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function getTaxRevision()
-	{
-		return $this->taxRevision;
-	}
-
-	/**
-	 * @param int $taxRevision
-	 * @return $this
-	 */
-	public function setTaxRevision($taxRevision)
-	{
-		$this->taxRevision = $taxRevision;
-		return $this;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getTaxes()
-	{
-		return $this->taxes;
-	}
-
-	/**
-	 * @param float $taxes
-	 * @return $this
-	 */
-	public function setTaxes($taxes)
-	{
-		$this->taxes = $taxes;
-		return $this;
+		$this->assemblyComponentsLine = $assemblyComponentsLine;
 	}
 
 	/**
 	 * @return boolean
 	 */
-	public function isTimeSlipItem()
+	public function isVarianceLine()
 	{
-		return $this->isTimeSlipItem;
+		return $this->varianceLine;
 	}
 
 	/**
-	 * @param boolean $isTimeSlipItem
-	 * @return $this
+	 * @param boolean $varianceLine
 	 */
-	public function setIsTimeSlipItem($isTimeSlipItem)
+	public function setVarianceLine($varianceLine)
 	{
-		$this->isTimeSlipItem = $isTimeSlipItem;
-		return $this;
+		$this->varianceLine = $varianceLine;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isReversal()
+	{
+		return $this->isReversal;
+	}
+
+	/**
+	 * @param boolean $isReversal
+	 */
+	public function setIsReversal($isReversal)
+	{
+		$this->isReversal = $isReversal;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isServiceItem()
+	{
+		return $this->isServiceItem;
+	}
+
+	/**
+	 * @param boolean $isServiceItem
+	 */
+	public function setIsServiceItem($isServiceItem)
+	{
+		$this->isServiceItem = $isServiceItem;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getAccountDepartmentId()
+	{
+		return $this->accountDepartmentId;
+	}
+
+	/**
+	 * @param int $accountDepartmentId
+	 */
+	public function setAccountDepartmentId($accountDepartmentId)
+	{
+		$this->accountDepartmentId = $accountDepartmentId;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getInventoryLocationId()
+	{
+		return $this->inventoryLocationId;
+	}
+
+	/**
+	 * @param int $inventoryLocationId
+	 */
+	public function setInventoryLocationId($inventoryLocationId)
+	{
+		$this->inventoryLocationId = $inventoryLocationId;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isDefaultPrice()
+	{
+		return $this->isDefaultPrice;
+	}
+
+	/**
+	 * @param boolean $isDefaultPrice
+	 */
+	public function setIsDefaultPrice($isDefaultPrice)
+	{
+		$this->isDefaultPrice = $isDefaultPrice;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function getPriceListId()
+	{
+		return $this->priceListId;
+	}
+
+	/**
+	 * @param int $priceListId
+	 */
+	public function setPriceListId($priceListId)
+	{
+		$this->priceListId = $priceListId;
 	}
 
 	/**
@@ -520,12 +473,10 @@ class ItemEntity
 
 	/**
 	 * @param float $itemBasePrice
-	 * @return $this
 	 */
 	public function setItemBasePrice($itemBasePrice)
 	{
 		$this->itemBasePrice = $itemBasePrice;
-		return $this;
 	}
 
 	/**
@@ -538,65 +489,57 @@ class ItemEntity
 
 	/**
 	 * @param float $lineDiscountPercentage
-	 * @return $this
 	 */
 	public function setLineDiscountPercentage($lineDiscountPercentage)
 	{
 		$this->lineDiscountPercentage = $lineDiscountPercentage;
-		return $this;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function getVendorRelationship()
-	{
-		return $this->vendorRelationship;
-	}
-
-	/**
-	 * @param float $vendorRelationship
-	 * @return $this
-	 */
-	public function setVendorRelationship($vendorRelationship)
-	{
-		$this->vendorRelationship = $vendorRelationship;
-		return $this;
 	}
 
 	/**
 	 * @return boolean
 	 */
-	public function isVendorToStock()
+	public function isDefaultBasePrice()
 	{
-		return $this->isVendorToStock;
+		return $this->isDefaultBasePrice;
 	}
 
 	/**
-	 * @param boolean $isVendorToStock
-	 * @return $this
+	 * @param boolean $isDefaultBasePrice
 	 */
-	public function setIsVendorToStock($isVendorToStock)
+	public function setIsDefaultBasePrice($isDefaultBasePrice)
 	{
-		$this->isVendorToStock = $isVendorToStock;
-		return $this;
+		$this->isDefaultBasePrice = $isDefaultBasePrice;
 	}
 
 	/**
 	 * @return boolean
 	 */
-	public function isDefaultDescriptionUsed()
+	public function isDeleted()
 	{
-		return $this->isDefaultDescriptionUsed;
+		return $this->isDeleted;
 	}
 
 	/**
-	 * @param boolean $isDefaultDescriptionUsed
-	 * @return $this
+	 * @param boolean $isDeleted
 	 */
-	public function setIsDefaultDescriptionUsed($isDefaultDescriptionUsed)
+	public function setIsDeleted($isDeleted)
 	{
-		$this->isDefaultDescriptionUsed = $isDefaultDescriptionUsed;
-		return $this;
+		$this->isDeleted = $isDeleted;
+	}
+
+	/**
+	 * @return boolean
+	 */
+	public function isVendorInventory()
+	{
+		return $this->isVendorInventory;
+	}
+
+	/**
+	 * @param boolean $isVendorInventory
+	 */
+	public function setIsVendorInventory($isVendorInventory)
+	{
+		$this->isVendorInventory = $isVendorInventory;
 	}
 }

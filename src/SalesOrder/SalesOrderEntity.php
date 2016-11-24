@@ -196,13 +196,13 @@ class SalesOrderEntity
      * @ORM\Column(name="dTotal", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $total = 0.00;
+    private $totalAmount = 0.00;
 
     /**
      * @ORM\Column(name="lJourId", type="integer", nullable=true)
      * @var int
      */
-    private $nextId = 0;
+    private $nextJournalId = 0;
 
     /**
      * @ORM\Column(name="sComment", type="string", length=100, nullable=true)
@@ -238,7 +238,7 @@ class SalesOrderEntity
      * @ORM\Column(name="dExchRate", type="float", precision=10, scale=0, nullable=true)
      * @var float
      */
-    private $exchangeRate = false;
+    private $exchangeRate = 0;
 
     /**
      * @ORM\Column(name="bEtran", type="boolean", nullable=true)
@@ -912,36 +912,36 @@ class SalesOrderEntity
     /**
      * @return float
      */
-    public function getTotal()
+    public function getTotalAmount()
     {
-        return $this->total;
+        return $this->totalAmount;
     }
 
     /**
-     * @param float $total
+     * @param float $totalAmount
      * @return $this
      */
-    public function setTotal($total)
+    public function setTotalAmount($totalAmount)
     {
-        $this->total = $total;
+        $this->totalAmount = $totalAmount;
         return $this;
     }
 
     /**
      * @return int
      */
-    public function getNextId()
+    public function getNextJournalId()
     {
-        return $this->nextId;
+        return $this->nextJournalId;
     }
 
     /**
-     * @param int $nextId
+     * @param int $nextJournalId
      * @return $this
      */
-    public function setNextId($nextId)
+    public function setNextJournalId($nextJournalId)
     {
-        $this->nextId = $nextId;
+        $this->nextJournalId = $nextJournalId;
         return $this;
     }
 

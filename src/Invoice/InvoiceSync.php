@@ -17,8 +17,8 @@ class InvoiceSync extends Sync implements SyncFromSage50ByIdInterface, SyncToSag
         if (null === $mapper || !($mapper instanceof MapperFromSage50Interface)) {
             throw new InvalidMapperException();
         }
-        /** @var InvoiceRepository $repository */
-        $repository = $this->entityManager->getRepository('Smart\\Sage50\\Invoice\\InvoiceEntity');
+        /** @var InvoiceLookupRepository $repository */
+        $repository = $this->entityManager->getRepository('Smart\\Sage50\\Invoice\\InvoiceLookup\\InvoiceLookupEntity');
         $items = $repository->fetchNewAfterId($id);
         foreach ($items as $item) {
             $mappedItem = $mapper->mapFromSage50($item);
