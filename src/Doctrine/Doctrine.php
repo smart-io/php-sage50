@@ -176,6 +176,7 @@ class Doctrine extends AbstractManagerRegistry
 
         $isDevMode = $this->getConfig()->isDev();
         $doctrineConfig = Setup::createConfiguration($isDevMode, null, new ArrayCache());
+        $doctrineConfig->setAutoGenerateProxyClasses(true);
 
         $doctrineConfig->setMetadataDriverImpl(
             new AnnotationDriver(new AnnotationReader(), [realpath(__DIR__ . '/../')])

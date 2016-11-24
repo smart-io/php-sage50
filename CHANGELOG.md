@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## 0.4.4 (released 2016-11-24)
+
+- Fixed issue with doctrine
+
+## 0.4.3 (released 2016-11-24)
+
+- Fixed bugs with chunk syncing
+
 ## 0.4.2 (released 2016-11-23)
 
 - Fixed issues with syncing invoices
