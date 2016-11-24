@@ -28,7 +28,7 @@ class ItemTaxEntity
     private $itemId = 0;
 
 	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\Item\ItemEntity", mappedBy="tax")
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\SalesOrder\Item\ItemEntity", inversedBy="tax")
 	 * @ORM\JoinColumns({
 	 *   @ORM\JoinColumn(name="lSORecId", referencedColumnName="lSORecId"),
 	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")

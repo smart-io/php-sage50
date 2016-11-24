@@ -49,6 +49,10 @@ class ItemEntity
 
 	/**
 	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity", mappedBy="item")
+	 * @ORM\JoinColumns({
+	 *   @ORM\JoinColumn(name="lITRecId", referencedColumnName="lITRecId"),
+	 *   @ORM\JoinColumn(name="nLineNum", referencedColumnName="nLineNum")
+	 * })
 	 * @var \Smart\Sage50\Invoice\InvoiceLookup\ItemTax\ItemTaxEntity
 	 **/
 	private $tax;

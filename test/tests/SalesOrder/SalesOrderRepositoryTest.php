@@ -6,9 +6,7 @@ use Doctrine\ORM\EntityManager;
 use PHPUnit_Framework_TestCase;
 use Smart\Sage50\Config;
 use Smart\Sage50\Doctrine\Doctrine;
-use Smart\Sage50\SalesOrder\ItemTax\ItemTaxEntity;
 use Smart\Sage50\SalesOrder\SalesOrderEntity;
-use Smart\Sage50\SalesOrder\TotalTaxes\TotalTaxesEntity;
 
 class SalesOrderRepositoryTest extends PHPUnit_Framework_TestCase
 {
@@ -54,6 +52,5 @@ class SalesOrderRepositoryTest extends PHPUnit_Framework_TestCase
 		$invoice = $result[0];
 
 		$this->assertGreaterThanOrEqual(1, count($invoice->getItems()));
-		//$this->assertInstanceOf(ItemTaxEntity::class, $invoice->getItems()[0]->getTax());
 	}
 }

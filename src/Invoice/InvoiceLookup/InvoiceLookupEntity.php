@@ -30,16 +30,16 @@ class InvoiceLookupEntity
 	private $invoice;
 
 	/**
-	 * @ORM\OneToMany(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity", mappedBy="invoice")
-	 * @var ItemEntity[]
-	 **/
-	private $items;
-
-	/**
-	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\TotalTaxes\TotalTaxesEntity", mappedBy="invoice")
+	 * @ORM\OneToOne(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\TotalTaxes\TotalTaxesEntity", mappedBy="invoiceLookup")
 	 * @var \Smart\Sage50\Invoice\InvoiceLookup\TotalTaxes\TotalTaxesEntity
 	 **/
 	private $totalTaxes;
+
+	/**
+	 * @ORM\OneToMany(targetEntity="\Smart\Sage50\Invoice\InvoiceLookup\Item\ItemEntity", mappedBy="invoiceLookup")
+	 * @var ItemEntity[]
+	 **/
+	private $items;
 
 	/**
 	 * @ORM\Column(name="sName", type="string", length=52, nullable=true)
