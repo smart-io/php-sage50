@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.5.1 (released 2016-11-24)
+
+- Sync deleted invoices too
+
 ## 0.5.0 (released 2016-11-24)
 
 - Fixed the way tax models are handled

@@ -18,7 +18,6 @@ class InvoiceRepository extends EntityRepository implements RepositoryInterface
 	    $time = '1899-12-30 ' . $dateTime->format('H:i:s');
 	    return $this->createQueryBuilder('i')
 		    ->where('i.journalType = :type')
-		    ->andWhere('i.isReversed = 0')
 		    ->andWhere('i.modificationDate > :date OR i.modificationDate = :date AND i.modificationTime > :time')
 		    ->setParameter('date', $date)
 		    ->setParameter('time', $time)
@@ -39,7 +38,6 @@ class InvoiceRepository extends EntityRepository implements RepositoryInterface
 	    $time = '1899-12-30 ' . $dateTime->format('H:i:s');
 	    return $this->createQueryBuilder('i')
 		    ->where('i.journalType = :type')
-		    ->andWhere('i.isReversed = 0')
 		    ->andWhere('i.modificationDate > :date OR i.modificationDate = :date AND i.modificationTime > :time')
 		    ->setMaxResults($limit)
 		    ->setFirstResult($offset)
