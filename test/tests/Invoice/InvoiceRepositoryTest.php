@@ -3,12 +3,12 @@
 namespace Smart\Sage50\Tests\Invoice;
 
 use Doctrine\ORM\EntityManager;
-use PHPUnit_Framework_TestCase;
 use Smart\Sage50\Config;
 use Smart\Sage50\Doctrine\Doctrine;
 use Smart\Sage50\Invoice\InvoiceEntity;
+use PHPUnit\Framework\TestCase;
 
-class InvoiceRepositoryTest extends PHPUnit_Framework_TestCase
+class InvoiceRepositoryTest extends TestCase
 {
 	/**
 	 * @var EntityManager

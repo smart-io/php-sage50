@@ -3,12 +3,12 @@
 namespace Smart\Sage50\Tests\SalesOrder;
 
 use Doctrine\ORM\EntityManager;
-use PHPUnit_Framework_TestCase;
 use Smart\Sage50\Config;
 use Smart\Sage50\Doctrine\Doctrine;
 use Smart\Sage50\SalesOrder\SalesOrderEntity;
+use PHPUnit\Framework\TestCase;
 
-class SalesOrderRepositoryTest extends PHPUnit_Framework_TestCase
+class SalesOrderRepositoryTest extends TestCase
 {
 	/**
 	 * @var EntityManager

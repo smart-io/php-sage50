@@ -2,12 +2,12 @@
 
 namespace Smart\Sage50\Tests\Tax\TaxCode;
 
-use PHPUnit_Framework_TestCase;
+use PHPUnit\Framework\TestCase;
 use Smart\Sage50\Tax\TaxCode\TaxCodeEntity;
 use Smart\Sage50\Tax\TaxCode\TaxCodeParser;
 use Smart\Sage50\Tax\TaxEntity;
 
-class TaxCodeParserTest extends PHPUnit_Framework_TestCase
+class TaxCodeParserTest extends TestCase
 {
     public function getTaxCodesAndExpectedResults()
     {

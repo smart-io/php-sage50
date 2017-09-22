@@ -20,6 +20,12 @@ class CustomerEntity
     private $id = 0;
 
     /**
+     * @ORM\OneToOne(targetEntity="\Smart\Sage50\Customer\AdditionalInfo\AdditionalInfoEntity", mappedBy="customer")
+     * @var AdditionalInfoEntity
+     **/
+    private $additionalInfo;
+
+    /**
      * @ORM\Column(name="sName", type="string", length=52, nullable=true)
      * @var string
      */
@@ -353,6 +359,22 @@ class CustomerEntity
     {
         $this->id = $id;
         return $this;
+    }
+
+    /**
+     * @return AdditionalInfoEntity
+     */
+    public function getAdditionalInfo()
+    {
+        return $this->additionalInfo;
+    }
+
+    /**
+     * @param $additionalInfo
+     */
+    public function setAdditionalInfo($additionalInfo)
+    {
+        $this->additionalInfo = $additionalInfo;
     }
 
     /**
