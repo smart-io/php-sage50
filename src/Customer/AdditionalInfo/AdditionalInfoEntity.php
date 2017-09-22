@@ -1,6 +1,6 @@
 <?php
 
-namespace Smart\Sage50\Customer;
+namespace Smart\Sage50\Customer\AdditionalInfo;
 
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
