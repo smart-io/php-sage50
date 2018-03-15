@@ -296,12 +296,6 @@ class CustomerEntity
     private $priceListId = 0;
 
     /**
-     * @ORM\Column(name="lModVer", type="integer", nullable=true)
-     * @var int
-     */
-    private $recordChangeCounter;
-
-    /**
      * @ORM\Column(name="dtSince", type="datetime", nullable=true)
      * @var DateTime
      */
@@ -1184,24 +1178,6 @@ class CustomerEntity
     public function setPriceListId($priceListId)
     {
         $this->priceListId = $priceListId;
-        return $this;
-    }
-
-    /**
-     * @return int
-     */
-    public function getRecordChangeCounter()
-    {
-        return $this->recordChangeCounter;
-    }
-
-    /**
-     * @param int $recordChangeCounter
-     * @return $this
-     */
-    public function setRecordChangeCounter($recordChangeCounter)
-    {
-        $this->recordChangeCounter = $recordChangeCounter;
         return $this;
     }
 
