@@ -308,12 +308,6 @@ class CustomerEntity
     private $lastSaleDate;
 
     /**
-     * @ORM\Column(name="bSyncOL", type="boolean", nullable=true)
-     * @var bool
-     */
-    private $isSyncingWithOutlook = false;
-
-    /**
      * @ORM\Column(name="lInvLocId", type="integer", nullable=true)
      * @var int
      */
@@ -1214,24 +1208,6 @@ class CustomerEntity
     public function setLastSaleDate(DateTime $lastSaleDate)
     {
         $this->lastSaleDate = $lastSaleDate;
-        return $this;
-    }
-
-    /**
-     * @return boolean
-     */
-    public function isSyncingWithOutlook()
-    {
-        return $this->isSyncingWithOutlook;
-    }
-
-    /**
-     * @param boolean $isSyncingWithOutlook
-     * @return $this
-     */
-    public function setIsSyncingWithOutlook($isSyncingWithOutlook)
-    {
-        $this->isSyncingWithOutlook = $isSyncingWithOutlook;
         return $this;
     }
 

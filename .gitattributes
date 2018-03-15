@@ -1,7 +1,7 @@
 * text=auto
 
 /bin export-ignore
-/tests export-ignore
+/test export-ignore
 /vendor export-ignore
 /.env export-ignore
 /.env.dist export-ignore
